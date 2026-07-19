@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quotation — Ambika Playwoods Official Website</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: #f4f6f9;
+      color: #1a1a2e;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 40px auto;
+      background: #fff;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: #fff;
+      padding: 36px 48px 28px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .header-brand h1 {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: #F59E0B;
+    }
+    .header-brand p {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    .header-meta {
+      text-align: right;
+      min-width: 180px;
+    }
+    .header-meta .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #94a3b8;
+    }
+    .header-meta .value {
+      font-size: 13px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    .header-meta .quotation-no {
+      font-size: 20px;
+      font-weight: 800;
+      color: #F59E0B;
+      margin-top: 4px;
+    }
+
+    /* ── BADGE ── */
+    .quote-badge {
+      background: #F59E0B;
+      color: #1a1a2e;
+      text-align: center;
+      padding: 10px 48px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ── PARTIES ── */
+    .parties {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .party {
+      padding: 28px 48px;
+    }
+    .party:first-child {
+      border-right: 1px solid #e2e8f0;
+    }
+    .party-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+    .party h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+    .party p {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.7;
+    }
+    .party .highlight {
+      color: #D97706;
+      font-weight: 700;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      padding: 20px 48px 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #94a3b8;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    /* ── PROJECT SUMMARY ── */
+    .project-summary {
+      padding: 20px 48px 24px;
+      background: #fafbfc;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .project-summary h2 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+    .project-summary p {
+      font-size: 13px;
+      color: #475569;
+      max-width: 600px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .tag {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #475569;
+      font-weight: 600;
+    }
+    .tag.amber {
+      background: #fffbeb;
+      border-color: #F59E0B;
+      color: #92400e;
+    }
+
+    /* ── TABLE ── */
+    .table-wrap {
+      padding: 0 48px 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    thead th {
+      background: #1a1a2e;
+      color: #e2e8f0;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 700;
+    }
+    thead th:last-child { text-align: right; }
+    tbody tr:nth-child(even) { background: #f8fafc; }
+    tbody tr:hover { background: #fffbeb; }
+    tbody td {
+      padding: 13px 14px;
+      font-size: 13px;
+      color: #334155;
+      border-bottom: 1px solid #f1f5f9;
+      vertical-align: top;
+    }
+    tbody td:first-child {
+      width: 32px;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 12px;
+    }
+    tbody td:last-child {
+      text-align: right;
+      font-weight: 700;
+      color: #1a1a2e;
+      white-space: nowrap;
+    }
+    .item-name {
+      font-weight: 700;
+      color: #1a1a2e;
+      display: block;
+      margin-bottom: 3px;
+    }
+    .item-desc {
+      font-size: 11.5px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+    .item-desc ul {
+      margin: 4px 0 0 16px;
+    }
+    .item-desc li {
+      margin-bottom: 1px;
+    }
+
+    /* ── TOTALS ── */
+    .totals {
+      margin: 0 48px 32px;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .total-row:last-child { border-bottom: none; }
+    .total-row .t-label {
+      font-size: 13px;
+      color: #475569;
+    }
+    .total-row .t-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+    .total-row.grand {
+      background: #1a1a2e;
+    }
+    .total-row.grand .t-label {
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .total-row.grand .t-value {
+      color: #F59E0B;
+      font-size: 22px;
+      font-weight: 800;
+    }
+    .total-row.subtotal {
+      background: #f8fafc;
+    }
+    .total-row.domain-row {
+      background: #fffbeb;
+    }
+    .total-row.domain-row .t-label { color: #92400e; }
+    .total-row.domain-row .t-value { color: #92400e; }
+
+    /* ── DELIVERABLES ── */
+    .deliverables {
+      padding: 0 48px 28px;
+    }
+    .del-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .del-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: #334155;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border-radius: 4px;
+      border-left: 3px solid #F59E0B;
+    }
+    .del-item::before {
+      content: "✓";
+      color: #F59E0B;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── HOSTING NOTE ── */
+    .hosting-note {
+      margin: 0 48px 28px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 4px;
+      padding: 16px 20px;
+    }
+    .hosting-note h4 {
+      font-size: 13px;
+      font-weight: 800;
+      color: #1e40af;
+      margin-bottom: 6px;
+    }
+    .hosting-note p {
+      font-size: 12px;
+      color: #1e3a8a;
+      line-height: 1.7;
+    }
+
+    /* ── TERMS ── */
+    .terms {
+      padding: 0 48px 28px;
+    }
+    .terms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .term-item {
+      font-size: 12px;
+      color: #475569;
+      padding: 8px 12px;
+      background: #f8fafc;
+      border-radius: 4px;
+    }
+    .term-item strong {
+      color: #1a1a2e;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ── PAYMENT SCHEDULE ── */
+    .payment {
+      margin: 0 48px 28px;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .pay-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.2fr;
+      padding: 12px 20px;
+      border-bottom: 1px solid #f1f5f9;
+      align-items: center;
+    }
+    .pay-row:last-child { border-bottom: none; }
+    .pay-row.pay-head {
+      background: #f8fafc;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #94a3b8;
+    }
+    .pay-row .milestone { font-size: 13px; color: #334155; font-weight: 600; }
+    .pay-row .percent { font-size: 13px; color: #64748b; }
+    .pay-row .amount { font-size: 14px; font-weight: 800; color: #D97706; text-align: right; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #1a1a2e;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer p {
+      font-size: 12px;
+      color: #64748b;
+    }
+    .footer strong { color: #94a3b8; }
+    .footer .sign-block {
+      text-align: right;
+    }
+    .footer .sign-block p {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 28px;
+    }
+    .footer .sign-line {
+      border-top: 1px solid #334155;
+      padding-top: 6px;
+      font-size: 11px;
+      color: #475569;
+      min-width: 160px;
+    }
+
+    /* ── VALIDITY RIBBON ── */
+    .validity {
+      background: #fffbeb;
+      border-top: 1px solid #fde68a;
+      border-bottom: 1px solid #fde68a;
+      padding: 10px 48px;
+      font-size: 12px;
+      color: #92400e;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .validity strong { font-weight: 800; }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-brand">
+      <h1>Aathithyabalan J</h1>
+      <p>Full-Stack Engineer</p>
+      <p style="margin-top:12px;font-size:12px;color:#cbd5e1;">
+        Dindigul, Tamil Nadu<br>
+        aathithya014@gmail.com
+      </p>
+    </div>
+    <div class="header-meta">
+      <div>
+        <div class="label">Date</div>
+        <div class="value">08 June 2026</div>
+      </div>
+      <div style="margin-top:10px;">
+        <div class="label">Valid Until</div>
+        <div class="value">22 June 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BADGE -->
+  <div class="quote-badge">Formal Quotation</div>
+
+  <!-- VALIDITY -->
+  <div class="validity">
+    <span>This quotation is valid for <strong>14 days</strong> from the date of issue.</span>
+    <span>Ref: Ambika Playwoods — Official Website</span>
+  </div>
+
+  <!-- PARTIES -->
+  <div class="parties">
+    <div class="party">
+      <div class="party-label">Prepared By</div>
+      <h3>Aathithyabalan J</h3>
+      <p>
+        Freelance Full-Stack Engineer<br>
+        Dindigul, Tamil Nadu<br>
+        <span class="highlight">aathithya014@gmail.com</span>
+      </p>
+    </div>
+    <div class="party">
+      <div class="party-label">Prepared For</div>
+      <h3>Ambika Playwoods</h3>
+      <p>
+        Glass, Hardware &amp; Interiors Business<br>
+        Dindigul, Tamil Nadu<br>
+        <span class="highlight">Official Website Development</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- PROJECT SUMMARY -->
+  <div class="project-summary">
+    <h2>Ambika Playwoods — Official Business Website</h2>
+    <p>
+      A fully custom, multi-page static business website designed for Ambika Playwoods — optimised for Google search rankings, social media engagement, and converting visitors into customers. Includes complete SEO infrastructure, Google Reviews integration, social media presence utilisation, and a self-managed admin panel for ongoing content updates.
+    </p>
+    <div class="tags">
+      <span class="tag amber">10+ Pages</span>
+      <span class="tag amber">Admin Dashboard</span>
+      <span class="tag">Full SEO</span>
+      <span class="tag">JSON-LD Schema</span>
+      <span class="tag">Google Reviews</span>
+      <span class="tag">Social Media Integration</span>
+      <span class="tag">WhatsApp Chat</span>
+      <span class="tag">Day / Night Mode</span>
+      <span class="tag">Mobile Responsive</span>
+      <span class="tag">AWS S3 Hosting</span>
+      <span class="tag">Optimised Images</span>
+      <span class="tag">Sitemap + Robots.txt</span>
+    </div>
+  </div>
+
+  <!-- LINE ITEMS TABLE -->
+  <div class="section-title">Scope of Work &amp; Cost Breakdown</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Service / Deliverable</th>
+          <th style="text-align:right;">Amount (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>01</td>
+          <td>
+            <span class="item-name">Custom Website Design &amp; UI/UX</span>
+            <span class="item-desc">
+              <ul>
+                <li>Futuristic minimalist visual design tailored to Ambika Playwoods brand identity</li>
+                <li>Day / Night (light &amp; dark) mode toggle with smooth transitions</li>
+                <li>Fully responsive layout — mobile, tablet, and desktop</li>
+                <li>Custom design system: amber/gold brand colors, Nunito Sans typography, 4px radius</li>
+                <li>Animated hero sections, scroll-reveal effects, interactive counters</li>
+              </ul>
+            </span>
+          </td>
+          <td>₹ 3,500</td>
+        </tr>
+
+        <tr>
+          <td>02</td>
+          <td>
+            <span class="item-name">Multi-Page Website Development (10+ Pages)</span>
+            <span class="item-desc">
+              <ul>
+                <li><strong>Home</strong> — Hero, stats counter, services overview, why-us, testimonials, CTA, footer</li>
+                <li><strong>About</strong> — Company story, team, vision/mission</li>
+                <li><strong>Services</strong> — Dynamically loaded service cards with icons and descriptions</li>
+                <li><strong>Products</strong> — 74+ products with filter, sort, deal banner, FAQ section</li>
+                <li><strong>Portfolio / Works</strong> — 42 project gallery with filter by category and lightbox</li>
+                <li><strong>Contact</strong> — Contact form, Google Maps embed, WhatsApp direct link</li>
+                <li><strong>Reviews</strong> — Google Reviews showcase page</li>
+                <li><strong>Gallery</strong> — Photo gallery with categorised view</li>
+                <li><strong>UPVC / Negizhi</strong> — Dedicated brand landing page</li>
+                <li><strong>Alangaram Interiors</strong> — Dedicated sister-brand landing page</li>
+              </ul>
+            </span>
+          </td>
+          <td>₹ 5,000</td>
+        </tr>
+
+        <tr>
+          <td>03</td>
+          <td>
+            <span class="item-name">Admin Dashboard &amp; Self-Managed CMS</span>
+            <span class="item-desc">
+              <ul>
+                <li>Password-protected admin panel (no external server/database needed)</li>
+                <li>Manage Products: add, edit, delete, mark as Deal of the Week/Month</li>
+                <li>Manage Services: add, edit, reorder service cards</li>
+                <li>Manage Portfolio Works: add new projects with images, category, and brief</li>
+                <li>Site Settings: update WhatsApp number, contact details from the dashboard</li>
+              </ul>
+            </span>
+          </td>
+          <td>₹ 2,500</td>
+        </tr>
+
+        <tr>
+          <td>04</td>
+          <td>
+            <span class="item-name">Social Media &amp; Business Presence Integration</span>
+            <span class="item-desc">
+              <ul>
+                <li>Google Reviews — embedded live reviews display on website</li>
+                <li>Instagram — profile linked; posts/highlight references integrated</li>
+                <li>WhatsApp Click-to-Chat — floating button with custom message on all pages</li>
+                <li>Social sharing meta cards — website previews on WhatsApp and other platforms look professional</li>
+                <li>Social media icons in header/footer linked to all active profiles</li>
+              </ul>
+            </span>
+          </td>
+          <td>₹ 1,500</td>
+        </tr>
+
+        <tr>
+          <td>05</td>
+          <td>
+            <span class="item-name">Advanced SEO — Meta Tags, JSON-LD &amp; Local SEO</span>
+            <span class="item-desc">
+              <ul>
+                <li>All pages: title tags, meta descriptions, canonical URLs, Open Graph &amp; Twitter Card meta</li>
+                <li>JSON-LD Structured Data: <em>LocalBusiness, HomeAndConstructionBusiness, Organization, WebSite, WebPage, BreadcrumbList, FAQPage (6 questions per page), ItemList (74 products + 42 works + 15 services), Product + Offer schema, geo-coordinates, areaServed, priceRange</em></li>
+                <li><code>sitemap.xml</code> — full image sitemap covering all 10 pages with lastmod dates</li>
+                <li><code>robots.txt</code> — crawl rules, blocked admin/data folders, sitemap pointer</li>
+                <li>Local SEO: Google Maps embed, NAP (Name/Address/Phone) consistency across all pages</li>
+                <li>Keyword targeting: glass, hardware, interiors, UPVC, Dindigul-specific terms</li>
+              </ul>
+            </span>
+          </td>
+          <td>₹ 3,000</td>
+        </tr>
+
+        <tr>
+          <td>06</td>
+          <td>
+            <span class="item-name">Image Sourcing, Editing &amp; Performance Optimisation</span>
+            <span class="item-desc">
+              <ul>
+                <li>All product, service, portfolio, team, and hero images sourced and edited</li>
+                <li>Images converted to WebP format for 30–50% smaller file sizes</li>
+                <li>Lazy loading implemented — images load only when visible (faster initial page load)</li>
+                <li>Proper alt text on all images for SEO and accessibility (WCAG compliance)</li>
+                <li>og-image.jpg and favicon designed and integrated</li>
+              </ul>
+            </span>
+          </td>
+          <td>₹ 2,000</td>
+        </tr>
+
+        <tr>
+          <td>07</td>
+          <td>
+            <span class="item-name">AWS S3 Deployment, Configuration &amp; Go-Live</span>
+            <span class="item-desc">
+              <ul>
+                <li>AWS S3 bucket setup with static website hosting configuration</li>
+                <li>Public access policies, CORS, and bucket policy setup</li>
+                <li>Full website deployment to S3 with correct folder structure</li>
+                <li>Custom domain linked to S3 via DNS configuration</li>
+                <li>Cross-browser testing: Chrome, Firefox, Safari, Edge</li>
+                <li>Mobile responsiveness QA across Android and iOS</li>
+                <li>Post-launch review and one round of revisions</li>
+              </ul>
+            </span>
+          </td>
+          <td>₹ 2,500</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TOTALS -->
+  <div class="totals">
+    <div class="total-row subtotal">
+      <span class="t-label">Website Development &amp; Deployment (One-Time)</span>
+      <span class="t-value">₹ 20,000</span>
+    </div>
+    <div class="total-row domain-row">
+      <span class="t-label">Domain Registration — 3 Years via Hostinger (One-Time)</span>
+      <span class="t-value">₹ 2,200</span>
+    </div>
+    <div class="total-row grand">
+      <span class="t-label">Grand Total</span>
+      <span class="t-value">₹ 22,200</span>
+    </div>
+  </div>
+
+  <!-- HOSTING NOTE -->
+  <div class="hosting-note">
+    <h4>Note on AWS S3 Hosting Costs (Post-Launch)</h4>
+    <p>
+      AWS S3 static website hosting is charged based on actual usage (storage + bandwidth). For a business website of this size, ongoing hosting costs are estimated at approximately <strong>₹100 – ₹300 per month</strong> — billed directly by AWS to your account. This is not included in the one-time development fee above and will be the client's responsibility after go-live. Domain renewal after 3 years will also be the client's responsibility.
+    </p>
+  </div>
+
+  <!-- DELIVERABLES CHECKLIST -->
+  <div class="section-title">What You Receive</div>
+  <div class="deliverables">
+    <div class="del-grid">
+      <div class="del-item">Complete source code (HTML, CSS, JS, JSON)</div>
+      <div class="del-item">Admin dashboard with login credentials</div>
+      <div class="del-item">10+ fully designed and developed pages</div>
+      <div class="del-item">Google Reviews integration</div>
+      <div class="del-item">Instagram social media integration</div>
+      <div class="del-item">WhatsApp floating chat button (all pages)</div>
+      <div class="del-item">74+ products with filter &amp; deal banner</div>
+      <div class="del-item">42-project portfolio with lightbox gallery</div>
+      <div class="del-item">JSON-LD structured data (all major pages)</div>
+      <div class="del-item">XML Sitemap + Robots.txt</div>
+      <div class="del-item">All images optimised (WebP + lazy loading)</div>
+      <div class="del-item">Favicon + OG social share image</div>
+      <div class="del-item">AWS S3 fully deployed &amp; live website</div>
+      <div class="del-item">Custom domain linked (via Hostinger DNS)</div>
+      <div class="del-item">Day / Night mode toggle</div>
+      <div class="del-item">Mobile responsive (all screen sizes)</div>
+      <div class="del-item">Cross-browser tested</div>
+      <div class="del-item">1 round of post-launch revisions included</div>
+    </div>
+  </div>
+
+  <!-- PAYMENT SCHEDULE -->
+  <div class="section-title">Payment Schedule</div>
+  <div class="payment">
+    <div class="pay-row pay-head">
+      <span>Milestone</span>
+      <span>Percentage</span>
+      <span style="text-align:right;">Amount</span>
+    </div>
+    <div class="pay-row">
+      <span class="milestone">Advance — Project Kickoff &amp; Domain Registration</span>
+      <span class="percent">50%</span>
+      <span class="amount">₹ 11,100</span>
+    </div>
+    <div class="pay-row">
+      <span class="milestone">Final Payment — Website Live &amp; Handed Over</span>
+      <span class="percent">50%</span>
+      <span class="amount">₹ 11,100</span>
+    </div>
+  </div>
+
+  <!-- TERMS -->
+  <div class="section-title">Terms &amp; Conditions</div>
+  <div class="terms">
+    <div class="terms-grid">
+      <div class="term-item">
+        <strong>Revision Policy</strong>
+        One round of design/content revisions included. Additional revisions billed separately.
+      </div>
+      <div class="term-item">
+        <strong>Content Responsibility</strong>
+        Client to provide final product images, team photos, and business copy. Placeholder images used until received.
+      </div>
+      <div class="term-item">
+        <strong>Project Timeline</strong>
+        Estimated delivery: 15–25 working days from advance payment and content receipt.
+      </div>
+      <div class="term-item">
+        <strong>Domain &amp; Hosting</strong>
+        Domain (₹2,200) registered on Hostinger in client's name. AWS S3 account to be created by/for client.
+      </div>
+      <div class="term-item">
+        <strong>Ongoing Maintenance</strong>
+        Post-delivery maintenance and updates are not included. Can be quoted separately if needed.
+      </div>
+      <div class="term-item">
+        <strong>Intellectual Property</strong>
+        Full ownership of code and design transferred to client upon final payment.
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <p style="color:#e2e8f0;font-weight:700;font-size:13px;margin-bottom:4px;">Aathithyabalan J</p>
+      <p>Full-Stack Engineer</p>
+      <p>Dindigul, Tamil Nadu</p>
+      <p><strong>aathithya014@gmail.com</strong></p>
+    </div>
+    <div class="sign-block">
+      <p>Authorised Signature</p>
+      <div class="sign-line">Aathithyabalan J</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

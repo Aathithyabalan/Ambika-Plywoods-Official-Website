@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Home -->
+  <url>
+    <loc>https://ambikaplaywoods.com/</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ambikaplaywoods.com/og-image.jpg</image:loc>
+      <image:title>Ambika Playwoods Dindigul — Glass, Hardware &amp; Interior Solutions</image:title>
+    </image:image>
+  </url>
+
+  <!-- Products (dynamically updated; weekly crawl) -->
+  <url>
+    <loc>https://ambikaplaywoods.com/products.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Services -->
+  <url>
+    <loc>https://ambikaplaywoods.com/services.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Our Works / Portfolio -->
+  <url>
+    <loc>https://ambikaplaywoods.com/works.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Reviews -->
+  <url>
+    <loc>https://ambikaplaywoods.com/reviews.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Contact -->
+  <url>
+    <loc>https://ambikaplaywoods.com/contact.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Negizhi UPVC sub-brand -->
+  <url>
+    <loc>https://ambikaplaywoods.com/negizhi-upvc.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Alangaram Interiors sub-brand -->
+  <url>
+    <loc>https://ambikaplaywoods.com/alangaram-interiors.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://ambikaplaywoods.com/gallery.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <!-- About -->
+  <url>
+    <loc>https://ambikaplaywoods.com/about.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+</urlset>

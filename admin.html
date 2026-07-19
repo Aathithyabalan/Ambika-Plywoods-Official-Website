@@ -1,0 +1,2521 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Ambika Playwoods</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+and+Hardwares.png" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com" crossorigin />
+  <link rel="preload" as="image" href="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+and+Hardwares.png" fetchpriority="high" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;1,6..12,700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <!-- Main design system (navbar, colors, layout) -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Early theme — prevent flash -->
+  <script>(function(){var t=localStorage.getItem('ambika-theme'),d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',t||(d?'dark':'light'));})();</script>
+
+  <style>
+    /* ── Force ALL border-radius to 4px in admin ── */
+    :root {
+      --r-md: 4px;
+      --r-lg: 4px;
+      --r-xl: 4px;
+      --r-full: 4px;
+      --green: #16a34a;
+      --amber: #d97706;
+      --red:   #dc2626;
+    }
+    [data-theme="dark"] {
+      --green: #22c55e;
+      --amber: #f59e0b;
+      --red:   #ef4444;
+    }
+
+    /* ── Admin button overrides (compact, no ripple) ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .52rem 1.1rem; border-radius: var(--r);
+      font-weight: 600; font-size: .875rem; cursor: pointer;
+      transition: background var(--t), border-color var(--t), color var(--t);
+      border: 1.5px solid transparent; white-space: nowrap; line-height: 1;
+      text-decoration: none; position: relative;
+    }
+    .btn::after { display: none; }
+    .btn i { font-size: 1rem; }
+    .btn-primary { background: var(--acc); color: #fff; border-color: var(--acc); }
+    .btn-primary:hover { background: var(--acc-h); border-color: var(--acc-h); transform: none; box-shadow: none; color: #fff; }
+    .btn-outline { background: transparent; color: var(--txt-2); border-color: var(--bdr-2); }
+    .btn-outline:hover { border-color: var(--acc-h); color: var(--acc-h); background: var(--acc-lt); transform: none; box-shadow: none; }
+    .btn-ghost { background: transparent; color: var(--txt-3); border-color: transparent; }
+    .btn-ghost:hover { background: var(--bg-3); color: var(--txt); }
+    .btn-danger { background: transparent; color: var(--red); border-color: rgba(220,38,38,.3); }
+    .btn-danger:hover { background: rgba(220,38,38,.07); border-color: var(--red); }
+    .btn-success { background: var(--green); color: #fff; border-color: var(--green); }
+    .btn-success:hover { opacity: .88; transform: none; }
+    .btn-lg { padding: .72rem 1.5rem; font-size: 1rem; }
+    .btn-sm { padding: .36rem .8rem; font-size: .8rem; }
+    .btn-icon { padding: 0; width: 36px; height: 36px; justify-content: center; }
+
+    /* ══════════════════════════════════════════
+       LOGIN SCREEN
+    ══════════════════════════════════════════ */
+    #login-screen {
+      position: fixed; inset: 0; z-index: 1500;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg); padding: 1.5rem;
+    }
+    .login-wrap { width: 100%; max-width: 400px; }
+    .login-logo {
+      display: flex; align-items: center; justify-content: center;
+      gap: .65rem; margin-bottom: 2rem;
+    }
+    .login-logo-icon {
+      width: 44px; height: 44px; background: var(--acc-lt);
+      border: 1px solid rgba(var(--acc-rgb),.25);
+      border-radius: var(--r); display: flex; align-items: center;
+      justify-content: center; font-size: 1.35rem; color: var(--acc-h);
+    }
+    .login-logo-name { font-size: 1.1rem; font-weight: 800; color: var(--txt); }
+    .login-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); padding: 2.5rem 2rem; box-shadow: var(--sh-lg);
+    }
+    .login-card h1 { font-size: 1.25rem; font-weight: 800; margin-bottom: .3rem; }
+    .login-card > p { color: var(--txt-3); font-size: .875rem; margin-bottom: 1.75rem; }
+    .login-field { margin-bottom: 1.1rem; }
+    .login-field label {
+      display: block; font-size: .78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      color: var(--txt-2); margin-bottom: .4rem;
+    }
+    .login-field input {
+      width: 100%; padding: .8rem 1rem;
+      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); color: var(--txt);
+      font-family: var(--font-primary); font-size: .9375rem;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .login-field input:focus {
+      outline: none; border-color: var(--acc-h);
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb),.12);
+    }
+    .login-error {
+      color: var(--red); font-size: .85rem; margin-bottom: .75rem;
+      display: none; align-items: center; gap: .35rem;
+    }
+    .btn-login {
+      width: 100%; padding: .875rem 1rem;
+      background: var(--acc); border: none; border-radius: var(--r);
+      color: #fff; font-weight: 800; font-size: 1rem;
+      cursor: pointer; transition: background var(--t);
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      font-family: var(--font-primary);
+    }
+    .btn-login:hover { background: var(--acc-h); }
+
+    /* ══════════════════════════════════════════
+       DASHBOARD SHELL
+    ══════════════════════════════════════════ */
+    #dashboard {
+      display: none; flex-direction: column;
+      min-height: 100vh; padding-top: 88px;
+    }
+    .admin-main {
+      flex: 1; padding: 2rem;
+      max-width: 1280px; margin: 0 auto; width: 100%;
+    }
+
+    /* ── Admin page header ── */
+    .admin-page-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;
+      padding-bottom: 1.25rem; border-bottom: 2px solid var(--bdr);
+    }
+    .admin-page-hdr-left { display: flex; align-items: center; gap: .75rem; }
+    .admin-badge {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-size: .65rem; font-weight: 900; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--acc-h);
+      background: var(--acc-lt); border: 1px solid rgba(var(--acc-rgb),.2);
+      border-radius: var(--r); padding: .25rem .7rem;
+    }
+    .admin-page-title { font-size: 1.3rem; font-weight: 800; color: var(--txt); }
+
+    /* ── Stats row ── */
+    .admin-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: .75rem; margin-bottom: 1.75rem;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); padding: .875rem 1rem;
+      display: flex; flex-direction: column; gap: .15rem;
+    }
+    .stat-icon { font-size: 1.15rem; margin-bottom: .1rem; }
+    .stat-value { font-size: 1.6rem; font-weight: 800; color: var(--txt); line-height: 1; }
+    .stat-label {
+      font-size: .75rem; font-weight: 700; color: var(--txt-3);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; border-bottom: 2px solid var(--bdr); margin-bottom: 2rem; }
+    .tab-btn {
+      padding: .75rem 1.5rem; background: transparent; border: none;
+      border-bottom: 2px solid transparent; color: var(--txt-3);
+      font-weight: 600; font-size: .9375rem; cursor: pointer;
+      margin-bottom: -2px; display: flex; align-items: center; gap: .45rem;
+      transition: color var(--t), border-color var(--t);
+      font-family: var(--font-primary);
+    }
+    .tab-btn:hover { color: var(--txt-2); }
+    .tab-btn.active { color: var(--acc-h); border-bottom-color: var(--acc-h); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ══════════════════════════════════════════
+       PRODUCTS TAB
+    ══════════════════════════════════════════ */
+    .section-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 1.1rem; gap: 1rem; flex-wrap: wrap;
+    }
+    .section-title { font-size: 1rem; font-weight: 700; color: var(--txt); }
+    .section-sub { font-size: .82rem; color: var(--txt-3); margin-top: .2rem; }
+    .section-actions { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex; gap: .6rem; flex-wrap: wrap; align-items: center;
+      margin-bottom: 1.25rem; padding: .875rem 1rem;
+      background: var(--card); border: 1px solid var(--bdr); border-radius: var(--r);
+    }
+    .filter-search {
+      display: flex; align-items: center; gap: .45rem;
+      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); padding: .45rem .8rem;
+      flex: 1; min-width: 180px; transition: border-color var(--t);
+    }
+    .filter-search:focus-within { border-color: var(--acc-h); }
+    .filter-search i { color: var(--txt-3); font-size: 1rem; flex-shrink: 0; }
+    .filter-search input {
+      border: none; background: transparent; color: var(--txt);
+      font-family: var(--font-primary); font-size: .875rem; width: 100%;
+    }
+    .filter-search input:focus { outline: none; }
+    .filter-search input::placeholder { color: var(--txt-3); }
+    .filter-select {
+      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); color: var(--txt);
+      padding: .45rem .7rem; font-size: .8125rem; font-weight: 600;
+      font-family: var(--font-primary); cursor: pointer;
+      transition: border-color var(--t);
+    }
+    .filter-select:focus { outline: none; border-color: var(--acc-h); }
+
+    /* Product cards grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .prod-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); overflow: hidden; box-shadow: var(--sh-sm);
+      display: flex; flex-direction: column;
+      transition: box-shadow var(--t), transform var(--t);
+    }
+    .prod-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+    .prod-card-img {
+      height: 160px; background: var(--bg-2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; color: var(--txt-3); overflow: hidden;
+      flex-shrink: 0; border-bottom: 1px solid var(--bdr); position: relative;
+    }
+    .prod-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .prod-card-disc {
+      position: absolute; top: .6rem; right: .6rem;
+      background: var(--acc); color: #fff;
+      font-size: .7rem; font-weight: 700;
+      padding: .2rem .5rem; border-radius: var(--r);
+    }
+    .prod-card-body { padding: 1rem 1.125rem; flex: 1; display: flex; flex-direction: column; }
+    .prod-card-badges { display: flex; gap: .35rem; flex-wrap: wrap; margin-bottom: .65rem; align-items: center; }
+    .cat-tag {
+      font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em;
+      padding: .2rem .55rem; border-radius: var(--r);
+      background: var(--acc-lt); color: var(--acc-h); border: 1px solid rgba(var(--acc-rgb),.2);
+    }
+    .status-pill {
+      font-size: .67rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; padding: .2rem .6rem; border-radius: var(--r);
+    }
+    .sp-available { background: rgba(22,163,74,.12); color: var(--green); }
+    .sp-almost    { background: rgba(217,119,6,.12);  color: var(--amber); }
+    .sp-sold      { background: var(--bg-3);           color: var(--txt-3); }
+    .prod-card-name {
+      font-size: .9375rem; font-weight: 700; color: var(--txt);
+      margin-bottom: .3rem; line-height: 1.35;
+    }
+    .prod-card-desc {
+      font-size: .8rem; color: var(--txt-3); line-height: 1.55;
+      flex: 1; margin-bottom: .75rem;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .prod-card-price-row { display: flex; align-items: baseline; gap: .45rem; flex-wrap: wrap; }
+    .prod-card-price { font-size: 1.05rem; font-weight: 800; color: var(--txt); }
+    .prod-card-unit  { font-size: .76rem; color: var(--txt-3); }
+    .prod-card-orig  { font-size: .78rem; color: var(--txt-3); text-decoration: line-through; }
+    .prod-card-footer {
+      display: flex; gap: .5rem; padding: .8rem 1.125rem;
+      border-top: 1px solid var(--bdr); background: var(--bg-2);
+    }
+    .prod-card-footer .btn { flex: 1; justify-content: center; }
+
+    /* Empty state */
+    .grid-empty { grid-column: 1/-1; padding: 5rem 1rem; text-align: center; color: var(--txt-3); }
+    .grid-empty i { font-size: 3rem; display: block; margin-bottom: 1rem; opacity: .4; }
+    .grid-empty p { font-size: .95rem; }
+    .grid-empty .btn { margin: 1.25rem auto 0; }
+
+    /* ══════════════════════════════════════════
+       ADD / EDIT PRODUCT TAB
+    ══════════════════════════════════════════ */
+    .form-panel-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 1.75rem; gap: 1rem;
+    }
+    .form-panel-title { font-size: 1.15rem; font-weight: 800; color: var(--txt); }
+    .form-panel-sub   { font-size: .875rem; color: var(--txt-3); margin-top: .25rem; }
+
+    /* Two-column layout: form + live preview */
+    .add-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 1.75rem; align-items: flex-start;
+    }
+
+    .form-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); padding: 1.75rem; box-shadow: var(--sh-sm);
+    }
+
+    /* Image upload area */
+    .img-upload-area {
+      border: 2px dashed var(--bdr-2); border-radius: var(--r);
+      background: var(--bg-2); padding: 1.25rem; margin-bottom: 0;
+      transition: border-color var(--t);
+    }
+    .img-upload-area:focus-within { border-color: var(--acc-h); }
+    .img-upload-inner { display: flex; gap: 1.1rem; align-items: flex-start; }
+    .img-preview-box {
+      width: 96px; height: 96px; flex-shrink: 0;
+      background: var(--bg-3); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); display: flex; align-items: center;
+      justify-content: center; font-size: 2rem; color: var(--txt-3); overflow: hidden;
+    }
+    .img-preview-box img { width: 100%; height: 100%; object-fit: cover; }
+    .img-url-inputs { flex: 1; display: flex; flex-direction: column; gap: .4rem; }
+    .img-url-inputs label {
+      font-size: .78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--txt-2);
+    }
+    .img-url-inputs input {
+      width: 100%; padding: .7rem .9rem;
+      background: var(--card); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); color: var(--txt);
+      font-family: var(--font-primary); font-size: .875rem;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .img-url-inputs input:focus {
+      outline: none; border-color: var(--acc-h);
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb),.1);
+    }
+
+    /* Form sections */
+    .form-section { margin-bottom: 1.5rem; }
+    .form-section-label {
+      font-size: .7rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--txt-3); margin-bottom: .875rem;
+      padding-bottom: .5rem; border-bottom: 1px solid var(--bdr);
+      display: flex; align-items: center; gap: .4rem;
+    }
+    .form-section-label i { font-size: .85rem; color: var(--acc); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .35rem; }
+    .form-group.col-span-2 { grid-column: span 2; }
+    .form-group label {
+      font-size: .78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--txt-2);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .char-count {
+      font-weight: 400; font-size: .75rem; color: var(--txt-3);
+      text-transform: none; letter-spacing: 0;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); color: var(--txt); padding: .7rem .9rem;
+      width: 100%; font-size: .9375rem; font-family: var(--font-primary);
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--acc-h);
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb),.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 88px; }
+    .form-hint { font-size: .77rem; color: var(--txt-3); }
+
+    /* ₹ prefix wrapper */
+    .input-wrap-prefix { position: relative; }
+    .input-prefix {
+      position: absolute; left: .875rem; top: 50%; transform: translateY(-50%);
+      font-size: .9rem; font-weight: 700; color: var(--txt-2); pointer-events: none;
+    }
+    .input-wrap-prefix input { padding-left: 1.85rem; }
+
+    .form-footer {
+      display: flex; gap: .75rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--bdr);
+    }
+
+    /* ── Preview column ── */
+    .preview-col { position: sticky; top: calc(88px + 1.25rem); }
+    .preview-col-label {
+      font-size: .72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .1em; color: var(--txt-3);
+      margin-bottom: .875rem; display: flex; align-items: center; gap: .4rem;
+    }
+    .preview-col-label i { font-size: .9rem; color: var(--acc); }
+    .preview-card-shell {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); overflow: hidden; box-shadow: var(--sh-sm);
+      display: flex; flex-direction: column;
+    }
+    .preview-note {
+      font-size: .75rem; color: var(--txt-3);
+      margin-top: .875rem; text-align: center; line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════
+       DEAL TAB
+    ══════════════════════════════════════════ */
+    .deal-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); padding: 2rem;
+      max-width: 660px; box-shadow: var(--sh-sm);
+    }
+    .deal-card-title { font-size: 1.1rem; font-weight: 800; margin-bottom: .3rem; }
+    .deal-card-sub   { font-size: .875rem; color: var(--txt-3); margin-bottom: 1.75rem; line-height: 1.6; }
+
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.25rem; background: var(--bg-2);
+      border: 1.5px solid var(--bdr); border-radius: var(--r); margin-bottom: 1.5rem;
+    }
+    .toggle-label { font-weight: 700; font-size: .9375rem; }
+    .toggle-desc  { font-size: .8rem; color: var(--txt-3); margin-top: .1rem; }
+    .toggle-switch { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-thumb {
+      position: absolute; inset: 0;
+      background: var(--bg-3); border: 1.5px solid var(--bdr-2);
+      border-radius: 99px; cursor: pointer;
+      transition: background var(--t), border-color var(--t);
+    }
+    .toggle-thumb::after {
+      content: ''; position: absolute; left: 3px; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px; background: var(--txt-3); border-radius: 50%;
+      transition: left var(--t), background var(--t);
+    }
+    .toggle-switch input:checked + .toggle-thumb { background: var(--acc); border-color: var(--acc); }
+    .toggle-switch input:checked + .toggle-thumb::after { left: calc(100% - 19px); background: #fff; }
+
+    .deal-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .deal-fg { display: flex; flex-direction: column; gap: .4rem; }
+    .deal-fg.col-span-2 { grid-column: span 2; }
+    .deal-fg label {
+      font-size: .78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--txt-2);
+    }
+    .deal-fg input,
+    .deal-fg select {
+      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); color: var(--txt);
+      padding: .75rem 1rem; font-size: .9375rem; width: 100%;
+      font-family: var(--font-primary);
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .deal-fg input:focus,
+    .deal-fg select:focus {
+      outline: none; border-color: var(--acc-h);
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb),.1);
+    }
+    .deal-hint { font-size: .78rem; color: var(--txt-3); }
+    .deal-type-radios { display: flex; gap: .6rem; }
+    .radio-opt {
+      flex: 1; padding: .65rem .9rem;
+      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); display: flex; align-items: center; gap: .5rem;
+      cursor: pointer; font-size: .875rem; font-weight: 600; color: var(--txt-2);
+      transition: border-color var(--t), background var(--t), color var(--t);
+    }
+    .radio-opt input[type="radio"] { accent-color: var(--acc-h); }
+    .radio-opt:has(input:checked) { border-color: var(--acc-h); background: var(--acc-lt); color: var(--txt); }
+    .deal-save-row { margin-top: 1.75rem; }
+
+    /* ── Workflow hint banner ── */
+    .workflow-hint {
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: .75rem 1rem; margin-bottom: 1.25rem;
+      background: var(--acc-lt); border: 1px solid rgba(var(--acc-rgb),.25);
+      border-radius: var(--r); font-size: .82rem; color: var(--txt-2); line-height: 1.55;
+    }
+    .workflow-hint i { font-size: 1.1rem; color: var(--acc-h); flex-shrink: 0; margin-top: .05rem; }
+    .workflow-hint strong { color: var(--txt); }
+    .workflow-hint code {
+      background: rgba(var(--acc-rgb),.12); border-radius: 3px;
+      padding: .1rem .35rem; font-size: .78rem; color: var(--acc-h);
+      font-family: monospace;
+    }
+
+    /* ══════════════════════════════════════════
+       TOAST
+    ══════════════════════════════════════════ */
+    #toast {
+      position: fixed; bottom: 1.75rem; right: 1.75rem;
+      background: var(--card); border: 1px solid var(--bdr-2);
+      border-radius: var(--r); padding: .9rem 1.25rem;
+      font-size: .9rem; font-weight: 600; color: var(--txt);
+      display: flex; align-items: center; gap: .55rem;
+      z-index: 1400; box-shadow: var(--sh-lg);
+      transform: translateY(10px); opacity: 0;
+      transition: opacity .25s, transform .25s;
+      pointer-events: none; min-width: 220px;
+      font-family: var(--font-primary);
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #toast.toast-success { border-left: 3px solid var(--green); }
+    #toast.toast-error   { border-left: 3px solid var(--red); }
+    #toast i { font-size: 1.1rem; }
+    #toast.toast-success i { color: var(--green); }
+    #toast.toast-error   i { color: var(--red); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .add-layout { grid-template-columns: 1fr; }
+      .preview-col { position: static; }
+    }
+    @media (max-width: 680px) {
+      .form-grid, .deal-form-grid { grid-template-columns: 1fr; }
+      .form-group.col-span-2, .deal-fg.col-span-2 { grid-column: span 1; }
+      .admin-main { padding: 1.25rem 1rem; }
+      .img-upload-inner { flex-direction: column; }
+      .img-preview-box { width: 100%; height: 140px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .filter-bar { flex-direction: column; align-items: stretch; }
+      #dashboard { padding-top: 72px; }
+      .admin-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ══════════════════════════════════════════
+       SERVICES ADMIN
+    ══════════════════════════════════════════ */
+    .svc-admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.1rem;
+    }
+    .svc-admin-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); overflow: hidden; box-shadow: var(--sh-sm);
+      display: flex; flex-direction: column;
+      transition: box-shadow var(--t), transform var(--t);
+    }
+    .svc-admin-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+    .svc-admin-img {
+      height: 130px; background: var(--bg-2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--txt-3); overflow: hidden;
+      flex-shrink: 0; border-bottom: 1px solid var(--bdr);
+    }
+    .svc-admin-img img { width: 100%; height: 100%; object-fit: cover; }
+    .svc-admin-body { padding: .875rem 1rem; flex: 1; display: flex; flex-direction: column; gap: .35rem; }
+    .svc-admin-icon { font-size: 1.1rem; color: var(--acc); }
+    .svc-admin-name { font-size: .9rem; font-weight: 700; color: var(--txt); line-height: 1.3; }
+    .svc-admin-desc {
+      font-size: .75rem; color: var(--txt-3); line-height: 1.5; flex: 1;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .svc-admin-footer {
+      display: flex; gap: .45rem; padding: .65rem 1rem;
+      border-top: 1px solid var(--bdr); background: var(--bg-2);
+    }
+    .svc-admin-footer .btn { flex: 1; justify-content: center; }
+
+    /* ══════════════════════════════════════════
+       WORKS ADMIN
+    ══════════════════════════════════════════ */
+    .works-admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .wa-card {
+      background: var(--card); border: 1px solid var(--bdr);
+      border-radius: var(--r); overflow: hidden; box-shadow: var(--sh-sm);
+      display: flex; flex-direction: column;
+      transition: box-shadow var(--t), transform var(--t);
+    }
+    .wa-card:hover { box-shadow: var(--sh-md); transform: translateY(-2px); }
+    .wa-img {
+      height: 150px; background: var(--bg-2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: var(--txt-3); overflow: hidden;
+      flex-shrink: 0; border-bottom: 1px solid var(--bdr); position: relative;
+    }
+    .wa-img img { width: 100%; height: 100%; object-fit: cover; }
+    .wa-num {
+      position: absolute; top: .5rem; left: .5rem;
+      font-size: .6rem; font-weight: 900; letter-spacing: .1em;
+      color: #fff; background: rgba(0,0,0,.55);
+      border-radius: var(--r); padding: .18rem .55rem;
+    }
+    .wa-cat-badge {
+      position: absolute; top: .5rem; right: .5rem;
+      font-size: .6rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      color: #fff; background: rgba(var(--acc-rgb),.75);
+      border-radius: var(--r); padding: .18rem .55rem;
+    }
+    .wa-body { padding: .875rem 1rem; flex: 1; display: flex; flex-direction: column; gap: .3rem; }
+    .wa-title { font-size: .875rem; font-weight: 700; color: var(--txt); line-height: 1.3; }
+    .wa-brief {
+      font-size: .75rem; color: var(--txt-3); line-height: 1.5; flex: 1;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .wa-footer {
+      display: flex; gap: .45rem; padding: .65rem 1rem;
+      border-top: 1px solid var(--bdr); background: var(--bg-2);
+    }
+    .wa-footer .btn { flex: 1; justify-content: center; }
+
+    /* Shared form grid for 3-column */
+    .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    @media (max-width: 680px) {
+      .form-grid-3 { grid-template-columns: 1fr; }
+      .svc-admin-grid, .works-admin-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <div class="login-logo-icon"><i class="ri-shield-keyhole-line"></i></div>
+      <span class="login-logo-name">Ambika Playwoods</span>
+    </div>
+    <div class="login-card">
+      <h1>Admin Sign In</h1>
+      <p>Products, Services &amp; Works Management Portal</p>
+      <div class="login-field">
+        <label for="pwd-input">Password</label>
+        <input type="password" id="pwd-input" placeholder="Enter admin password" autocomplete="current-password" />
+      </div>
+      <p class="login-error" id="login-error">
+        <i class="ri-error-warning-line"></i> Incorrect password. Try again.
+      </p>
+      <button class="btn-login" id="login-btn">
+        <i class="ri-login-box-line"></i> Sign In
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════
+     NAVBAR  (same as all public pages)
+════════════════════════════════════════════════ -->
+<header role="banner">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+
+        <div class="nav-brand">
+          <a href="index.html" class="nav-logo" aria-label="Ambika Playwoods - home">
+            <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+and+Hardwares.png" alt="Ambika Playwoods" class="nav-logo-img logo-light" fetchpriority="high" decoding="async" />
+            <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+and+Hardwares+Dark+Theme.png" alt="" class="nav-logo-img logo-dark" aria-hidden="true" decoding="async" />
+          </a>
+        </div>
+
+        <ul class="nav-links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="works.html">Our Works</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="negizhi-upvc.html">Negizhi UPVC</a></li>
+          <li><a href="alangaram-interiors.html">Alangaram Interiors</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-btn" aria-label="Switch to dark mode" aria-pressed="false">
+            <i class="ri-moon-line" aria-hidden="true"></i>
+          </button>
+          <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <i class="ri-menu-line" aria-hidden="true"></i>
+          </button>
+        </div>
+        <span class="nav-location" aria-label="Location: Dindigul, Tamil Nadu">
+          <i class="ri-map-pin-2-fill" aria-hidden="true"></i>Dindigul, Tamil Nadu
+        </span>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay nav -->
+  <nav id="mobile-nav" class="mob-nav" aria-label="Mobile navigation">
+    <div class="mob-nav-hd">
+      <a href="index.html" class="nav-logo" aria-label="Ambika Playwoods - home">
+        <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+and+Hardwares.png" alt="Ambika Playwoods" class="nav-logo-img logo-light" fetchpriority="high" decoding="async" />
+        <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+and+Hardwares+Dark+Theme.png" alt="" class="nav-logo-img logo-dark" aria-hidden="true" decoding="async" />
+      </a>
+      <button class="mob-nav-close" aria-label="Close menu">
+        <i class="ri-close-line" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="mob-nav-body">
+      <a href="index.html"><i class="ri-home-4-line" aria-hidden="true"></i>Home</a>
+      <a href="about.html"><i class="ri-information-line" aria-hidden="true"></i>About</a>
+      <a href="services.html"><i class="ri-service-line" aria-hidden="true"></i>Services</a>
+      <a href="products.html"><i class="ri-price-tag-3-line" aria-hidden="true"></i>Products</a>
+      <a href="reviews.html"><i class="ri-star-line" aria-hidden="true"></i>Reviews</a>
+      <a href="works.html"><i class="ri-layout-masonry-line" aria-hidden="true"></i>Our Works</a>
+      <a href="gallery.html"><i class="ri-gallery-line" aria-hidden="true"></i>Gallery</a>
+      <a href="contact.html"><i class="ri-phone-line" aria-hidden="true"></i>Contact</a>
+      <a href="negizhi-upvc.html"><i class="ri-window-line" aria-hidden="true"></i>Negizhi UPVC</a>
+      <a href="alangaram-interiors.html"><i class="ri-sofa-line" aria-hidden="true"></i>Alangaram Interiors</a>
+      <a href="contact.html" class="btn btn-primary"><i class="ri-arrow-right-line" aria-hidden="true"></i>Get a Quote</a>
+    </div>
+  </nav>
+</header>
+
+<!-- Bottom navigation (mobile only) -->
+<nav class="bot-nav" aria-label="Bottom navigation">
+  <a href="index.html"    class="bot-nav-item" aria-label="Home"><i class="ri-home-4-fill"></i><span>Home</span></a>
+  <a href="about.html"    class="bot-nav-item" aria-label="About"><i class="ri-information-line"></i><span>About</span></a>
+  <a href="services.html" class="bot-nav-item" aria-label="Services"><i class="ri-tools-line"></i><span>Services</span></a>
+  <a href="reviews.html"  class="bot-nav-item" aria-label="Reviews"><i class="ri-star-line"></i><span>Reviews</span></a>
+  <a href="contact.html"  class="bot-nav-item" aria-label="Contact"><i class="ri-phone-line"></i><span>Contact</span></a>
+  <a href="gallery.html"  class="bot-nav-item" aria-label="Gallery"><i class="ri-gallery-line"></i><span>Gallery</span></a>
+</nav>
+
+<!-- ════════════════════════════════════════════════
+     DASHBOARD
+════════════════════════════════════════════════ -->
+<div id="dashboard">
+  <input type="file" id="import-file-input"     accept=".json,application/json" style="display:none" />
+  <input type="file" id="import-svc-input"      accept=".json,application/json" style="display:none" />
+  <input type="file" id="import-work-input"     accept=".json,application/json" style="display:none" />
+
+  <div class="admin-main">
+
+    <!-- Page header -->
+    <div class="admin-page-hdr">
+      <div class="admin-page-hdr-left">
+        <span class="admin-badge"><i class="ri-shield-keyhole-line"></i> Admin</span>
+        <span class="admin-page-title">Content Management</span>
+      </div>
+      <div style="display:flex;gap:.5rem;align-items:center;">
+        <a href="products.html" target="_blank" class="btn btn-outline btn-sm">
+          <i class="ri-external-link-line"></i> View Products Page
+        </a>
+        <button class="btn btn-ghost btn-sm" id="logout-btn">
+          <i class="ri-logout-box-r-line"></i> Sign Out
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="admin-stats">
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--acc)"><i class="ri-price-tag-3-line"></i></div>
+        <div class="stat-value" id="stat-total">0</div>
+        <div class="stat-label">Total Products</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--green)"><i class="ri-checkbox-circle-line"></i></div>
+        <div class="stat-value" id="stat-available">0</div>
+        <div class="stat-label">Available</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--amber)"><i class="ri-error-warning-line"></i></div>
+        <div class="stat-value" id="stat-almost">0</div>
+        <div class="stat-label">Almost Sold Out</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--txt-3)"><i class="ri-close-circle-line"></i></div>
+        <div class="stat-value" id="stat-sold">0</div>
+        <div class="stat-label">Sold Out</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--acc)"><i class="ri-service-line"></i></div>
+        <div class="stat-value" id="stat-services">0</div>
+        <div class="stat-label">Services</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="color:var(--acc)"><i class="ri-layout-masonry-line"></i></div>
+        <div class="stat-value" id="stat-works">0</div>
+        <div class="stat-label">Our Works</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="products">
+        <i class="ri-price-tag-3-line"></i> Products
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="add">
+        <i class="ri-add-circle-line"></i> <span id="tab-add-label">Add Product</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="services">
+        <i class="ri-service-line"></i> Our Services
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="add-service">
+        <i class="ri-add-circle-line"></i> <span id="tab-add-svc-label">Add Service</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="works">
+        <i class="ri-layout-masonry-line"></i> Our Works
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="add-work">
+        <i class="ri-add-circle-line"></i> <span id="tab-add-work-label">Add Work</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="deal">
+        <i class="ri-flashlight-line"></i> Deal of Week / Month
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="settings">
+        <i class="ri-settings-3-line"></i> Settings
+      </button>
+    </div>
+
+    <!-- ── Products Tab ─────────────────────────────── -->
+    <div id="tab-products" class="tab-panel active" role="tabpanel">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Product Catalogue</div>
+          <div class="section-sub" id="products-sub">Loading…</div>
+        </div>
+        <div class="section-actions">
+          <button class="btn btn-outline btn-sm" id="import-btn"><i class="ri-upload-2-line"></i> Import JSON</button>
+          <button class="btn btn-primary btn-sm" id="export-btn"><i class="ri-download-2-line"></i> Download JSON</button>
+          <button class="btn btn-ghost btn-sm" id="reset-btn"><i class="ri-refresh-line"></i> Reset</button>
+          <button class="btn btn-primary" id="add-product-btn"><i class="ri-add-line"></i> Add Product</button>
+        </div>
+      </div>
+
+      <!-- Workflow hint -->
+      <div class="workflow-hint">
+        <i class="ri-information-line"></i>
+        <span>Add or edit products here, then click <strong>Download JSON</strong> and replace <code>data/products.json</code> on your server — the products page fetches directly from that file.</span>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <div class="filter-search">
+          <i class="ri-search-line"></i>
+          <input type="text" id="filter-search" placeholder="Search products…" />
+        </div>
+        <select class="filter-select" id="filter-category">
+          <option value="">All Categories</option>
+          <option value="Glass">Glass</option>
+          <option value="Plywoods">Plywoods</option>
+          <option value="Laminates &amp; Mica">Laminates &amp; Mica</option>
+          <option value="Doors">Doors</option>
+          <option value="Hardware &amp; Fittings">Hardware &amp; Fittings</option>
+          <option value="MDF &amp; Boards">MDF &amp; Boards</option>
+          <option value="Wall Panels">Wall Panels</option>
+          <option value="UPVC">UPVC</option>
+          <option value="Specialty Products">Specialty Products</option>
+        </select>
+        <select class="filter-select" id="filter-status">
+          <option value="">All Status</option>
+          <option value="available">Available</option>
+          <option value="almost_sold_out">Almost Sold Out</option>
+          <option value="sold_out">Sold Out</option>
+        </select>
+        <select class="filter-select" id="filter-sort">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="price_asc">Price: Low → High</option>
+          <option value="price_desc">Price: High → Low</option>
+          <option value="name_az">Name: A–Z</option>
+        </select>
+      </div>
+
+      <div class="products-grid" id="products-grid">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+    <!-- ── Add / Edit Tab ──────────────────────────── -->
+    <div id="tab-add" class="tab-panel" role="tabpanel">
+      <div class="form-panel-header">
+        <div>
+          <div class="form-panel-title" id="form-panel-title">Add New Product</div>
+          <div class="form-panel-sub"   id="form-panel-sub">Fill in the details below to add a product to your catalogue.</div>
+        </div>
+        <button class="btn btn-ghost" id="cancel-form-btn">
+          <i class="ri-arrow-left-line"></i> Back to Products
+        </button>
+      </div>
+
+      <div class="add-layout">
+
+        <!-- Form column -->
+        <div>
+          <div class="form-card">
+            <form id="product-form" novalidate>
+
+              <!-- Image -->
+              <div class="form-section">
+                <div class="form-section-label">
+                  <i class="ri-image-line"></i> Product Image
+                </div>
+                <div class="img-upload-area">
+                  <div class="img-upload-inner">
+                    <div class="img-preview-box" id="img-preview-box">
+                      <i class="ri-image-line"></i>
+                    </div>
+                    <div class="img-url-inputs">
+                      <label for="f-image">Image URL</label>
+                      <input type="url" id="f-image" placeholder="https://example.com/product.jpg" />
+                      <span class="form-hint">Paste any publicly accessible image URL. Leave blank to show a placeholder icon.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Basic Info -->
+              <div class="form-section">
+                <div class="form-section-label">
+                  <i class="ri-information-line"></i> Basic Information
+                </div>
+                <div class="form-grid">
+                  <div class="form-group col-span-2">
+                    <label for="f-name">
+                      Product Name *
+                      <span class="char-count" id="cc-name">0 / 100</span>
+                    </label>
+                    <input type="text" id="f-name" placeholder="e.g. Toughened Safety Glass 6mm" maxlength="100" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="f-category">Category *</label>
+                    <select id="f-category" required>
+                      <option value="">— Select Category —</option>
+                      <option value="Glass">Glass</option>
+                      <option value="Plywoods">Plywoods</option>
+                      <option value="Laminates &amp; Mica">Laminates &amp; Mica</option>
+                      <option value="Doors">Doors</option>
+                      <option value="Hardware &amp; Fittings">Hardware &amp; Fittings</option>
+                      <option value="MDF &amp; Boards">MDF &amp; Boards</option>
+                      <option value="Wall Panels">Wall Panels</option>
+                      <option value="UPVC">UPVC</option>
+                      <option value="Specialty Products">Specialty Products</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="f-status">Availability *</label>
+                    <select id="f-status" required>
+                      <option value="available">Available</option>
+                      <option value="almost_sold_out">Almost Sold Out</option>
+                      <option value="sold_out">Sold Out</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label for="f-description">
+                      Description
+                      <span class="char-count" id="cc-desc">0 / 400</span>
+                    </label>
+                    <textarea id="f-description" placeholder="Brief product description visible on the product card…" maxlength="400"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pricing -->
+              <div class="form-section">
+                <div class="form-section-label">
+                  <i class="ri-price-tag-3-line"></i> Pricing
+                </div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="f-price">Selling Price (₹) *</label>
+                    <div class="input-wrap-prefix">
+                      <span class="input-prefix">₹</span>
+                      <input type="number" id="f-price" placeholder="0.00" min="0" step="0.01" required />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="f-orig-price">Original / MRP (₹)</label>
+                    <div class="input-wrap-prefix">
+                      <span class="input-prefix">₹</span>
+                      <input type="number" id="f-orig-price" placeholder="0.00" min="0" step="0.01" />
+                    </div>
+                    <span class="form-hint">Leave blank if no strikethrough price is needed</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="f-discount">Discount (%)</label>
+                    <input type="number" id="f-discount" placeholder="0" min="0" max="100" step="1" />
+                    <span class="form-hint">0 = no discount badge shown on card</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="f-unit">Unit / Per</label>
+                    <input type="text" id="f-unit" placeholder="per sq. ft." maxlength="50" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <button type="button" class="btn btn-ghost btn-lg" id="form-cancel-btn2">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="ri-save-line"></i>
+                  <span id="save-btn-label">Save Product</span>
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- Live preview column -->
+        <div>
+          <div class="preview-col">
+            <div class="preview-col-label">
+              <i class="ri-eye-line"></i> Live Card Preview
+            </div>
+            <div class="preview-card-shell" id="preview-wrap">
+              <!-- populated by JS -->
+            </div>
+            <p class="preview-note">This is exactly how your product will appear on the products page.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Our Services Tab ─────────────────────────── -->
+    <div id="tab-services" class="tab-panel" role="tabpanel">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Services Catalogue</div>
+          <div class="section-sub" id="services-sub">Loading…</div>
+        </div>
+        <div class="section-actions">
+          <button class="btn btn-outline btn-sm" id="import-svc-btn"><i class="ri-upload-2-line"></i> Import JSON</button>
+          <button class="btn btn-primary btn-sm" id="export-svc-btn"><i class="ri-download-2-line"></i> Download JSON</button>
+          <button class="btn btn-ghost btn-sm" id="reset-svc-btn"><i class="ri-refresh-line"></i> Reset</button>
+          <button class="btn btn-primary" id="add-service-btn"><i class="ri-add-line"></i> Add Service</button>
+        </div>
+      </div>
+      <!-- Workflow hint -->
+      <div class="workflow-hint">
+        <i class="ri-information-line"></i>
+        <span>Add or edit services here, then click <strong>Download JSON</strong> and replace <code>data/services.json</code> on your server — the services page fetches directly from that file.</span>
+      </div>
+
+      <div class="svc-admin-grid" id="svc-admin-grid">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+    <!-- ── Add / Edit Service Tab ────────────────────── -->
+    <div id="tab-add-service" class="tab-panel" role="tabpanel">
+      <div class="form-panel-header">
+        <div>
+          <div class="form-panel-title" id="svc-form-title">Add New Service</div>
+          <div class="form-panel-sub"   id="svc-form-sub">Fill in the details below to add a service.</div>
+        </div>
+        <button class="btn btn-ghost" id="cancel-svc-form-btn">
+          <i class="ri-arrow-left-line"></i> Back to Services
+        </button>
+      </div>
+      <div class="add-layout">
+        <div>
+          <div class="form-card">
+            <form id="service-form" novalidate>
+              <!-- Image -->
+              <div class="form-section">
+                <div class="form-section-label"><i class="ri-image-line"></i> Service Image</div>
+                <div class="img-upload-area">
+                  <div class="img-upload-inner">
+                    <div class="img-preview-box" id="svc-img-preview-box"><i class="ri-image-line"></i></div>
+                    <div class="img-url-inputs">
+                      <label for="sf-image">Image URL</label>
+                      <input type="url" id="sf-image" placeholder="https://example.com/service.jpg" />
+                      <span class="form-hint">Leave blank to show the service icon as placeholder.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Info -->
+              <div class="form-section">
+                <div class="form-section-label"><i class="ri-information-line"></i> Service Information</div>
+                <div class="form-grid">
+                  <div class="form-group col-span-2">
+                    <label for="sf-title">Service Title * <span class="char-count" id="cc-sf-title">0 / 80</span></label>
+                    <input type="text" id="sf-title" placeholder="e.g. Glass Printing" maxlength="80" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="sf-icon">Icon Class</label>
+                    <input type="text" id="sf-icon" placeholder="ri-window-line" maxlength="60" />
+                    <span class="form-hint">Remix Icon class name (e.g. ri-printer-line)</span>
+                  </div>
+                  <div class="form-group">
+                    <label for="sf-imagealt">Image Alt Text</label>
+                    <input type="text" id="sf-imagealt" placeholder="Descriptive image alt text" maxlength="200" />
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label for="sf-description">Description <span class="char-count" id="cc-sf-desc">0 / 400</span></label>
+                    <textarea id="sf-description" placeholder="Brief description of this service…" maxlength="400"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-footer">
+                <button type="button" class="btn btn-ghost btn-lg" id="svc-cancel-btn2">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="ri-save-line"></i>
+                  <span id="svc-save-label">Save Service</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Preview -->
+        <div>
+          <div class="preview-col">
+            <div class="preview-col-label"><i class="ri-eye-line"></i> Preview</div>
+            <div class="preview-card-shell" id="svc-preview-wrap" style="overflow:hidden;">
+              <!-- populated by JS -->
+            </div>
+            <p class="preview-note">Approximate look of the service card on the Services page.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Our Works Tab ──────────────────────────────── -->
+    <div id="tab-works" class="tab-panel" role="tabpanel">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Works Portfolio</div>
+          <div class="section-sub" id="works-sub">Loading…</div>
+        </div>
+        <div class="section-actions">
+          <button class="btn btn-outline btn-sm" id="import-work-btn"><i class="ri-upload-2-line"></i> Import JSON</button>
+          <button class="btn btn-primary btn-sm" id="export-work-btn"><i class="ri-download-2-line"></i> Download JSON</button>
+          <button class="btn btn-ghost btn-sm" id="reset-work-btn"><i class="ri-refresh-line"></i> Reset</button>
+          <button class="btn btn-primary" id="add-work-btn-main"><i class="ri-add-line"></i> Add Work</button>
+        </div>
+      </div>
+      <!-- Workflow hint -->
+      <div class="workflow-hint">
+        <i class="ri-information-line"></i>
+        <span>Add or edit portfolio projects here, then click <strong>Download JSON</strong> and replace <code>data/works.json</code> on your server — the Our Works page fetches directly from that file.</span>
+      </div>
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <div class="filter-search">
+          <i class="ri-search-line"></i>
+          <input type="text" id="filter-work-search" placeholder="Search works…" />
+        </div>
+        <select class="filter-select" id="filter-work-cat">
+          <option value="">All Categories</option>
+          <option value="shower">Shower &amp; Enclosures</option>
+          <option value="partition">Glass Partitions</option>
+          <option value="door">Doors &amp; Entrances</option>
+          <option value="decorative">Decorative Glass</option>
+          <option value="railing">Balcony &amp; Railings</option>
+          <option value="kitchen">Modular Kitchen</option>
+          <option value="hardware">Hardware &amp; Displays</option>
+          <option value="furniture">Furniture &amp; Interiors</option>
+          <option value="upvc">Windows &amp; UPVC</option>
+        </select>
+      </div>
+      <div class="works-admin-grid" id="works-admin-grid">
+        <!-- injected by JS -->
+      </div>
+    </div>
+
+    <!-- ── Add / Edit Work Tab ────────────────────────── -->
+    <div id="tab-add-work" class="tab-panel" role="tabpanel">
+      <div class="form-panel-header">
+        <div>
+          <div class="form-panel-title" id="work-form-title">Add New Work</div>
+          <div class="form-panel-sub"   id="work-form-sub">Fill in the details below to add a project to your portfolio.</div>
+        </div>
+        <button class="btn btn-ghost" id="cancel-work-form-btn">
+          <i class="ri-arrow-left-line"></i> Back to Works
+        </button>
+      </div>
+      <div class="add-layout">
+        <div>
+          <div class="form-card">
+            <form id="work-form" novalidate>
+              <!-- Image -->
+              <div class="form-section">
+                <div class="form-section-label"><i class="ri-image-line"></i> Project Image</div>
+                <div class="img-upload-area">
+                  <div class="img-upload-inner">
+                    <div class="img-preview-box" id="work-img-preview-box"><i class="ri-image-line"></i></div>
+                    <div class="img-url-inputs">
+                      <label for="wf-image">Image URL</label>
+                      <input type="url" id="wf-image" placeholder="https://example.com/project.jpg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Info -->
+              <div class="form-section">
+                <div class="form-section-label"><i class="ri-information-line"></i> Project Information</div>
+                <div class="form-grid">
+                  <div class="form-group col-span-2">
+                    <label for="wf-title">Project Title * <span class="char-count" id="cc-wf-title">0 / 120</span></label>
+                    <input type="text" id="wf-title" placeholder="e.g. Custom Curved Shower Enclosure" maxlength="120" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="wf-category">Category *</label>
+                    <select id="wf-category" required>
+                      <option value="">— Select Category —</option>
+                      <option value="shower">Shower &amp; Enclosures</option>
+                      <option value="partition">Glass Partitions</option>
+                      <option value="door">Doors &amp; Entrances</option>
+                      <option value="decorative">Decorative Glass</option>
+                      <option value="railing">Balcony &amp; Railings</option>
+                      <option value="kitchen">Modular Kitchen</option>
+                      <option value="hardware">Hardware &amp; Displays</option>
+                      <option value="furniture">Furniture &amp; Interiors</option>
+                      <option value="upvc">Windows &amp; UPVC</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="wf-imagealt">Image Alt Text</label>
+                    <input type="text" id="wf-imagealt" placeholder="Descriptive alt text for the image" maxlength="250" />
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label for="wf-project">The Project (Brief) <span class="char-count" id="cc-wf-project">0 / 400</span></label>
+                    <textarea id="wf-project" placeholder="Brief description of what the project required…" maxlength="400"></textarea>
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label for="wf-did">What We Did <span class="char-count" id="cc-wf-did">0 / 500</span></label>
+                    <textarea id="wf-did" placeholder="What exactly was done / how it was executed…" maxlength="500"></textarea>
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label for="wf-overlay">Hover Overlay Text <span class="char-count" id="cc-wf-overlay">0 / 600</span></label>
+                    <textarea id="wf-overlay" placeholder="Longer text shown on card hover overlay (optional)…" maxlength="600"></textarea>
+                    <span class="form-hint">Optional — appears when the card is hovered on the Works page.</span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-footer">
+                <button type="button" class="btn btn-ghost btn-lg" id="work-cancel-btn2">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="ri-save-line"></i>
+                  <span id="work-save-label">Save Work</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Preview -->
+        <div>
+          <div class="preview-col">
+            <div class="preview-col-label"><i class="ri-eye-line"></i> Preview</div>
+            <div class="preview-card-shell" id="work-preview-wrap" style="overflow:hidden;">
+              <!-- populated by JS -->
+            </div>
+            <p class="preview-note">Approximate look of the work card on the Our Works page.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Deal Tab ──────────────────────────────────── -->
+    <div id="tab-deal" class="tab-panel" role="tabpanel">
+      <div class="deal-card">
+        <div class="deal-card-title">Deal of the Week / Month</div>
+        <div class="deal-card-sub">Configure a highlighted deal that appears on the homepage and products page. Toggle on or off at any time.</div>
+
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">Enable Deal Banner</div>
+            <div class="toggle-desc">Show the deal section on the homepage and products page</div>
+          </div>
+          <label class="toggle-switch" aria-label="Enable deal banner">
+            <input type="checkbox" id="deal-enabled" />
+            <span class="toggle-thumb"></span>
+          </label>
+        </div>
+
+        <div class="deal-form-grid">
+          <div class="deal-fg">
+            <label>Deal Type</label>
+            <div class="deal-type-radios">
+              <label class="radio-opt">
+                <input type="radio" name="deal-type" value="week" checked /> Week
+              </label>
+              <label class="radio-opt">
+                <input type="radio" name="deal-type" value="month" /> Month
+              </label>
+            </div>
+          </div>
+          <div class="deal-fg">
+            <label for="deal-expires">Expires On</label>
+            <input type="date" id="deal-expires" />
+            <span class="deal-hint">Leave empty for no expiry</span>
+          </div>
+          <div class="deal-fg col-span-2">
+            <label for="deal-product">Featured Product</label>
+            <select id="deal-product">
+              <option value="">— No specific product —</option>
+            </select>
+          </div>
+          <div class="deal-fg col-span-2">
+            <label for="deal-headline">Headline</label>
+            <input type="text" id="deal-headline" placeholder="e.g. Deal of the Week — 20% Off Toughened Glass!" maxlength="120" />
+          </div>
+          <div class="deal-fg col-span-2">
+            <label for="deal-sub">Subheadline</label>
+            <input type="text" id="deal-sub" placeholder="e.g. Premium Saint-Gobain toughened glass at our best price." maxlength="200" />
+          </div>
+        </div>
+
+        <div class="deal-save-row">
+          <button class="btn btn-success btn-lg" id="save-deal-btn">
+            <i class="ri-save-line"></i> Save Deal Settings
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Settings Tab ────────────────────────────── -->
+    <div id="tab-settings" class="tab-panel" role="tabpanel">
+      <div class="deal-card">
+        <div class="deal-card-title"><i class="ri-whatsapp-line" style="color:#25d366;margin-right:.4rem;"></i>WhatsApp Enquiry Settings</div>
+        <div class="deal-card-sub">Set the WhatsApp number that customers are redirected to when they click "Enquire on WhatsApp" on any product, service, or work card.</div>
+
+        <div class="deal-form-grid" style="margin-top:1.5rem;">
+          <div class="deal-fg col-span-2">
+            <label for="settings-wa-number">WhatsApp Number <span style="font-weight:400;color:var(--txt-3);">(international format, no + or spaces)</span></label>
+            <input type="text" id="settings-wa-number"
+                   placeholder="e.g. 919876543210"
+                   maxlength="15"
+                   style="font-size:1.1rem;letter-spacing:.05em;" />
+            <span class="deal-hint">Start with country code — India is 91. Example: <strong>919876543210</strong> for +91 98765 43210.</span>
+          </div>
+          <div class="deal-fg col-span-2" id="wa-preview-wrap" style="display:none;">
+            <label>Preview Link</label>
+            <div id="wa-preview-link" style="padding:.75rem 1rem;background:var(--bg-2);border:1px solid var(--bdr);border-radius:var(--r);font-size:.82rem;color:var(--txt-2);word-break:break-all;font-family:monospace;"></div>
+            <span class="deal-hint">This is the base URL. The product/service/work details are appended automatically when customers click.</span>
+          </div>
+        </div>
+
+        <div class="deal-save-row" style="gap:.75rem;">
+          <button class="btn btn-success btn-lg" id="save-settings-btn">
+            <i class="ri-save-line"></i> Save Settings
+          </button>
+          <button class="btn btn-outline btn-lg" id="export-settings-btn">
+            <i class="ri-download-2-line"></i> Download settings.json
+          </button>
+        </div>
+        <div style="margin-top:1.25rem;padding:1rem;background:var(--acc-lt);border:1px solid rgba(var(--acc-rgb),.25);border-radius:var(--r);font-size:.83rem;color:var(--txt-2);">
+          <strong style="color:var(--acc-h);">How to publish:</strong> After saving, click <em>Download settings.json</em> and replace <code>data/settings.json</code> on your server. The WhatsApp button appears on all product, service, and work cards automatically.
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /admin-main -->
+</div><!-- /dashboard -->
+
+<!-- Toast -->
+<div id="toast" role="alert" aria-live="polite">
+  <i class="ri-checkbox-circle-line"></i>
+  <span id="toast-msg"></span>
+</div>
+
+<!-- Main site JS (navbar, theme toggle, mobile menu) -->
+<script src="js/main.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  var ADMIN_PASSWORD = 'ambika@2024';
+  var STORAGE_KEY    = 'ambika-products-data';
+  var JSON_PATH      = 'data/products.json';
+  var SESSION_KEY    = 'ambika-admin-session';
+
+  /* ── Helpers ─────────────────────────────────── */
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function uid() { return 'p' + Date.now() + Math.random().toString(36).slice(2, 6); }
+
+  /* ── Toast ───────────────────────────────────── */
+  function showToast(msg, type) {
+    type = type || 'success';
+    var el  = document.getElementById('toast');
+    var ico = el.querySelector('i');
+    document.getElementById('toast-msg').textContent = msg;
+    el.className = 'show toast-' + type;
+    ico.className = type === 'success' ? 'ri-checkbox-circle-line' : 'ri-error-warning-line';
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.className = ''; }, 3200);
+  }
+
+  /* ── Auth ────────────────────────────────────── */
+  function checkSession() { return sessionStorage.getItem(SESSION_KEY) === '1'; }
+  function setSession()   { sessionStorage.setItem(SESSION_KEY, '1'); }
+  function clearSession() { sessionStorage.removeItem(SESSION_KEY); }
+
+  document.getElementById('login-btn').addEventListener('click', doLogin);
+  document.getElementById('pwd-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  function doLogin() {
+    var pwd = document.getElementById('pwd-input').value;
+    var err = document.getElementById('login-error');
+    if (pwd === ADMIN_PASSWORD) {
+      setSession();
+      showDashboard();
+    } else {
+      err.style.display = 'flex';
+    }
+  }
+
+  document.getElementById('logout-btn').addEventListener('click', function () {
+    clearSession();
+    location.reload();
+  });
+
+  /* ── Data ────────────────────────────────────── */
+  var data      = { products: [], deal: { enabled: false, type: 'week', productId: '', headline: '', subheadline: '', expiresAt: '' } };
+  var editingId = null;
+
+  function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+  async function loadData() {
+    try {
+      var res = await fetch(JSON_PATH);
+      if (!res.ok) throw new Error();
+      var fresh  = await res.json();
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          var cached = JSON.parse(stored);
+          if ((cached.version || 0) >= (fresh.version || 0)) {
+            data = cached;
+            return;
+          }
+        } catch (_) {}
+      }
+      data = fresh;
+      save();
+    } catch (_) {
+      var stored2 = localStorage.getItem(STORAGE_KEY);
+      if (stored2) { try { data = JSON.parse(stored2); } catch (_) {} }
+    }
+  }
+
+  /* ── Show dashboard ──────────────────────────── */
+  async function showDashboard() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display    = 'flex';
+    await loadData();
+    renderCards();
+    renderDealForm();
+    populateDealSelect();
+    updateStats();
+    updatePreview();
+    document.dispatchEvent(new CustomEvent('ambika-dashboard-ready'));
+  }
+
+  /* ── Stats ───────────────────────────────────── */
+  function updateStats() {
+    var prods = data.products || [];
+    document.getElementById('stat-total').textContent     = prods.length;
+    document.getElementById('stat-available').textContent = prods.filter(function (p) { return p.status === 'available'; }).length;
+    document.getElementById('stat-almost').textContent    = prods.filter(function (p) { return p.status === 'almost_sold_out'; }).length;
+    document.getElementById('stat-sold').textContent      = prods.filter(function (p) { return p.status === 'sold_out'; }).length;
+  }
+
+  /* ── Tabs ────────────────────────────────────── */
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(function (b) {
+      var active = b.dataset.tab === tabId;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('.tab-panel').forEach(function (p) {
+      p.classList.toggle('active', p.id === 'tab-' + tabId);
+    });
+  }
+
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.dataset.tab === 'add' && !editingId) resetFormState();
+      switchTab(btn.dataset.tab);
+    });
+  });
+
+  /* ── Filters & render cards ──────────────────── */
+  var STATUS_CLASS = { available: 'sp-available', almost_sold_out: 'sp-almost', sold_out: 'sp-sold' };
+  var STATUS_LABEL = { available: 'Available',    almost_sold_out: 'Almost Sold Out', sold_out: 'Sold Out' };
+
+  function getFiltered() {
+    var q    = (document.getElementById('filter-search').value   || '').toLowerCase().trim();
+    var cat  =  document.getElementById('filter-category').value || '';
+    var stat =  document.getElementById('filter-status').value   || '';
+    var sort =  document.getElementById('filter-sort').value     || 'newest';
+    var list = (data.products || []).filter(function (p) {
+      var mQ  = !q    || (p.name||'').toLowerCase().includes(q) || (p.description||'').toLowerCase().includes(q) || (p.category||'').toLowerCase().includes(q);
+      var mC  = !cat  || p.category === cat;
+      var mS  = !stat || p.status   === stat;
+      return mQ && mC && mS;
+    });
+    list = list.slice();
+    if      (sort === 'oldest')     { /* keep insertion order */ }
+    else if (sort === 'price_asc')  { list.sort(function (a, b) { return a.price - b.price; }); }
+    else if (sort === 'price_desc') { list.sort(function (a, b) { return b.price - a.price; }); }
+    else if (sort === 'name_az')    { list.sort(function (a, b) { return (a.name||'').localeCompare(b.name||''); }); }
+    else                            { list.reverse(); }  /* newest */
+    return list;
+  }
+
+  function renderCards() {
+    var grid = document.getElementById('products-grid');
+    var sub  = document.getElementById('products-sub');
+    var all  = data.products || [];
+    var list = getFiltered();
+
+    sub.textContent = all.length + ' product' + (all.length !== 1 ? 's' : '') + ' in catalogue'
+      + (list.length !== all.length ? ' · showing ' + list.length : '');
+
+    if (!list.length) {
+      grid.innerHTML = '<div class="grid-empty"><i class="ri-inbox-2-line"></i><p>'
+        + (all.length ? 'No products match your filters.' : 'No products yet. Click "Add Product" to get started.')
+        + '</p></div>';
+      return;
+    }
+
+    grid.innerHTML = list.map(function (p) {
+      var imgContent = p.image
+        ? '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.innerHTML+=\'<i class=\\\"ri-image-line\\\"></i>\'">'
+        : '<i class="ri-image-line"></i>';
+      var discBadge = p.discount > 0 ? '<span class="prod-card-disc">' + p.discount + '% OFF</span>' : '';
+      var origPrice = (p.originalPrice && p.originalPrice > p.price)
+        ? '<span class="prod-card-orig">₹' + Number(p.originalPrice).toLocaleString('en-IN') + '</span>' : '';
+
+      return '<div class="prod-card" data-id="' + esc(p.id) + '">'
+        + '<div class="prod-card-img">' + imgContent + discBadge + '</div>'
+        + '<div class="prod-card-body">'
+          + '<div class="prod-card-badges">'
+            + '<span class="cat-tag">' + esc(p.category) + '</span>'
+            + '<span class="status-pill ' + (STATUS_CLASS[p.status] || 'sp-available') + '">' + (STATUS_LABEL[p.status] || p.status) + '</span>'
+          + '</div>'
+          + '<div class="prod-card-name">' + esc(p.name) + '</div>'
+          + (p.description ? '<div class="prod-card-desc">' + esc(p.description) + '</div>' : '')
+          + '<div class="prod-card-price-row">'
+            + '<span class="prod-card-price">₹' + Number(p.price).toLocaleString('en-IN') + '</span>'
+            + '<span class="prod-card-unit">/ ' + esc(p.unit || 'unit') + '</span>'
+            + origPrice
+          + '</div>'
+        + '</div>'
+        + '<div class="prod-card-footer">'
+          + '<button class="btn btn-outline btn-sm edit-btn"   data-id="' + esc(p.id) + '"><i class="ri-pencil-line"></i> Edit</button>'
+          + '<button class="btn btn-danger  btn-sm delete-btn" data-id="' + esc(p.id) + '"><i class="ri-delete-bin-line"></i> Delete</button>'
+        + '</div>'
+        + '</div>';
+    }).join('');
+
+    grid.querySelectorAll('.edit-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { openEditForm(btn.dataset.id); });
+    });
+    grid.querySelectorAll('.delete-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { deleteProduct(btn.dataset.id); });
+    });
+  }
+
+  ['filter-search', 'filter-category', 'filter-status', 'filter-sort'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input',  renderCards);
+    el.addEventListener('change', renderCards);
+  });
+
+  /* ── Form state ──────────────────────────────── */
+  function resetFormState() {
+    editingId = null;
+    document.getElementById('product-form').reset();
+    document.getElementById('f-image').value = '';
+    updateImgPreview('');
+    document.getElementById('tab-add-label').textContent    = 'Add Product';
+    document.getElementById('form-panel-title').textContent = 'Add New Product';
+    document.getElementById('form-panel-sub').textContent   = 'Fill in the details below to add a product to your catalogue.';
+    document.getElementById('save-btn-label').textContent   = 'Save Product';
+    setCharCount('f-name', 'cc-name', 100);
+    setCharCount('f-description', 'cc-desc', 400);
+    updatePreview();
+  }
+
+  function openAddForm()  { resetFormState(); switchTab('add'); }
+
+  function openEditForm(id) {
+    var p = (data.products || []).find(function (x) { return x.id === id; });
+    if (!p) return;
+    editingId = p.id;
+    document.getElementById('f-name').value        = p.name          || '';
+    document.getElementById('f-category').value    = p.category      || '';
+    document.getElementById('f-status').value      = p.status        || 'available';
+    document.getElementById('f-description').value = p.description   || '';
+    document.getElementById('f-price').value       = p.price         || '';
+    document.getElementById('f-orig-price').value  = p.originalPrice || '';
+    document.getElementById('f-discount').value    = p.discount      || 0;
+    document.getElementById('f-unit').value        = p.unit          || '';
+    document.getElementById('f-image').value       = p.image         || '';
+    updateImgPreview(p.image || '');
+    document.getElementById('tab-add-label').textContent    = 'Edit Product';
+    document.getElementById('form-panel-title').textContent = 'Edit Product';
+    document.getElementById('form-panel-sub').textContent   = p.name;
+    document.getElementById('save-btn-label').textContent   = 'Update Product';
+    setCharCount('f-name', 'cc-name', 100);
+    setCharCount('f-description', 'cc-desc', 400);
+    updatePreview();
+    switchTab('add');
+  }
+
+  /* ── Character counts ────────────────────────── */
+  function setCharCount(fieldId, countId, max) {
+    var len = (document.getElementById(fieldId).value || '').length;
+    document.getElementById(countId).textContent = len + ' / ' + max;
+  }
+  document.getElementById('f-name').addEventListener('input', function () {
+    setCharCount('f-name', 'cc-name', 100); updatePreview();
+  });
+  document.getElementById('f-description').addEventListener('input', function () {
+    setCharCount('f-description', 'cc-desc', 400); updatePreview();
+  });
+
+  /* ── Image preview ───────────────────────────── */
+  function updateImgPreview(url) {
+    var box = document.getElementById('img-preview-box');
+    box.innerHTML = (url && url.trim())
+      ? '<img src="' + esc(url.trim()) + '" alt="Preview" onerror="this.parentNode.innerHTML=\'<i class=\\\"ri-image-line\\\"></i>\'">'
+      : '<i class="ri-image-line"></i>';
+    updatePreview();
+  }
+  document.getElementById('f-image').addEventListener('input', function () {
+    updateImgPreview(this.value);
+  });
+
+  /* ── Live card preview ───────────────────────── */
+  function updatePreview() {
+    var wrap   = document.getElementById('preview-wrap');
+    var name   = document.getElementById('f-name').value.trim()           || 'Product Name';
+    var cat    = document.getElementById('f-category').value              || 'Category';
+    var stat   = document.getElementById('f-status').value                || 'available';
+    var desc   = document.getElementById('f-description').value.trim()    || '';
+    var price  = parseFloat(document.getElementById('f-price').value)     || 0;
+    var orig   = parseFloat(document.getElementById('f-orig-price').value) || 0;
+    var disc   = parseInt(document.getElementById('f-discount').value)     || 0;
+    var unit   = document.getElementById('f-unit').value.trim()           || 'per unit';
+    var imgUrl = document.getElementById('f-image').value.trim();
+
+    var imgHTML   = imgUrl
+      ? '<img src="' + esc(imgUrl) + '" alt="' + esc(name) + '" onerror="this.style.display=\'none\';this.parentNode.innerHTML+=\'<i class=\\\"ri-image-line\\\"></i>\'">'
+      : '<i class="ri-image-line"></i>';
+    var discBadge = disc > 0 ? '<span class="prod-card-disc">' + disc + '% OFF</span>' : '';
+    var origHTML  = (orig && orig > price)
+      ? '<span class="prod-card-orig">₹' + Number(orig).toLocaleString('en-IN') + '</span>' : '';
+    var priceHTML = price > 0 ? '₹' + Number(price).toLocaleString('en-IN') : '—';
+
+    wrap.innerHTML =
+        '<div class="prod-card-img">' + imgHTML + discBadge + '</div>'
+      + '<div class="prod-card-body">'
+        + '<div class="prod-card-badges">'
+          + '<span class="cat-tag">' + esc(cat) + '</span>'
+          + '<span class="status-pill ' + (STATUS_CLASS[stat] || 'sp-available') + '">' + (STATUS_LABEL[stat] || stat) + '</span>'
+        + '</div>'
+        + '<div class="prod-card-name">' + esc(name) + '</div>'
+        + (desc ? '<div class="prod-card-desc">' + esc(desc) + '</div>' : '')
+        + '<div class="prod-card-price-row">'
+          + '<span class="prod-card-price">' + priceHTML + '</span>'
+          + '<span class="prod-card-unit">/ ' + esc(unit) + '</span>'
+          + origHTML
+        + '</div>'
+      + '</div>';
+  }
+
+  ['f-category', 'f-status', 'f-price', 'f-orig-price', 'f-discount', 'f-unit'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input',  updatePreview);
+    el.addEventListener('change', updatePreview);
+  });
+
+  /* ── Save product ────────────────────────────── */
+  document.getElementById('product-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name  = document.getElementById('f-name').value.trim();
+    var cat   = document.getElementById('f-category').value;
+    var price = parseFloat(document.getElementById('f-price').value) || 0;
+    if (!name || !cat || price <= 0) {
+      showToast('Please fill in Name, Category and Price.', 'error'); return;
+    }
+    var origPrice = parseFloat(document.getElementById('f-orig-price').value) || price;
+    var disc      = parseInt(document.getElementById('f-discount').value) || 0;
+    var product   = {
+      id:            editingId || uid(),
+      name:          name,
+      category:      cat,
+      description:   document.getElementById('f-description').value.trim(),
+      price:         price,
+      originalPrice: origPrice,
+      unit:          document.getElementById('f-unit').value.trim() || 'per unit',
+      discount:      Math.min(100, Math.max(0, disc)),
+      status:        document.getElementById('f-status').value,
+      image:         document.getElementById('f-image').value.trim(),
+    };
+    if (editingId) {
+      var idx = (data.products || []).findIndex(function (p) { return p.id === editingId; });
+      if (idx > -1) data.products[idx] = product;
+    } else {
+      (data.products = data.products || []).push(product);
+    }
+    save();
+    renderCards();
+    populateDealSelect();
+    updateStats();
+    showToast(editingId ? 'Product updated.' : 'Product added successfully.');
+    resetFormState();
+    switchTab('products');
+  });
+
+  /* ── Delete ──────────────────────────────────── */
+  function deleteProduct(id) {
+    if (!confirm('Delete this product? This cannot be undone.')) return;
+    data.products = (data.products || []).filter(function (p) { return p.id !== id; });
+    if (data.deal && data.deal.productId === id) data.deal.productId = '';
+    save();
+    renderCards();
+    populateDealSelect();
+    updateStats();
+    showToast('Product deleted.');
+  }
+
+  /* ── Nav buttons ─────────────────────────────── */
+  document.getElementById('add-product-btn').addEventListener('click', openAddForm);
+  document.getElementById('cancel-form-btn').addEventListener('click', function () { resetFormState(); switchTab('products'); });
+  document.getElementById('form-cancel-btn2').addEventListener('click', function () { resetFormState(); switchTab('products'); });
+
+  /* ── Deal form ───────────────────────────────── */
+  function renderDealForm() {
+    var deal = data.deal || {};
+    document.getElementById('deal-enabled').checked = !!deal.enabled;
+    var t = deal.type || 'week';
+    document.querySelectorAll('input[name="deal-type"]').forEach(function (r) { r.checked = r.value === t; });
+    if (deal.expiresAt)   document.getElementById('deal-expires').value  = deal.expiresAt;
+    if (deal.headline)    document.getElementById('deal-headline').value = deal.headline;
+    if (deal.subheadline) document.getElementById('deal-sub').value      = deal.subheadline;
+  }
+
+  function populateDealSelect() {
+    var sel    = document.getElementById('deal-product');
+    var curVal = (data.deal || {}).productId || '';
+    sel.innerHTML = '<option value="">— No specific product —</option>'
+      + (data.products || []).map(function (p) {
+          return '<option value="' + esc(p.id) + '"' + (p.id === curVal ? ' selected' : '') + '>'
+            + esc(p.name) + ' (₹' + Number(p.price).toLocaleString('en-IN') + ')</option>';
+        }).join('');
+  }
+
+  document.getElementById('save-deal-btn').addEventListener('click', function () {
+    var dealType = (document.querySelector('input[name="deal-type"]:checked') || {}).value || 'week';
+    data.deal = {
+      enabled:     document.getElementById('deal-enabled').checked,
+      type:        dealType,
+      productId:   document.getElementById('deal-product').value,
+      headline:    document.getElementById('deal-headline').value.trim(),
+      subheadline: document.getElementById('deal-sub').value.trim(),
+      expiresAt:   document.getElementById('deal-expires').value || '',
+    };
+    save();
+    showToast('Deal settings saved.');
+  });
+
+  /* ── Export ──────────────────────────────────── */
+  document.getElementById('export-btn').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href = url; a.download = 'products.json'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('products.json downloaded.');
+  });
+
+  /* ── Import ──────────────────────────────────── */
+  document.getElementById('import-btn').addEventListener('click', function () {
+    document.getElementById('import-file-input').click();
+  });
+  document.getElementById('import-file-input').addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      try {
+        var imported = JSON.parse(ev.target.result);
+        if (!imported.products || !Array.isArray(imported.products)) throw new Error();
+        data = imported;
+        save();
+        renderCards();
+        renderDealForm();
+        populateDealSelect();
+        updateStats();
+        showToast('Imported ' + data.products.length + ' products.');
+      } catch (_) {
+        showToast('Invalid JSON file.', 'error');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  /* ── Reset ───────────────────────────────────── */
+  document.getElementById('reset-btn').addEventListener('click', async function () {
+    if (!confirm('Reset all data to the original products.json? All admin changes will be lost.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    await loadData();
+    renderCards();
+    renderDealForm();
+    populateDealSelect();
+    updateStats();
+    showToast('Reset to defaults.');
+  });
+
+  /* ── Init ────────────────────────────────────── */
+  if (checkSession()) showDashboard();
+
+})();
+</script>
+
+<!-- ════════════════════════════════════════════════
+     SERVICES & WORKS ADMIN
+════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  var SVC_KEY   = 'ambika-services-data';
+  var WORK_KEY  = 'ambika-works-data';
+  var SVC_PATH  = 'data/services.json';
+  var WORK_PATH = 'data/works.json';
+
+  var CAT_LABELS = {
+    shower: 'Shower & Enclosures', partition: 'Glass Partitions',
+    door: 'Doors & Entrances', decorative: 'Decorative Glass',
+    railing: 'Balcony & Railings', kitchen: 'Modular Kitchen',
+    hardware: 'Hardware & Displays', furniture: 'Furniture & Interiors',
+    upvc: 'Windows & UPVC'
+  };
+
+  var svcData  = { services: [] };
+  var workData = { works: [] };
+  var editingSvcId  = null;
+  var editingWorkId = null;
+
+  /* ── Helpers ─────────────────────────────────── */
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function uid(prefix) { return prefix + Date.now() + Math.random().toString(36).slice(2, 6); }
+
+  function getToast() { return document.getElementById('toast'); }
+  function showToast(msg, type) {
+    type = type || 'success';
+    var el  = document.getElementById('toast');
+    var ico = el.querySelector('i');
+    document.getElementById('toast-msg').textContent = msg;
+    el.className = 'show toast-' + type;
+    ico.className = type === 'success' ? 'ri-checkbox-circle-line' : 'ri-error-warning-line';
+    clearTimeout(el._t);
+    el._t = setTimeout(function () { el.className = ''; }, 3200);
+  }
+
+  function checkSession() { return sessionStorage.getItem('ambika-admin-session') === '1'; }
+
+  /* ── Data ────────────────────────────────────── */
+  function saveSvc()  { localStorage.setItem(SVC_KEY,  JSON.stringify(svcData)); }
+  function saveWork() { localStorage.setItem(WORK_KEY, JSON.stringify(workData)); }
+
+  async function loadSvcData() {
+    try {
+      var res = await fetch(SVC_PATH);
+      if (!res.ok) throw new Error();
+      var fresh  = await res.json();
+      var stored = localStorage.getItem(SVC_KEY);
+      if (stored) {
+        try {
+          var cached = JSON.parse(stored);
+          if ((cached.version || 0) >= (fresh.version || 0)) { svcData = cached; return; }
+        } catch (_) {}
+      }
+      svcData = fresh;
+      saveSvc();
+    } catch (_) {
+      var stored2 = localStorage.getItem(SVC_KEY);
+      if (stored2) { try { svcData = JSON.parse(stored2); } catch (_) {} }
+    }
+  }
+
+  async function loadWorkData() {
+    try {
+      var res = await fetch(WORK_PATH);
+      if (!res.ok) throw new Error();
+      var fresh  = await res.json();
+      var stored = localStorage.getItem(WORK_KEY);
+      if (stored) {
+        try {
+          var cached = JSON.parse(stored);
+          if ((cached.version || 0) >= (fresh.version || 0)) { workData = cached; return; }
+        } catch (_) {}
+      }
+      workData = fresh;
+      saveWork();
+    } catch (_) {
+      var stored2 = localStorage.getItem(WORK_KEY);
+      if (stored2) { try { workData = JSON.parse(stored2); } catch (_) {} }
+    }
+  }
+
+  /* ── Stats update ────────────────────────────── */
+  function updateExtStats() {
+    var ss = document.getElementById('stat-services');
+    var sw = document.getElementById('stat-works');
+    if (ss) ss.textContent = (svcData.services || []).length;
+    if (sw) sw.textContent = (workData.works    || []).length;
+  }
+
+  /* ── Tab switching (extends existing switchTab) ─ */
+  function switchTo(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(function (b) {
+      var active = b.dataset.tab === tabId;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('.tab-panel').forEach(function (p) {
+      p.classList.toggle('active', p.id === 'tab-' + tabId);
+    });
+  }
+
+  /* ════════════════════════════════════════════
+     SERVICES
+  ════════════════════════════════════════════ */
+  function renderSvcCards() {
+    var grid = document.getElementById('svc-admin-grid');
+    var sub  = document.getElementById('services-sub');
+    if (!grid) return;
+    var list = svcData.services || [];
+    if (sub) sub.textContent = list.length + ' service' + (list.length !== 1 ? 's' : '') + ' in catalogue';
+    if (!list.length) {
+      grid.innerHTML = '<div class="grid-empty"><i class="ri-inbox-2-line"></i><p>No services yet. Click "Add Service" to get started.</p></div>';
+      return;
+    }
+    grid.innerHTML = list.map(function (s) {
+      var icon = esc(s.icon || 'ri-service-line');
+      return '<div class="svc-admin-card" data-id="' + esc(s.id) + '">'
+        + '<div class="svc-admin-img">'
+          + (s.image ? '<img src="' + esc(s.image) + '" alt="' + esc(s.title) + '" loading="lazy" onerror="this.style.display=\'none\';this.parentNode.innerHTML+=\'<i class=\\\"' + icon + '\\\"></i>\'">' : '<i class="' + icon + '"></i>')
+        + '</div>'
+        + '<div class="svc-admin-body">'
+          + '<div class="svc-admin-icon"><i class="' + icon + '"></i></div>'
+          + '<div class="svc-admin-name">' + esc(s.title) + '</div>'
+          + (s.description ? '<div class="svc-admin-desc">' + esc(s.description) + '</div>' : '')
+        + '</div>'
+        + '<div class="svc-admin-footer">'
+          + '<button class="btn btn-outline btn-sm svc-edit-btn"   data-id="' + esc(s.id) + '"><i class="ri-pencil-line"></i> Edit</button>'
+          + '<button class="btn btn-danger  btn-sm svc-delete-btn" data-id="' + esc(s.id) + '"><i class="ri-delete-bin-line"></i> Delete</button>'
+        + '</div>'
+        + '</div>';
+    }).join('');
+
+    grid.querySelectorAll('.svc-edit-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { openEditSvc(btn.dataset.id); });
+    });
+    grid.querySelectorAll('.svc-delete-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { deleteSvc(btn.dataset.id); });
+    });
+  }
+
+  function deleteSvc(id) {
+    if (!confirm('Delete this service? This cannot be undone.')) return;
+    svcData.services = (svcData.services || []).filter(function (s) { return s.id !== id; });
+    saveSvc();
+    renderSvcCards();
+    updateExtStats();
+    showToast('Service deleted.');
+  }
+
+  /* ── Service form ────────────────────────────── */
+  function resetSvcForm() {
+    editingSvcId = null;
+    document.getElementById('service-form').reset();
+    document.getElementById('sf-image').value = '';
+    updateSvcImgPreview('');
+    document.getElementById('tab-add-svc-label').textContent  = 'Add Service';
+    document.getElementById('svc-form-title').textContent     = 'Add New Service';
+    document.getElementById('svc-form-sub').textContent       = 'Fill in the details below to add a service.';
+    document.getElementById('svc-save-label').textContent     = 'Save Service';
+    setSvcCharCount('sf-title', 'cc-sf-title', 80);
+    setSvcCharCount('sf-description', 'cc-sf-desc', 400);
+    updateSvcPreview();
+  }
+
+  function openEditSvc(id) {
+    var s = (svcData.services || []).find(function (x) { return x.id === id; });
+    if (!s) return;
+    editingSvcId = s.id;
+    document.getElementById('sf-title').value       = s.title       || '';
+    document.getElementById('sf-icon').value        = s.icon        || '';
+    document.getElementById('sf-imagealt').value    = s.imageAlt    || '';
+    document.getElementById('sf-description').value = s.description || '';
+    document.getElementById('sf-image').value       = s.image       || '';
+    updateSvcImgPreview(s.image || '');
+    document.getElementById('tab-add-svc-label').textContent = 'Edit Service';
+    document.getElementById('svc-form-title').textContent    = 'Edit Service';
+    document.getElementById('svc-form-sub').textContent      = s.title;
+    document.getElementById('svc-save-label').textContent    = 'Update Service';
+    setSvcCharCount('sf-title', 'cc-sf-title', 80);
+    setSvcCharCount('sf-description', 'cc-sf-desc', 400);
+    updateSvcPreview();
+    switchTo('add-service');
+  }
+
+  function setSvcCharCount(fid, cid, max) {
+    var len = (document.getElementById(fid).value || '').length;
+    document.getElementById(cid).textContent = len + ' / ' + max;
+  }
+
+  function updateSvcImgPreview(url) {
+    var box = document.getElementById('svc-img-preview-box');
+    if (!box) return;
+    box.innerHTML = (url && url.trim())
+      ? '<img src="' + esc(url.trim()) + '" alt="Preview" onerror="this.parentNode.innerHTML=\'<i class=\\\"ri-image-line\\\"></i>\'">'
+      : '<i class="ri-image-line"></i>';
+    updateSvcPreview();
+  }
+
+  function updateSvcPreview() {
+    var wrap = document.getElementById('svc-preview-wrap');
+    if (!wrap) return;
+    var title = document.getElementById('sf-title').value.trim() || 'Service Title';
+    var icon  = document.getElementById('sf-icon').value.trim()  || 'ri-service-line';
+    var desc  = document.getElementById('sf-description').value.trim() || '';
+    var img   = document.getElementById('sf-image').value.trim();
+    wrap.innerHTML =
+      '<div style="height:100px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--txt-3);overflow:hidden;">'
+        + (img ? '<img src="' + esc(img) + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">' : '<i class="' + esc(icon) + '"></i>')
+      + '</div>'
+      + '<div style="padding:.875rem 1rem;">'
+        + '<div style="font-size:1.1rem;color:var(--acc);margin-bottom:.3rem;"><i class="' + esc(icon) + '"></i></div>'
+        + '<div style="font-size:.9rem;font-weight:700;color:var(--txt);">' + esc(title) + '</div>'
+        + (desc ? '<div style="font-size:.75rem;color:var(--txt-3);margin-top:.3rem;line-height:1.5;">' + esc(desc.slice(0, 100)) + (desc.length > 100 ? '…' : '') + '</div>' : '')
+      + '</div>';
+  }
+
+  document.getElementById('sf-title').addEventListener('input', function () {
+    setSvcCharCount('sf-title', 'cc-sf-title', 80); updateSvcPreview();
+  });
+  document.getElementById('sf-description').addEventListener('input', function () {
+    setSvcCharCount('sf-description', 'cc-sf-desc', 400); updateSvcPreview();
+  });
+  document.getElementById('sf-image').addEventListener('input', function () {
+    updateSvcImgPreview(this.value);
+  });
+  document.getElementById('sf-icon').addEventListener('input', function () { updateSvcPreview(); });
+
+  document.getElementById('service-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var title = document.getElementById('sf-title').value.trim();
+    if (!title) { showToast('Please enter a service title.', 'error'); return; }
+    var svc = {
+      id:          editingSvcId || uid('svc'),
+      title:       title,
+      icon:        document.getElementById('sf-icon').value.trim()        || 'ri-service-line',
+      imageAlt:    document.getElementById('sf-imagealt').value.trim()    || '',
+      description: document.getElementById('sf-description').value.trim()|| '',
+      image:       document.getElementById('sf-image').value.trim()       || ''
+    };
+    if (editingSvcId) {
+      var idx = (svcData.services || []).findIndex(function (s) { return s.id === editingSvcId; });
+      if (idx > -1) svcData.services[idx] = svc;
+    } else {
+      (svcData.services = svcData.services || []).push(svc);
+    }
+    saveSvc();
+    renderSvcCards();
+    updateExtStats();
+    showToast(editingSvcId ? 'Service updated.' : 'Service added successfully.');
+    resetSvcForm();
+    switchTo('services');
+  });
+
+  document.getElementById('add-service-btn').addEventListener('click', function () {
+    resetSvcForm(); switchTo('add-service');
+  });
+  document.getElementById('cancel-svc-form-btn').addEventListener('click', function () {
+    resetSvcForm(); switchTo('services');
+  });
+  document.getElementById('svc-cancel-btn2').addEventListener('click', function () {
+    resetSvcForm(); switchTo('services');
+  });
+
+  document.getElementById('export-svc-btn').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(svcData, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'services.json'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('services.json downloaded.');
+  });
+  document.getElementById('import-svc-btn').addEventListener('click', function () {
+    document.getElementById('import-svc-input').click();
+  });
+  document.getElementById('import-svc-input').addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      try {
+        var imported = JSON.parse(ev.target.result);
+        if (!imported.services || !Array.isArray(imported.services)) throw new Error();
+        svcData = imported;
+        saveSvc();
+        renderSvcCards();
+        updateExtStats();
+        showToast('Imported ' + svcData.services.length + ' services.');
+      } catch (_) {
+        showToast('Invalid JSON file.', 'error');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+  document.getElementById('reset-svc-btn').addEventListener('click', async function () {
+    if (!confirm('Reset services to the original services.json? All admin changes will be lost.')) return;
+    localStorage.removeItem(SVC_KEY);
+    await loadSvcData();
+    renderSvcCards();
+    updateExtStats();
+    showToast('Services reset to defaults.');
+  });
+
+  /* ════════════════════════════════════════════
+     WORKS
+  ════════════════════════════════════════════ */
+  function getFilteredWorks() {
+    var q    = (document.getElementById('filter-work-search').value || '').toLowerCase().trim();
+    var cat  =  document.getElementById('filter-work-cat').value || '';
+    return (workData.works || []).filter(function (w) {
+      var mQ  = !q   || (w.title || '').toLowerCase().includes(q) || (w.project || '').toLowerCase().includes(q);
+      var mC  = !cat || w.category === cat;
+      return mQ && mC;
+    });
+  }
+
+  function renderWorkCards() {
+    var grid = document.getElementById('works-admin-grid');
+    var sub  = document.getElementById('works-sub');
+    if (!grid) return;
+    var all  = workData.works || [];
+    var list = getFilteredWorks();
+    if (sub) sub.textContent = all.length + ' project' + (all.length !== 1 ? 's' : '') + ' in portfolio'
+      + (list.length !== all.length ? ' · showing ' + list.length : '');
+    if (!list.length) {
+      grid.innerHTML = '<div class="grid-empty"><i class="ri-inbox-2-line"></i><p>'
+        + (all.length ? 'No works match your filters.' : 'No works yet. Click "Add Work" to get started.') + '</p></div>';
+      return;
+    }
+    grid.innerHTML = list.map(function (w) {
+      var num = w.num || '';
+      var catLabel = w.categoryLabel || CAT_LABELS[w.category] || w.category || '';
+      return '<div class="wa-card" data-id="' + esc(w.id) + '">'
+        + '<div class="wa-img">'
+          + (w.image ? '<img src="' + esc(w.image) + '" alt="' + esc(w.title) + '" loading="lazy" onerror="this.style.display=\'none\'">' : '<i class="ri-image-line"></i>')
+          + (num ? '<span class="wa-num">' + esc(num) + '</span>' : '')
+          + (catLabel ? '<span class="wa-cat-badge">' + esc(catLabel) + '</span>' : '')
+        + '</div>'
+        + '<div class="wa-body">'
+          + '<div class="wa-title">' + esc(w.title) + '</div>'
+          + (w.project ? '<div class="wa-brief">' + esc(w.project) + '</div>' : '')
+        + '</div>'
+        + '<div class="wa-footer">'
+          + '<button class="btn btn-outline btn-sm work-edit-btn"   data-id="' + esc(w.id) + '"><i class="ri-pencil-line"></i> Edit</button>'
+          + '<button class="btn btn-danger  btn-sm work-delete-btn" data-id="' + esc(w.id) + '"><i class="ri-delete-bin-line"></i> Delete</button>'
+        + '</div>'
+        + '</div>';
+    }).join('');
+
+    grid.querySelectorAll('.work-edit-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { openEditWork(btn.dataset.id); });
+    });
+    grid.querySelectorAll('.work-delete-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { deleteWork(btn.dataset.id); });
+    });
+  }
+
+  ['filter-work-search', 'filter-work-cat'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) { el.addEventListener('input', renderWorkCards); el.addEventListener('change', renderWorkCards); }
+  });
+
+  function deleteWork(id) {
+    if (!confirm('Delete this work? This cannot be undone.')) return;
+    workData.works = (workData.works || []).filter(function (w) { return w.id !== id; });
+    saveWork();
+    renderWorkCards();
+    updateExtStats();
+    showToast('Work deleted.');
+  }
+
+  /* ── Work form ───────────────────────────────── */
+  function resetWorkForm() {
+    editingWorkId = null;
+    document.getElementById('work-form').reset();
+    document.getElementById('wf-image').value = '';
+    updateWorkImgPreview('');
+    document.getElementById('tab-add-work-label').textContent = 'Add Work';
+    document.getElementById('work-form-title').textContent    = 'Add New Work';
+    document.getElementById('work-form-sub').textContent      = 'Fill in the details below to add a project to your portfolio.';
+    document.getElementById('work-save-label').textContent    = 'Save Work';
+    ['wf-title:cc-wf-title:120','wf-project:cc-wf-project:400','wf-did:cc-wf-did:500','wf-overlay:cc-wf-overlay:600'].forEach(function (s) {
+      var p = s.split(':');
+      setWorkCharCount(p[0], p[1], +p[2]);
+    });
+    updateWorkPreview();
+  }
+
+  function openEditWork(id) {
+    var w = (workData.works || []).find(function (x) { return x.id === id; });
+    if (!w) return;
+    editingWorkId = w.id;
+    document.getElementById('wf-title').value    = w.title    || '';
+    document.getElementById('wf-category').value = w.category || '';
+    document.getElementById('wf-imagealt').value = w.imageAlt || '';
+    document.getElementById('wf-project').value  = w.project  || '';
+    document.getElementById('wf-did').value      = w.did      || '';
+    document.getElementById('wf-overlay').value  = w.overlayText || '';
+    document.getElementById('wf-image').value    = w.image    || '';
+    updateWorkImgPreview(w.image || '');
+    document.getElementById('tab-add-work-label').textContent = 'Edit Work';
+    document.getElementById('work-form-title').textContent    = 'Edit Work';
+    document.getElementById('work-form-sub').textContent      = w.title;
+    document.getElementById('work-save-label').textContent    = 'Update Work';
+    ['wf-title:cc-wf-title:120','wf-project:cc-wf-project:400','wf-did:cc-wf-did:500','wf-overlay:cc-wf-overlay:600'].forEach(function (s) {
+      var p = s.split(':');
+      setWorkCharCount(p[0], p[1], +p[2]);
+    });
+    updateWorkPreview();
+    switchTo('add-work');
+  }
+
+  function setWorkCharCount(fid, cid, max) {
+    var el = document.getElementById(fid);
+    var ce = document.getElementById(cid);
+    if (el && ce) ce.textContent = (el.value || '').length + ' / ' + max;
+  }
+
+  function updateWorkImgPreview(url) {
+    var box = document.getElementById('work-img-preview-box');
+    if (!box) return;
+    box.innerHTML = (url && url.trim())
+      ? '<img src="' + esc(url.trim()) + '" alt="Preview" onerror="this.parentNode.innerHTML=\'<i class=\\\"ri-image-line\\\"></i>\'">'
+      : '<i class="ri-image-line"></i>';
+    updateWorkPreview();
+  }
+
+  function updateWorkPreview() {
+    var wrap = document.getElementById('work-preview-wrap');
+    if (!wrap) return;
+    var title = document.getElementById('wf-title').value.trim() || 'Project Title';
+    var cat   = document.getElementById('wf-category').value     || '';
+    var img   = document.getElementById('wf-image').value.trim();
+    var brief = document.getElementById('wf-project').value.trim() || '';
+    var catLabel = CAT_LABELS[cat] || cat || 'Category';
+    wrap.innerHTML =
+      '<div style="position:relative;height:140px;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--txt-3);overflow:hidden;">'
+        + (img ? '<img src="' + esc(img) + '" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">' : '<i class="ri-image-2-line"></i>')
+        + (catLabel ? '<span style="position:absolute;top:.5rem;right:.5rem;font-size:.58rem;font-weight:800;color:#fff;background:rgba(var(--acc-rgb),.75);border-radius:var(--r);padding:.18rem .55rem;">' + esc(catLabel) + '</span>' : '')
+      + '</div>'
+      + '<div style="padding:.875rem 1rem;">'
+        + '<div style="font-size:.875rem;font-weight:700;color:var(--txt);">' + esc(title) + '</div>'
+        + (brief ? '<div style="font-size:.75rem;color:var(--txt-3);margin-top:.3rem;line-height:1.5;">' + esc(brief.slice(0, 100)) + (brief.length > 100 ? '…' : '') + '</div>' : '')
+      + '</div>';
+  }
+
+  ['wf-title','wf-project','wf-did','wf-overlay'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var limits = { 'wf-title': ['cc-wf-title',120], 'wf-project': ['cc-wf-project',400], 'wf-did': ['cc-wf-did',500], 'wf-overlay': ['cc-wf-overlay',600] };
+    el.addEventListener('input', function () {
+      var lm = limits[id];
+      if (lm) setWorkCharCount(id, lm[0], lm[1]);
+      updateWorkPreview();
+    });
+  });
+  document.getElementById('wf-image').addEventListener('input', function () { updateWorkImgPreview(this.value); });
+  document.getElementById('wf-category').addEventListener('change', function () { updateWorkPreview(); });
+
+  document.getElementById('work-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var title = document.getElementById('wf-title').value.trim();
+    var cat   = document.getElementById('wf-category').value;
+    if (!title || !cat) { showToast('Please fill in Title and Category.', 'error'); return; }
+    var catLabel = CAT_LABELS[cat] || cat;
+    var all  = workData.works || [];
+    var newNum = editingWorkId
+      ? ((all.find(function (w) { return w.id === editingWorkId; }) || {}).num || String(all.length).padStart(2,'0'))
+      : String(all.length + 1).padStart(2, '0');
+    var work = {
+      id:           editingWorkId || uid('w'),
+      num:          newNum,
+      title:        title,
+      category:     cat,
+      categoryLabel: catLabel,
+      image:        document.getElementById('wf-image').value.trim()    || '',
+      imageAlt:     document.getElementById('wf-imagealt').value.trim() || '',
+      project:      document.getElementById('wf-project').value.trim()  || '',
+      did:          document.getElementById('wf-did').value.trim()      || '',
+      overlayText:  document.getElementById('wf-overlay').value.trim()  || ''
+    };
+    if (editingWorkId) {
+      var idx = all.findIndex(function (w) { return w.id === editingWorkId; });
+      if (idx > -1) workData.works[idx] = work;
+    } else {
+      (workData.works = workData.works || []).push(work);
+    }
+    saveWork();
+    renderWorkCards();
+    updateExtStats();
+    showToast(editingWorkId ? 'Work updated.' : 'Work added successfully.');
+    resetWorkForm();
+    switchTo('works');
+  });
+
+  document.getElementById('add-work-btn-main').addEventListener('click', function () {
+    resetWorkForm(); switchTo('add-work');
+  });
+  document.getElementById('cancel-work-form-btn').addEventListener('click', function () {
+    resetWorkForm(); switchTo('works');
+  });
+  document.getElementById('work-cancel-btn2').addEventListener('click', function () {
+    resetWorkForm(); switchTo('works');
+  });
+
+  document.getElementById('export-work-btn').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(workData, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'works.json'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('works.json downloaded.');
+  });
+  document.getElementById('import-work-btn').addEventListener('click', function () {
+    document.getElementById('import-work-input').click();
+  });
+  document.getElementById('import-work-input').addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      try {
+        var imported = JSON.parse(ev.target.result);
+        if (!imported.works || !Array.isArray(imported.works)) throw new Error();
+        workData = imported;
+        saveWork();
+        renderWorkCards();
+        updateExtStats();
+        showToast('Imported ' + workData.works.length + ' works.');
+      } catch (_) {
+        showToast('Invalid JSON file.', 'error');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+  document.getElementById('reset-work-btn').addEventListener('click', async function () {
+    if (!confirm('Reset works to the original works.json? All admin changes will be lost.')) return;
+    localStorage.removeItem(WORK_KEY);
+    await loadWorkData();
+    renderWorkCards();
+    updateExtStats();
+    showToast('Works reset to defaults.');
+  });
+
+  /* ════════════════════════════════════════════
+     INIT  (called after login)
+  ════════════════════════════════════════════ */
+  var _origShowDashboard = window._adminShowDashboard;
+  window._adminShowDashboard = async function () {
+    await loadSvcData();
+    await loadWorkData();
+    renderSvcCards();
+    renderWorkCards();
+    updateExtStats();
+  };
+
+  document.addEventListener('ambika-dashboard-ready', async function () {
+    await loadSvcData();
+    await loadWorkData();
+    renderSvcCards();
+    renderWorkCards();
+    updateExtStats();
+  });
+
+  if (checkSession()) {
+    setTimeout(async function () {
+      await loadSvcData();
+      await loadWorkData();
+      renderSvcCards();
+      renderWorkCards();
+      updateExtStats();
+    }, 100);
+  }
+
+})();
+</script>
+
+<!-- ── Settings Tab Script ─────────────────────────────────── -->
+<script>
+(function () {
+  'use strict';
+
+  var SETTINGS_KEY  = 'ambika-settings';
+  var SETTINGS_PATH = 'data/settings.json';
+  var settingsData  = { version: 1, whatsapp: '' };
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  async function loadSettingsData() {
+    try {
+      var res   = await fetch(SETTINGS_PATH);
+      if (!res.ok) throw new Error();
+      var fresh  = await res.json();
+      var stored = localStorage.getItem(SETTINGS_KEY);
+      if (stored) {
+        try {
+          var cached = JSON.parse(stored);
+          if ((cached.version || 0) >= (fresh.version || 0)) { settingsData = cached; return; }
+        } catch (_) {}
+      }
+      settingsData = fresh;
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(settingsData));
+    } catch (_) {
+      var stored2 = localStorage.getItem(SETTINGS_KEY);
+      if (stored2) { try { settingsData = JSON.parse(stored2); } catch (_) {} }
+    }
+  }
+
+  function saveSettingsData() {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settingsData));
+  }
+
+  function renderSettingsForm() {
+    var inp = document.getElementById('settings-wa-number');
+    if (inp) inp.value = settingsData.whatsapp || '';
+    updateWaPreview();
+  }
+
+  function updateWaPreview() {
+    var inp  = document.getElementById('settings-wa-number');
+    var wrap = document.getElementById('wa-preview-wrap');
+    var prev = document.getElementById('wa-preview-link');
+    if (!inp || !wrap || !prev) return;
+    var num = inp.value.trim();
+    if (num) {
+      wrap.style.display = '';
+      prev.textContent = 'https://wa.me/' + num + '?text=Hi%21+I%27d+like+to+enquire+about+a+product+from+Ambika+Playwoods...';
+    } else {
+      wrap.style.display = 'none';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var inp = document.getElementById('settings-wa-number');
+    if (inp) inp.addEventListener('input', updateWaPreview);
+
+    var saveBtn = document.getElementById('save-settings-btn');
+    if (saveBtn) {
+      saveBtn.addEventListener('click', function () {
+        var num = (document.getElementById('settings-wa-number').value || '').trim().replace(/\D/g, '');
+        settingsData.whatsapp = num;
+        saveSettingsData();
+        if (window.showToast) showToast('WhatsApp number saved.');
+        updateWaPreview();
+      });
+    }
+
+    var exportBtn = document.getElementById('export-settings-btn');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', function () {
+        var num = (document.getElementById('settings-wa-number').value || '').trim().replace(/\D/g, '');
+        settingsData.whatsapp = num;
+        saveSettingsData();
+        var blob = new Blob([JSON.stringify(settingsData, null, 2)], { type: 'application/json' });
+        var url  = URL.createObjectURL(blob);
+        var a    = document.createElement('a');
+        a.href = url; a.download = 'settings.json'; a.click();
+        URL.revokeObjectURL(url);
+        if (window.showToast) showToast('settings.json downloaded.');
+      });
+    }
+  });
+
+  /* Hook into dashboard ready */
+  document.addEventListener('ambika-dashboard-ready', async function () {
+    await loadSettingsData();
+    renderSettingsForm();
+  });
+
+  /* Also load if session already active on page load */
+  if (typeof checkSession === 'function' && checkSession()) {
+    setTimeout(async function () {
+      await loadSettingsData();
+      renderSettingsForm();
+    }, 150);
+  }
+
+})();
+</script>
+</body>
+</html>

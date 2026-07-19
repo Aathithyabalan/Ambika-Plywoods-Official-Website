@@ -1,0 +1,7 @@
+# Local cache / tool directories
+.claude/
+.npm-cache/
+
+# OS generated files
+Thumbs.db
+Desktop.ini

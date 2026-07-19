@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "services": [
+    {
+      "id": "svc1",
+      "title": "Glass",
+      "icon": "ri-window-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-76.jpg",
+      "imageAlt": "Rare emerald cracked ice textured glass — precision-cut decorative glass panel",
+      "description": "Clear, frosted, tinted, toughened, acid-wash and reflective glass - cut to size for windows, balconies, partitions, tabletops and décor. Etching and stone glass designs also available."
+    },
+    {
+      "id": "svc2",
+      "title": "Glass Printing",
+      "icon": "ri-printer-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-27.jpg",
+      "imageAlt": "UV-printed vase and blooms floral glass partition — high-resolution glass printing",
+      "description": "High-resolution UV and digital printing directly onto glass surfaces - logos, patterns, murals, and custom designs for commercial and residential use."
+    },
+    {
+      "id": "svc3",
+      "title": "Hand Colouring in Glass",
+      "icon": "ri-paint-brush-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-83.jpg",
+      "imageAlt": "Hand-painted parrot and floral motif decorative glass panel — artisan hand colouring",
+      "description": "Artisanal hand-applied glass colouring for bespoke decorative panels, feature walls and statement pieces - each one truly unique."
+    },
+    {
+      "id": "svc4",
+      "title": "Hardware",
+      "icon": "ri-tools-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-7.jpg",
+      "imageAlt": "Designer hardware gallery — 50+ chrome, matte black and satin handle sets on display",
+      "description": "All types of hardware items - hinges, locks, handles, channels, screws, brackets and fittings sourced from quality suppliers."
+    },
+    {
+      "id": "svc5",
+      "title": "Doors",
+      "icon": "ri-door-open-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-56.jpg",
+      "imageAlt": "3D geometric statement door — CNC-carved oak-finish laminate with circles, hexagons and linear fluting",
+      "description": "PVC, wooden and laminated doors in a wide range of designs and finishes - crafted by expert door designers for every interior style."
+    },
+    {
+      "id": "svc6",
+      "title": "MDF",
+      "icon": "ri-layout-masonry-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-94.jpg",
+      "imageAlt": "Modern wall-mounted folding study desk — light-oak MDF board on industrial steel brackets",
+      "description": "Medium-density fibreboard in various thicknesses for cabinetry, furniture, wall panels and decorative work - smooth surface, consistent quality."
+    },
+    {
+      "id": "svc7",
+      "title": "Laminates (MICA)",
+      "icon": "ri-layers-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-93.jpg",
+      "imageAlt": "Premium wood-texture laminate selection — Exclusive MICA collection deep-grained matte finishes",
+      "description": "Premium MICA and laminate sheets for door surfaces, furniture and wall cladding - available in hundreds of textures, colours and finishes."
+    },
+    {
+      "id": "svc8",
+      "title": "Paints",
+      "icon": "ri-drop-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-101.jpg",
+      "imageAlt": "Asian Paints TruCare metal primer application — anti-corrosive protective coating on precision metal components",
+      "description": "Interior, exterior, enamel and textured paints from leading brands - expert colour mixing and consultation available in-store."
+    },
+    {
+      "id": "svc9",
+      "title": "Timber Section",
+      "icon": "ri-tree-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-90.jpg",
+      "imageAlt": "Industrial wood-cutting precision center — Optimus panel saw executing millimetre-accurate cuts on large plywood sheets",
+      "description": "Seasoned timber beams, planks and mouldings for structural and decorative applications - cut-to-size available. Plywood included."
+    },
+    {
+      "id": "svc10",
+      "title": "Aluminium Partition Channel",
+      "icon": "ri-separator",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-66.jpg",
+      "imageAlt": "Floor-to-ceiling smoked tinted glass partition — aluminium track installation for contemporary executive room",
+      "description": "Lightweight, durable aluminium channels and profiles for office and residential partitions - clean finishes with precise engineering."
+    },
+    {
+      "id": "svc11",
+      "title": "UPVC Windows",
+      "icon": "ri-store-3-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-60.jpg",
+      "imageAlt": "Energy-efficient white UPVC window systems — multi-chambered profiles with rubber gaskets and multi-point locking",
+      "description": "Fixed, casement and sliding UPVC windows - energy-efficient, weather-resistant and low-maintenance. Installed on time with quality frames and precise fitting for new homes and renovations."
+    },
+    {
+      "id": "svc12",
+      "title": "Mirrors",
+      "icon": "ri-focus-2-line",
+      "image": "https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-59.jpg",
+      "imageAlt": "Custom floral vase vibrant glass panel — decorative mirror and glass work",
+      "description": "Decorative and functional mirrors - custom-cut, framed and bevelled - for homes, showrooms and commercial spaces. Delivered with great results beyond expectations."
+    }
+  ]
+}
