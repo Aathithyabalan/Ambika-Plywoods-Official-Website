@@ -495,19 +495,7 @@
     .toggle-switch input:checked + .toggle-thumb { background: var(--acc); border-color: var(--acc); }
     .toggle-switch input:checked + .toggle-thumb::after { left: calc(100% - 19px); background: #fff; }
 
-    .deal-fg input,
-    .deal-fg select {
-      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
-      border-radius: var(--r); color: var(--txt);
-      padding: .75rem 1rem; font-size: .9375rem; width: 100%;
-      font-family: var(--font-primary);
-      transition: border-color var(--t), box-shadow var(--t);
-    }
-    .deal-fg input:focus,
-    .deal-fg select:focus {
-      outline: none; border-color: var(--acc-h);
-      box-shadow: 0 0 0 3px rgba(var(--acc-rgb), .15);
-    }
+
 
     /* ── Custom Datepicker ── */
     .custom-datepicker-wrap {
@@ -518,7 +506,9 @@
       display: flex;
       align-items: center;
       gap: .6rem;
-      padding: .75rem 1rem;
+      padding: 0 1rem;
+      height: 48px;
+      box-sizing: border-box;
       background: var(--bg-2);
       border: 1.5px solid var(--bdr-2);
       border-radius: var(--r);
@@ -686,11 +676,16 @@
       position: relative;
       width: 100%;
     }
+    .filter-bar .custom-select-wrap {
+      min-width: 160px;
+    }
     .custom-select-trigger {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: .75rem 1rem;
+      padding: 0 1rem;
+      height: 48px;
+      box-sizing: border-box;
       background: var(--bg-2);
       border: 1.5px solid var(--bdr-2);
       border-radius: var(--r);
@@ -700,6 +695,11 @@
       cursor: pointer;
       transition: border-color var(--t), box-shadow var(--t);
       user-select: none;
+    }
+    .filter-bar .custom-select-trigger {
+      height: 40px;
+      padding: 0 .85rem;
+      font-size: .85rem;
     }
     .custom-select-trigger:hover, .custom-select-trigger:focus, .custom-select-trigger.open {
       border-color: var(--acc-h);
@@ -761,29 +761,43 @@
       font-size: .78rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: .06em; color: var(--txt-2);
     }
-    .deal-fg input,
+    .deal-fg input:not([type="radio"]):not([type="checkbox"]),
     .deal-fg select {
       background: var(--bg-2); border: 1.5px solid var(--bdr-2);
       border-radius: var(--r); color: var(--txt);
-      padding: .75rem 1rem; font-size: .9375rem; width: 100%;
+      padding: 0 1rem; font-size: .9375rem; width: 100%;
+      height: 48px; box-sizing: border-box;
       font-family: var(--font-primary);
       transition: border-color var(--t), box-shadow var(--t);
     }
-    .deal-fg input:focus,
+    .deal-fg input:not([type="radio"]):not([type="checkbox"]):focus,
     .deal-fg select:focus {
       outline: none; border-color: var(--acc-h);
-      box-shadow: 0 0 0 3px rgba(var(--acc-rgb),.1);
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb), .15);
     }
     .deal-hint { font-size: .78rem; color: var(--txt-3); }
     .deal-type-radios { display: flex; gap: .6rem; }
     .radio-opt {
-      flex: 1; padding: .65rem .9rem;
+      flex: 1; padding: 0 .9rem;
+      height: 48px; box-sizing: border-box;
       background: var(--bg-2); border: 1.5px solid var(--bdr-2);
-      border-radius: var(--r); display: flex; align-items: center; gap: .5rem;
+      border-radius: var(--r); display: flex; align-items: center; justify-content: center; gap: .5rem;
       cursor: pointer; font-size: .875rem; font-weight: 600; color: var(--txt-2);
       transition: border-color var(--t), background var(--t), color var(--t);
     }
-    .radio-opt input[type="radio"] { accent-color: var(--acc-h); }
+    .radio-opt input[type="radio"] {
+      width: 16px !important;
+      height: 16px !important;
+      min-width: 16px !important;
+      min-height: 16px !important;
+      max-width: 16px !important;
+      max-height: 16px !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      flex-shrink: 0 !important;
+      accent-color: var(--acc-h);
+      cursor: pointer;
+    }
     .radio-opt:has(input:checked) { border-color: var(--acc-h); background: var(--acc-lt); color: var(--txt); }
     .deal-save-row { margin-top: 1.75rem; }
 
@@ -1793,6 +1807,7 @@
     populateDealSelect();
     updateStats();
     updatePreview();
+    initAllCustomSelects();
     document.dispatchEvent(new CustomEvent('ambika-dashboard-ready'));
   }
 
@@ -2244,57 +2259,112 @@
     }
   }
 
-  /* ── Custom Select JS ── */
-  var selectTrigger  = document.getElementById('custom-deal-product-trigger');
-  var selectDropdown = document.getElementById('custom-deal-product-dropdown');
-  var selectDisplay  = document.getElementById('custom-deal-product-display');
-  var nativeSelect   = document.getElementById('deal-product');
+  /* ── Custom Select JS (Universal) ── */
+  function initCustomSelect(selectEl) {
+    if (typeof selectEl === 'string') selectEl = document.getElementById(selectEl);
+    if (!selectEl) return;
 
-  function syncCustomSelect() {
-    if (!nativeSelect || !selectDropdown || !selectDisplay) return;
-    var opts = nativeSelect.options;
-    var html = '';
-    var selectedText = '— No specific product —';
-
-    for (var i = 0; i < opts.length; i++) {
-      var opt = opts[i];
-      var isSel = opt.selected;
-      if (isSel) selectedText = opt.text;
-      html += '<div class="custom-select-option' + (isSel ? ' selected' : '') + '" data-value="' + esc(opt.value) + '">'
-        + esc(opt.text)
-        + (isSel ? ' <i class="ri-check-line"></i>' : '')
-        + '</div>';
+    var wrap = selectEl.closest('.custom-select-wrap');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.className = 'custom-select-wrap';
+      selectEl.parentNode.insertBefore(wrap, selectEl);
+      wrap.appendChild(selectEl);
     }
 
-    selectDisplay.textContent = selectedText;
-    selectDropdown.innerHTML = html;
+    selectEl.style.display = 'none';
 
-    selectDropdown.querySelectorAll('.custom-select-option').forEach(function (item) {
-      item.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var val = item.dataset.value;
-        nativeSelect.value = val;
-        nativeSelect.dispatchEvent(new Event('change'));
-        syncCustomSelect();
-        selectDropdown.classList.remove('show');
-        if (selectTrigger) selectTrigger.classList.remove('open');
+    var trigger = wrap.querySelector('.custom-select-trigger');
+    if (!trigger) {
+      trigger = document.createElement('div');
+      trigger.className = 'custom-select-trigger';
+      trigger.tabIndex = 0;
+      trigger.role = 'combobox';
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.innerHTML = '<span class="custom-select-display"></span><i class="ri-arrow-down-s-line select-arrow" aria-hidden="true"></i>';
+      wrap.insertBefore(trigger, selectEl);
+    }
+
+    var dropdown = wrap.querySelector('.custom-select-dropdown');
+    if (!dropdown) {
+      dropdown = document.createElement('div');
+      dropdown.className = 'custom-select-dropdown';
+      wrap.insertBefore(dropdown, selectEl);
+    }
+
+    var displayEl = trigger.querySelector('.custom-select-display');
+
+    function syncUI() {
+      var opts = selectEl.options;
+      var html = '';
+      var selectedText = '';
+
+      for (var i = 0; i < opts.length; i++) {
+        var opt = opts[i];
+        var isSel = opt.selected;
+        if (isSel || (!selectedText && i === 0)) selectedText = opt.text;
+        html += '<div class="custom-select-option' + (isSel ? ' selected' : '') + '" data-value="' + esc(opt.value) + '">'
+          + esc(opt.text)
+          + (isSel ? ' <i class="ri-check-line"></i>' : '')
+          + '</div>';
+      }
+
+      if (displayEl) displayEl.textContent = selectedText || 'Select option';
+      dropdown.innerHTML = html;
+
+      dropdown.querySelectorAll('.custom-select-option').forEach(function (item) {
+        item.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var val = item.dataset.value;
+          selectEl.value = val;
+          selectEl.dispatchEvent(new Event('change', { bubbles: true }));
+          syncUI();
+          dropdown.classList.remove('show');
+          trigger.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        });
       });
+    }
+
+    syncUI();
+
+    if (!trigger._hasListener) {
+      trigger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        document.querySelectorAll('.custom-select-dropdown.show').forEach(function (d) {
+          if (d !== dropdown) {
+            d.classList.remove('show');
+            var tr = d.closest('.custom-select-wrap').querySelector('.custom-select-trigger');
+            if (tr) { tr.classList.remove('open'); tr.setAttribute('aria-expanded', 'false'); }
+          }
+        });
+
+        var isShow = dropdown.classList.contains('show');
+        if (!isShow) {
+          syncUI();
+          dropdown.classList.add('show');
+          trigger.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+        } else {
+          dropdown.classList.remove('show');
+          trigger.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      selectEl.addEventListener('change', syncUI);
+      trigger._hasListener = true;
+    }
+  }
+
+  function initAllCustomSelects() {
+    document.querySelectorAll('select').forEach(function (sel) {
+      initCustomSelect(sel);
     });
   }
 
-  if (selectTrigger && selectDropdown) {
-    selectTrigger.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var isShow = selectDropdown.classList.contains('show');
-      if (!isShow) {
-        syncCustomSelect();
-        selectDropdown.classList.add('show');
-        selectTrigger.classList.add('open');
-      } else {
-        selectDropdown.classList.remove('show');
-        selectTrigger.classList.remove('open');
-      }
-    });
+  function syncCustomSelect() {
+    initAllCustomSelects();
   }
 
   // Close popovers on click outside
@@ -2303,10 +2373,14 @@
       datePopover.classList.remove('show');
       if (dateTrigger) dateTrigger.classList.remove('open');
     }
-    if (selectDropdown && !selectDropdown.contains(e.target) && selectTrigger && !selectTrigger.contains(e.target)) {
-      selectDropdown.classList.remove('show');
-      if (selectTrigger) selectTrigger.classList.remove('open');
-    }
+    document.querySelectorAll('.custom-select-dropdown.show').forEach(function (dropdown) {
+      var wrap = dropdown.closest('.custom-select-wrap');
+      if (wrap && !wrap.contains(e.target)) {
+        dropdown.classList.remove('show');
+        var trigger = wrap.querySelector('.custom-select-trigger');
+        if (trigger) { trigger.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }
+      }
+    });
   });
 
   /* ── Deal form ───────────────────────────────── */
