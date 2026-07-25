@@ -112,14 +112,16 @@
 
     /* ── Alangaram Interiors Page ──────────────────────────────── */
     .ai-hero {
-      background: linear-gradient(140deg, #7a4400 0%, #3d2200 45%, #0d0800 100%);
+      background: linear-gradient(140deg, rgba(122, 68, 0, 0.85) 0%, rgba(61, 34, 0, 0.88) 45%, rgba(13, 8, 0, 0.94) 100%),
+                  url('https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Alangaram+Interiors.webp') center/cover no-repeat;
       padding: calc(var(--sp-5xl) + 20px) 0 var(--sp-4xl);
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     [data-theme="dark"] .ai-hero {
-      background: linear-gradient(140deg, #5c3200 0%, #2d1a00 45%, #000 100%);
+      background: linear-gradient(140deg, rgba(92, 50, 0, 0.88) 0%, rgba(45, 26, 0, 0.92) 45%, rgba(0, 0, 0, 0.96) 100%),
+                  url('https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Alangaram+Interiors.webp') center/cover no-repeat;
     }
     .ai-hero::after {
       content: '';
@@ -506,10 +508,7 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4xl);align-items:center" class="responsive-2col">
 
           <div class="reveal-l">
-            <div class="img-ph" role="img" aria-label="Alangaram Interiors showroom placeholder">
-              <i class="ri-sofa-line"></i>
-              <span>Showroom / Interior Image</span>
-            </div>
+            <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Alangaram+Interiors.webp" alt="Alangaram Custom Interiors Showcase" style="width:100%;height:380px;object-fit:cover;border-radius:4px;display:block;box-shadow:0 12px 36px rgba(0,0,0,0.15)" />
           </div>
 
           <div class="reveal-r">

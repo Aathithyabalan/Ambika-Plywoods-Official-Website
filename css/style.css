@@ -1528,17 +1528,20 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 /* ================================================================
    25. ABOUT PAGE
    ================================================================ */
-.team-grid  { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--sp-xl); }
+.team-grid  { display: grid; grid-template-columns: repeat(2, 1fr); max-width: 680px; margin: 0 auto; gap: var(--sp-xl); }
 .team-card {
   text-align: center; background: var(--card);
   border: 1px solid var(--bdr); border-radius: var(--r);
   overflow: hidden; transition: all var(--t-slow);
 }
 .team-card:hover { box-shadow: var(--sh-lg); transform: translateY(-4px); border-color: rgba(var(--acc-rgb),.3); }
+.team-photo { width: 100%; aspect-ratio: 4/5; overflow: hidden; background: var(--bg-2); }
+.team-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform var(--t-slow); border-radius: 0; }
+.team-card:hover .team-photo img { transform: scale(1.03); }
 .team-photo .img-ph { min-height: 200px; border-radius: 0; border: none; }
 .team-info { padding: var(--sp-lg); }
-.team-name { font-size: 1rem; font-weight: 800; color: var(--txt); }
-.team-role { font-size: .8125rem; color: var(--txt-3); font-weight: 600; }
+.team-name { font-size: 1.125rem; font-weight: 800; color: var(--txt); margin-bottom: .25rem; }
+.team-role { font-size: .875rem; color: var(--acc); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
 
 /* ================================================================
    26. FOCUS & ACCESSIBILITY
@@ -1559,7 +1562,7 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .svc-grid { grid-template-columns: repeat(4,1fr); }
   .footer-grid { grid-template-columns: 1.2fr 1fr 1fr; }
   .footer-grid > *:last-child { grid-column: 1/-1; }
-  .team-grid { grid-template-columns: repeat(3,1fr); }
+  .team-grid { grid-template-columns: repeat(2,1fr); }
   /* Nav links hidden; hamburger opens overlay */
   .nav-links { display: none; }
   .menu-btn  { display: flex; }
@@ -1664,7 +1667,7 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .fcontact-item { justify-content: center; }
   .fbot-links { justify-content: center; }
   .svc-full-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
   .concept-imgs { grid-template-columns: 1fr; }
   .concept-imgs .img-ph:first-child { grid-column: 1; }
   .cta-banner   { padding: var(--sp-2xl) 0; }

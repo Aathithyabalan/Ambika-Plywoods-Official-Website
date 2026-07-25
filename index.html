@@ -828,9 +828,36 @@
     .unit-card--interiors .unit-card-banner {
       background: linear-gradient(145deg, #110600 0%, #7a4400 55%, #3d2200 100%);
     }
+    .unit-card-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform .5s ease;
+      z-index: 0;
+      border-radius: 4px 4px 0 0;
+    }
+    .unit-card:hover .unit-card-bg-img {
+      transform: scale(1.08);
+    }
+    .unit-card-banner-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .unit-card--upvc .unit-card-banner-overlay {
+      background: linear-gradient(145deg, rgba(7, 30, 56, 0.78) 0%, rgba(21, 101, 168, 0.72) 55%, rgba(10, 45, 84, 0.84) 100%);
+    }
+    .unit-card--interiors .unit-card-banner-overlay {
+      background: linear-gradient(145deg, rgba(17, 6, 0, 0.78) 0%, rgba(122, 68, 0, 0.72) 55%, rgba(61, 34, 0, 0.84) 100%);
+    }
     .unit-card-banner::before {
       content: '';
       position: absolute; inset: 0; pointer-events: none;
+      z-index: 2;
       background-image:
         linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
@@ -838,7 +865,7 @@
     }
     /* Logo area inside banner */
     .unit-card-logo-wrap {
-      position: relative; z-index: 1;
+      position: relative; z-index: 3;
       width: 140px; height: 70px;
       display: flex; align-items: center; justify-content: center;
     }
@@ -855,12 +882,13 @@
     .unit-card-banner-label {
       font-size: .58rem; font-weight: 800;
       letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(255,255,255,.45);
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--r);
+      color: rgba(255,255,255,.85);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 4px;
       padding: .18rem .7rem;
-      z-index: 1;
+      z-index: 3;
     }
     /* Body */
     .unit-card-body {
@@ -1953,10 +1981,9 @@
 
         <!-- Detail strip -->
         <div class="svc-detail reveal">
-          <!-- PLACEHOLDER: replace with services montage image -->
-          <div class="img-ph" role="img" aria-label="Services overview image placeholder">
-            <i class="ri-collage-line"></i>
-            <span>Grid Services Image</span>
+          <div class="svc-detail-img" style="border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);box-shadow:var(--sh-md)">
+            <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Our+Servises+Grid+Image+-+Ambika+Plywoods.webp"
+                 alt="Ambika Plywoods Services Grid Overview" loading="lazy" style="width:100%;height:auto;display:block;object-fit:cover;" />
           </div>
 
           <div>
@@ -2291,6 +2318,8 @@
           <!-- Negizhi UPVC -->
           <div class="unit-card unit-card--upvc">
             <div class="unit-card-banner">
+              <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Negizhi+UPVC.webp" alt="Negizhi UPVC" class="unit-card-bg-img" />
+              <div class="unit-card-banner-overlay"></div>
               <div class="unit-card-logo-wrap">
                 <i class="ri-window-line unit-card-logo-icon" aria-hidden="true"></i>
                 <img src="Image Assests/negizhi-upvc-logo.png" alt="Negizhi UPVC"
@@ -2322,6 +2351,8 @@
           <!-- Alangaram Interiors -->
           <div class="unit-card unit-card--interiors">
             <div class="unit-card-banner">
+              <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Alangaram+Interiors.webp" alt="Alangaram Interiors" class="unit-card-bg-img" />
+              <div class="unit-card-banner-overlay"></div>
               <div class="unit-card-logo-wrap">
                 <i class="ri-sofa-line unit-card-logo-icon" aria-hidden="true"></i>
                 <img src="Image Assests/alangaram-interiors-logo.png" alt="Alangaram Interiors"
@@ -2578,10 +2609,8 @@
 
           <!-- Image side -->
           <div class="vision-img-col reveal-r">
-            <!-- PLACEHOLDER: replace with vision/team image -->
-            <div class="img-ph" role="img" aria-label="Vision team image placeholder">
-              <i class="ri-focus-3-line"></i>
-              <span>Vision Image</span>
+            <div style="border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);box-shadow:var(--sh-md);height:100%;min-height:400px;">
+              <img src="https://s3.ap-south-1.amazonaws.com/ambikaplywoods.com/Our+Vision+-+Home+Page+Ambika+Plywoods.webp" alt="Ambika Plywoods - Our Vision" loading="lazy" style="width:100%;height:100%;display:block;object-fit:cover;">
             </div>
           </div>
 
