@@ -1222,6 +1222,28 @@ input, textarea, select { font-family: var(--font-primary); }
    20. FOOTER
    ================================================================ */
 footer { background: var(--bg-2); border-top: 1px solid var(--bdr); }
+[data-theme="dark"] footer { background: var(--bg-2); border-top-color: var(--bdr); }
+[data-theme="dark"] .footer-brand p,
+[data-theme="dark"] .footer-links a,
+[data-theme="dark"] .fcontact-item span,
+[data-theme="dark"] .footer-bottom p,
+[data-theme="dark"] .fbot-links a {
+  color: var(--txt-2);
+}
+[data-theme="dark"] .footer-links a:hover,
+[data-theme="dark"] .fbot-links a:hover {
+  color: var(--acc);
+}
+[data-theme="dark"] .soc {
+  background: var(--bg-3);
+  border-color: var(--bdr);
+  color: var(--txt);
+}
+[data-theme="dark"] .soc:hover {
+  background: var(--acc);
+  border-color: var(--acc);
+  color: #fff;
+}
 .footer-main { padding: var(--sp-4xl) 0 var(--sp-3xl); }
 .footer-grid {
   display: grid;
@@ -1682,7 +1704,7 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .form-row  { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; gap: var(--sp-md); }
-  footer { background: #fff; border-top: none; }
+  footer { background: var(--bg-2); border-top: 1px solid var(--bdr); }
   .footer-grid > * { text-align: center; }
   .footer-brand { display: flex; flex-direction: column; align-items: center; }
   .footer-brand p { max-width: 100%; }
