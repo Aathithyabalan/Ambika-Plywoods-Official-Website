@@ -403,10 +403,14 @@ input, textarea, select { font-family: var(--font-primary); }
 }
 .nav-logo:hover .nav-logo-img { opacity: .8; }
 
-/* Theme-specific logo variants */
+/* Theme-specific logo & image variants */
 .logo-dark { display: none; }
 [data-theme="dark"] .logo-light { display: none; }
 [data-theme="dark"] .logo-dark  { display: block; }
+
+.img-dark { display: none !important; }
+[data-theme="dark"] .img-light { display: none !important; }
+[data-theme="dark"] .img-dark  { display: block !important; }
 
 /* Mobile overlay and footer */
 .mob-nav-hd  .nav-logo { width: 220px; height: 92px; }
