@@ -495,6 +495,265 @@
     .toggle-switch input:checked + .toggle-thumb { background: var(--acc); border-color: var(--acc); }
     .toggle-switch input:checked + .toggle-thumb::after { left: calc(100% - 19px); background: #fff; }
 
+    .deal-fg input,
+    .deal-fg select {
+      background: var(--bg-2); border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r); color: var(--txt);
+      padding: .75rem 1rem; font-size: .9375rem; width: 100%;
+      font-family: var(--font-primary);
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .deal-fg input:focus,
+    .deal-fg select:focus {
+      outline: none; border-color: var(--acc-h);
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb), .15);
+    }
+
+    /* ── Custom Datepicker ── */
+    .custom-datepicker-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .custom-date-trigger {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .75rem 1rem;
+      background: var(--bg-2);
+      border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r);
+      color: var(--txt);
+      font-family: var(--font-primary);
+      font-size: .9375rem;
+      cursor: pointer;
+      transition: border-color var(--t), box-shadow var(--t);
+      user-select: none;
+    }
+    .custom-date-trigger:hover, .custom-date-trigger:focus, .custom-date-trigger.open {
+      border-color: var(--acc-h);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb), .15);
+    }
+    .custom-date-trigger .date-icon {
+      color: var(--acc-h);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    #custom-date-display {
+      flex: 1;
+      font-weight: 500;
+    }
+    #custom-date-display.placeholder {
+      color: var(--txt-3);
+    }
+    .custom-date-clear {
+      background: transparent;
+      border: none;
+      color: var(--txt-3);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      transition: all var(--t);
+    }
+    .custom-date-clear:hover {
+      background: var(--acc-lt);
+      color: var(--acc-h);
+    }
+
+    .custom-calendar-popover {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 290px;
+      background: var(--card);
+      border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r);
+      box-shadow: var(--sh-lg);
+      z-index: 1000;
+      padding: 1rem;
+      user-select: none;
+    }
+    .custom-calendar-popover.show {
+      display: block;
+      animation: popIn .18s ease;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: .85rem;
+    }
+    .cal-title {
+      font-weight: 700;
+      font-size: .9375rem;
+      color: var(--txt);
+    }
+    .cal-nav-btn {
+      background: var(--bg-2);
+      border: 1px solid var(--bdr);
+      border-radius: var(--r);
+      color: var(--txt-2);
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all var(--t);
+    }
+    .cal-nav-btn:hover {
+      background: var(--acc-lt);
+      color: var(--acc-h);
+      border-color: var(--acc-h);
+    }
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--txt-3);
+      margin-bottom: .5rem;
+    }
+    .cal-days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+    .cal-day-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .85rem;
+      font-weight: 600;
+      border-radius: var(--r);
+      cursor: pointer;
+      color: var(--txt);
+      transition: all var(--t);
+    }
+    .cal-day-cell:hover:not(.empty) {
+      background: var(--acc-lt);
+      color: var(--acc-h);
+    }
+    .cal-day-cell.selected {
+      background: var(--acc-h) !important;
+      color: #ffffff !important;
+    }
+    .cal-day-cell.today {
+      border: 1.5px solid var(--acc-h);
+    }
+    .cal-day-cell.empty {
+      cursor: default;
+    }
+    .cal-footer {
+      margin-top: .85rem;
+      padding-top: .65rem;
+      border-top: 1px solid var(--bdr);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cal-btn-text {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--acc-h);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: .2rem .4rem;
+      border-radius: var(--r);
+      transition: background var(--t);
+    }
+    .cal-btn-text:hover {
+      background: var(--acc-lt);
+    }
+
+    /* ── Custom Dropdown / Select ── */
+    .custom-select-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .custom-select-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .75rem 1rem;
+      background: var(--bg-2);
+      border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r);
+      color: var(--txt);
+      font-family: var(--font-primary);
+      font-size: .9375rem;
+      cursor: pointer;
+      transition: border-color var(--t), box-shadow var(--t);
+      user-select: none;
+    }
+    .custom-select-trigger:hover, .custom-select-trigger:focus, .custom-select-trigger.open {
+      border-color: var(--acc-h);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(var(--acc-rgb), .15);
+    }
+    .custom-select-trigger .select-arrow {
+      color: var(--txt-3);
+      font-size: 1.15rem;
+      transition: transform var(--t);
+    }
+    .custom-select-trigger.open .select-arrow {
+      transform: rotate(180deg);
+      color: var(--acc-h);
+    }
+    .custom-select-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: var(--card);
+      border: 1.5px solid var(--bdr-2);
+      border-radius: var(--r);
+      box-shadow: var(--sh-lg);
+      max-height: 240px;
+      overflow-y: auto;
+      z-index: 1000;
+      padding: .35rem 0;
+    }
+    .custom-select-dropdown.show {
+      display: block;
+      animation: popIn .18s ease;
+    }
+    .custom-select-option {
+      padding: .65rem 1rem;
+      font-size: .9rem;
+      color: var(--txt);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background var(--t), color var(--t);
+    }
+    .custom-select-option:hover {
+      background: var(--acc-lt);
+      color: var(--acc-h);
+    }
+    .custom-select-option.selected {
+      background: var(--acc-lt);
+      color: var(--acc-h);
+      font-weight: 700;
+    }
+
     .deal-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     .deal-fg { display: flex; flex-direction: column; gap: .4rem; }
     .deal-fg.col-span-2 { grid-column: span 2; }
@@ -1350,14 +1609,31 @@
           </div>
           <div class="deal-fg">
             <label for="deal-expires">Expires On</label>
-            <input type="date" id="deal-expires" />
+            <div class="custom-datepicker-wrap">
+              <div class="custom-date-trigger" id="custom-date-trigger" tabindex="0" role="button" aria-haspopup="dialog" aria-expanded="false">
+                <i class="ri-calendar-event-line date-icon" aria-hidden="true"></i>
+                <span id="custom-date-display" class="placeholder">dd-mm-yyyy</span>
+                <button type="button" class="custom-date-clear" id="custom-date-clear" title="Clear expiry date" aria-label="Clear expiry date">
+                  <i class="ri-close-line"></i>
+                </button>
+              </div>
+              <div class="custom-calendar-popover" id="custom-calendar-popover"></div>
+              <input type="hidden" id="deal-expires" />
+            </div>
             <span class="deal-hint">Leave empty for no expiry</span>
           </div>
           <div class="deal-fg col-span-2">
             <label for="deal-product">Featured Product</label>
-            <select id="deal-product">
-              <option value="">— No specific product —</option>
-            </select>
+            <div class="custom-select-wrap" id="custom-deal-product-wrap">
+              <div class="custom-select-trigger" id="custom-deal-product-trigger" tabindex="0" role="combobox" aria-expanded="false">
+                <span id="custom-deal-product-display">— No specific product —</span>
+                <i class="ri-arrow-down-s-line select-arrow" aria-hidden="true"></i>
+              </div>
+              <div class="custom-select-dropdown" id="custom-deal-product-dropdown"></div>
+              <select id="deal-product" style="display:none;">
+                <option value="">— No specific product —</option>
+              </select>
+            </div>
           </div>
           <div class="deal-fg col-span-2">
             <label for="deal-headline">Headline</label>
@@ -1823,13 +2099,224 @@
   document.getElementById('cancel-form-btn').addEventListener('click', function () { resetFormState(); switchTab('products'); });
   document.getElementById('form-cancel-btn2').addEventListener('click', function () { resetFormState(); switchTab('products'); });
 
+  /* ── Custom Datepicker JS ── */
+  var dateTrigger = document.getElementById('custom-date-trigger');
+  var datePopover = document.getElementById('custom-calendar-popover');
+  var dateDisplay = document.getElementById('custom-date-display');
+  var dateClear   = document.getElementById('custom-date-clear');
+  var hiddenDate  = document.getElementById('deal-expires');
+
+  var calYear = new Date().getFullYear();
+  var calMonth = new Date().getMonth();
+
+  function formatDDMMYYYY(isoStr) {
+    if (!isoStr) return '';
+    var parts = isoStr.split('-');
+    if (parts.length !== 3) return isoStr;
+    return parts[2] + '-' + parts[1] + '-' + parts[0];
+  }
+
+  function updateCustomDateDisplay() {
+    if (!hiddenDate || !dateDisplay) return;
+    var val = hiddenDate.value;
+    if (val) {
+      dateDisplay.textContent = formatDDMMYYYY(val);
+      dateDisplay.classList.remove('placeholder');
+      if (dateClear) dateClear.style.display = 'inline-flex';
+    } else {
+      dateDisplay.textContent = 'dd-mm-yyyy';
+      dateDisplay.classList.add('placeholder');
+      if (dateClear) dateClear.style.display = 'none';
+    }
+  }
+
+  function renderCalendar(y, m) {
+    if (!datePopover) return;
+    calYear = y; calMonth = m;
+    var MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var today = new Date();
+    var curVal = hiddenDate ? hiddenDate.value : '';
+
+    var firstDay = new Date(y, m, 1).getDay();
+    var daysInMonth = new Date(y, m + 1, 0).getDate();
+
+    var html = '<div class="cal-header">'
+      + '<button type="button" class="cal-nav-btn" id="cal-prev-btn" title="Previous Month"><i class="ri-arrow-left-s-line"></i></button>'
+      + '<div class="cal-title">' + MONTH_NAMES[m] + ' ' + y + '</div>'
+      + '<button type="button" class="cal-nav-btn" id="cal-next-btn" title="Next Month"><i class="ri-arrow-right-s-line"></i></button>'
+      + '</div>'
+      + '<div class="cal-weekdays"><div>Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div>Sa</div></div>'
+      + '<div class="cal-days-grid">';
+
+    for (var i = 0; i < firstDay; i++) {
+      html += '<div class="cal-day-cell empty"></div>';
+    }
+
+    for (var d = 1; d <= daysInMonth; d++) {
+      var mm = String(m + 1).padStart(2, '0');
+      var dd = String(d).padStart(2, '0');
+      var dateStr = y + '-' + mm + '-' + dd;
+
+      var isToday = today.getFullYear() === y && today.getMonth() === m && today.getDate() === d;
+      var isSel   = curVal === dateStr;
+
+      var classes = ['cal-day-cell'];
+      if (isToday) classes.push('today');
+      if (isSel)   classes.push('selected');
+
+      html += '<div class="' + classes.join(' ') + '" data-date="' + dateStr + '">' + d + '</div>';
+    }
+
+    html += '</div>'
+      + '<div class="cal-footer">'
+      + '<button type="button" class="cal-btn-text" id="cal-today-btn">Today</button>'
+      + '<button type="button" class="cal-btn-text" id="cal-clear-btn">Leave empty</button>'
+      + '</div>';
+
+    datePopover.innerHTML = html;
+
+    document.getElementById('cal-prev-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      var nm = m - 1, ny = y;
+      if (nm < 0) { nm = 11; ny--; }
+      renderCalendar(ny, nm);
+    });
+
+    document.getElementById('cal-next-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      var nm = m + 1, ny = y;
+      if (nm > 11) { nm = 0; ny++; }
+      renderCalendar(ny, nm);
+    });
+
+    document.getElementById('cal-today-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      var t = new Date();
+      var ty = t.getFullYear(), tm = String(t.getMonth() + 1).padStart(2, '0'), td = String(t.getDate()).padStart(2, '0');
+      if (hiddenDate) hiddenDate.value = ty + '-' + tm + '-' + td;
+      updateCustomDateDisplay();
+      datePopover.classList.remove('show');
+      if (dateTrigger) dateTrigger.classList.remove('open');
+    });
+
+    document.getElementById('cal-clear-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (hiddenDate) hiddenDate.value = '';
+      updateCustomDateDisplay();
+      datePopover.classList.remove('show');
+      if (dateTrigger) dateTrigger.classList.remove('open');
+    });
+
+    datePopover.querySelectorAll('.cal-day-cell:not(.empty)').forEach(function (cell) {
+      cell.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (hiddenDate) hiddenDate.value = cell.dataset.date;
+        updateCustomDateDisplay();
+        datePopover.classList.remove('show');
+        if (dateTrigger) dateTrigger.classList.remove('open');
+      });
+    });
+  }
+
+  if (dateTrigger && datePopover) {
+    dateTrigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isShow = datePopover.classList.contains('show');
+      if (!isShow) {
+        var d = hiddenDate && hiddenDate.value ? new Date(hiddenDate.value) : new Date();
+        renderCalendar(d.getFullYear(), d.getMonth());
+        datePopover.classList.add('show');
+        dateTrigger.classList.add('open');
+      } else {
+        datePopover.classList.remove('show');
+        dateTrigger.classList.remove('open');
+      }
+    });
+
+    if (dateClear) {
+      dateClear.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (hiddenDate) hiddenDate.value = '';
+        updateCustomDateDisplay();
+        datePopover.classList.remove('show');
+        if (dateTrigger) dateTrigger.classList.remove('open');
+      });
+    }
+  }
+
+  /* ── Custom Select JS ── */
+  var selectTrigger  = document.getElementById('custom-deal-product-trigger');
+  var selectDropdown = document.getElementById('custom-deal-product-dropdown');
+  var selectDisplay  = document.getElementById('custom-deal-product-display');
+  var nativeSelect   = document.getElementById('deal-product');
+
+  function syncCustomSelect() {
+    if (!nativeSelect || !selectDropdown || !selectDisplay) return;
+    var opts = nativeSelect.options;
+    var html = '';
+    var selectedText = '— No specific product —';
+
+    for (var i = 0; i < opts.length; i++) {
+      var opt = opts[i];
+      var isSel = opt.selected;
+      if (isSel) selectedText = opt.text;
+      html += '<div class="custom-select-option' + (isSel ? ' selected' : '') + '" data-value="' + esc(opt.value) + '">'
+        + esc(opt.text)
+        + (isSel ? ' <i class="ri-check-line"></i>' : '')
+        + '</div>';
+    }
+
+    selectDisplay.textContent = selectedText;
+    selectDropdown.innerHTML = html;
+
+    selectDropdown.querySelectorAll('.custom-select-option').forEach(function (item) {
+      item.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var val = item.dataset.value;
+        nativeSelect.value = val;
+        nativeSelect.dispatchEvent(new Event('change'));
+        syncCustomSelect();
+        selectDropdown.classList.remove('show');
+        if (selectTrigger) selectTrigger.classList.remove('open');
+      });
+    });
+  }
+
+  if (selectTrigger && selectDropdown) {
+    selectTrigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isShow = selectDropdown.classList.contains('show');
+      if (!isShow) {
+        syncCustomSelect();
+        selectDropdown.classList.add('show');
+        selectTrigger.classList.add('open');
+      } else {
+        selectDropdown.classList.remove('show');
+        selectTrigger.classList.remove('open');
+      }
+    });
+  }
+
+  // Close popovers on click outside
+  document.addEventListener('click', function (e) {
+    if (datePopover && !datePopover.contains(e.target) && dateTrigger && !dateTrigger.contains(e.target)) {
+      datePopover.classList.remove('show');
+      if (dateTrigger) dateTrigger.classList.remove('open');
+    }
+    if (selectDropdown && !selectDropdown.contains(e.target) && selectTrigger && !selectTrigger.contains(e.target)) {
+      selectDropdown.classList.remove('show');
+      if (selectTrigger) selectTrigger.classList.remove('open');
+    }
+  });
+
   /* ── Deal form ───────────────────────────────── */
   function renderDealForm() {
     var deal = data.deal || {};
     document.getElementById('deal-enabled').checked = !!deal.enabled;
     var t = deal.type || 'week';
     document.querySelectorAll('input[name="deal-type"]').forEach(function (r) { r.checked = r.value === t; });
-    if (deal.expiresAt)   document.getElementById('deal-expires').value  = deal.expiresAt;
+    if (hiddenDate) hiddenDate.value = deal.expiresAt || '';
+    updateCustomDateDisplay();
     if (deal.headline)    document.getElementById('deal-headline').value = deal.headline;
     if (deal.subheadline) document.getElementById('deal-sub').value      = deal.subheadline;
   }
@@ -1842,6 +2329,7 @@
           return '<option value="' + esc(p.id) + '"' + (p.id === curVal ? ' selected' : '') + '>'
             + esc(p.name) + ' (₹' + Number(p.price).toLocaleString('en-IN') + ')</option>';
         }).join('');
+    syncCustomSelect();
   }
 
   document.getElementById('save-deal-btn').addEventListener('click', function () {
