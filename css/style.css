@@ -440,7 +440,7 @@ input, textarea, select { font-family: var(--font-primary); }
   background: var(--acc);
   border: 1px solid var(--acc);
   padding: .35rem .65rem;
-  border-radius: var(--r);
+  border-radius: 4px;
 }
 .nav-location i { color: #fff; font-size: 1rem; flex-shrink: 0; }
 
@@ -462,7 +462,7 @@ input, textarea, select { font-family: var(--font-primary); }
   color: #fff; font-size: 1.125rem; text-decoration: none;
   transition: all var(--t); flex-shrink: 0;
 }
-.nav-soc:hover { background: var(--acc-h); border-color: var(--acc-h); }
+.nav-soc:hover { background: var(--acc-h); border-color: var(--acc-h); color: #fff; }
 
 .mob-nav-socials {
   display: flex; gap: .5rem;
@@ -1567,19 +1567,29 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .nav-links { display: none; }
   .menu-btn  { display: flex; }
   .bot-nav   { display: none; }
-  /* Mobile nav layout: logo | location (center) | toggle+hamburger (right) */
-  .nav-inner { justify-content: space-between; }
-  .nav-location { flex: 1; justify-content: center; order: 2; margin-left: 0; }
+  .nav-location { flex: 0 0 auto; margin: 0 auto; justify-content: center; order: 2; font-size: .72rem; padding: .25rem .45rem; height: 40px; border-radius: 4px; }
   .nav-brand { order: 1; flex-shrink: 0; }
   .nav-actions { order: 3; flex-shrink: 0; margin-left: 0; }
   body       { padding-bottom: 64px; }
-  /* Shrink logo for tablet layout (hamburger mode) */
   .nav-logo  { width: 148px; height: 62px; }
-  .nav-location { font-size: .72rem; padding: .25rem .45rem; height: 40px; }
   .nav-soc { display: none; }
 }
 
 @media (max-width: 900px) {
+  /* Minimal ambient hero glow & clearly visible grid lines on tablet/mobile */
+  .hero-orb { filter: blur(60px); opacity: .05; }
+  [data-theme="dark"] .hero-orb { opacity: .10; }
+  .hero-orb-1 { width: 320px; height: 320px; top: -60px; right: -40px; }
+  .hero-orb-2 { width: 260px; height: 260px; bottom: -40px; left: -40px; }
+  .hero-orb-3 { width: 140px; height: 140px; top: 40%; left: 40%; filter: blur(40px); opacity: .04; }
+
+  .hero-grid {
+    opacity: .55;
+    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 50%, transparent 100%);
+  }
+  [data-theme="dark"] .hero-grid { opacity: .35; }
+
   .hero-inner, .concept-inner, .connect-inner,
   .vision-inner, .contact-grid { grid-template-columns: 1fr; gap: var(--sp-2xl); }
   .hero-content { margin-left: 0; }
@@ -1617,6 +1627,19 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 }
 
 @media (max-width: 600px) {
+  .hero-orb { filter: blur(50px); opacity: .05; }
+  [data-theme="dark"] .hero-orb { opacity: .09; }
+  .hero-orb-1 { width: 240px; height: 240px; top: -40px; right: -30px; }
+  .hero-orb-2 { width: 200px; height: 200px; bottom: -30px; left: -30px; }
+  .hero-orb-3 { width: 120px; height: 120px; top: 45%; left: 35%; filter: blur(35px); opacity: .03; }
+
+  .hero-grid {
+    opacity: .60;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  [data-theme="dark"] .hero-grid { opacity: .38; }
+
   .container { padding: 0 var(--sp-lg); }
   .section   { padding: var(--sp-4xl) 0; }
   .hero      { padding: 7.5rem 0 3rem; min-height: auto; }
@@ -1645,7 +1668,7 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .nav-actions .btn-primary { display: none; }
   /* Further shrink logo on small phones */
   .nav-logo  { width: 120px; height: 50px; }
-  .nav-location { font-size: .68rem; padding: .2rem .35rem; height: 40px; }
+  .nav-location { font-size: .68rem; padding: .2rem .35rem; height: 40px; border-radius: 4px; }
   .process-steps {
     display: flex; flex-direction: column; align-items: center; gap: var(--sp-xl);
   }
@@ -1727,13 +1750,15 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   padding: var(--sp-lg);
   display: grid;
   grid-template-columns: 1fr 148px;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto auto auto auto;
   grid-template-areas:
     "stars  photos"
     "svc    photos"
     "txt    photos"
-    "foot   photos";
+    "foot   foot";
   column-gap: var(--sp-lg);
+  row-gap: .25rem;
+  align-items: start;
   transition: all var(--t-slow);
   position: relative; overflow: hidden;
   cursor: pointer;
@@ -1788,6 +1813,7 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   grid-template-columns: 1fr 1fr;
   gap: 5px;
   align-content: start;
+  align-self: start;
 }
 /* Single image: fill full width */
 .rcard-photos:has(.rp:only-child) {
@@ -1825,9 +1851,8 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 .rcard-foot {
   grid-area: foot;
   display: flex; align-items: center; gap: .75rem;
-  margin-top: var(--sp-sm); padding-top: var(--sp-sm);
+  margin-top: var(--sp-md); padding-top: var(--sp-sm);
   border-top: 1px solid var(--bdr);
-  align-self: end;
 }
 .rcard-av {
   width: 34px; height: 34px; border-radius: var(--r);
@@ -2094,22 +2119,24 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 /* Full reviews grid */
 .all-reviews-grid {
   display: grid; grid-template-columns: repeat(2,1fr); gap: var(--sp-xl);
+  align-items: start;
 }
 
 /* Reviews page cards — landscape layout, compact adaptive photo column */
 .all-reviews-grid .rcard {
   grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto auto;
   grid-template-areas:
     "stars  photos"
     "svc    photos"
     "txt    photos"
-    "foot   photos";
+    "foot   foot";
 }
 .all-reviews-grid .rcard-photos {
   grid-template-columns: repeat(2, 60px);
   gap: 4px;
   align-content: start;
-  align-self: stretch;
+  align-self: start;
 }
 .all-reviews-grid .rcard-photos:has(.rp:only-child) {
   grid-template-columns: 60px;
@@ -2130,7 +2157,8 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .rcard-photos { grid-template-columns: repeat(4,1fr); }
   .all-reviews-grid .rcard {
     grid-template-columns: 1fr auto;
-    grid-template-areas: "stars photos" "svc photos" "txt photos" "foot photos";
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "stars photos" "svc photos" "txt photos" "foot foot";
   }
   .all-reviews-grid .rcard-photos { grid-template-columns: repeat(2, 52px); }
   .all-reviews-grid .rcard-photos:has(.rp:only-child) { grid-template-columns: 52px; }
