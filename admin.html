@@ -166,20 +166,71 @@
       text-transform: uppercase; letter-spacing: .06em;
     }
 
-    /* ── Tabs ── */
-    .tabs { display: flex; border-bottom: 2px solid var(--bdr); margin-bottom: 2rem; }
+    /* ── Tabs & Scrollable Navigation ── */
+    .tabs-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      border-bottom: 2px solid var(--bdr);
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    .tabs {
+      display: flex;
+      align-items: center;
+      gap: .25rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      flex: 1;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
     .tab-btn {
-      padding: .75rem 1.5rem; background: transparent; border: none;
+      padding: .75rem 1.25rem; background: transparent; border: none;
       border-bottom: 2px solid transparent; color: var(--txt-3);
       font-weight: 600; font-size: .9375rem; cursor: pointer;
       margin-bottom: -2px; display: flex; align-items: center; gap: .45rem;
       transition: color var(--t), border-color var(--t);
-      font-family: var(--font-primary);
+      font-family: var(--font-primary); flex-shrink: 0;
+      white-space: nowrap;
     }
     .tab-btn:hover { color: var(--txt-2); }
     .tab-btn.active { color: var(--acc-h); border-bottom-color: var(--acc-h); }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
+
+    .tabs-scroll-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 4px;
+      background: var(--card);
+      border: 1px solid var(--bdr);
+      color: var(--txt-2);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all var(--t);
+      font-size: 1.2rem;
+      box-shadow: var(--sh-sm);
+      margin-bottom: -2px;
+    }
+    .tabs-scroll-btn:hover:not(:disabled) {
+      background: var(--acc-lt);
+      color: var(--acc-h);
+      border-color: var(--acc-h);
+    }
+    .tabs-scroll-btn:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
 
     /* ══════════════════════════════════════════
        PRODUCTS TAB
@@ -792,30 +843,38 @@
     </div>
 
     <!-- Tabs -->
-    <div class="tabs" role="tablist">
-      <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="products">
-        <i class="ri-price-tag-3-line"></i> Products
+    <div class="tabs-wrapper">
+      <button class="tabs-scroll-btn scroll-left" id="tabs-scroll-left" aria-label="Scroll tabs left">
+        <i class="ri-arrow-left-s-line" aria-hidden="true"></i>
       </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="add">
-        <i class="ri-add-circle-line"></i> <span id="tab-add-label">Add Product</span>
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="services">
-        <i class="ri-service-line"></i> Our Services
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="add-service">
-        <i class="ri-add-circle-line"></i> <span id="tab-add-svc-label">Add Service</span>
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="works">
-        <i class="ri-layout-masonry-line"></i> Our Works
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="add-work">
-        <i class="ri-add-circle-line"></i> <span id="tab-add-work-label">Add Work</span>
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="deal">
-        <i class="ri-flashlight-line"></i> Deal of Week / Month
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="settings">
-        <i class="ri-settings-3-line"></i> Settings
+      <div class="tabs" role="tablist" id="admin-tabs">
+        <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="products">
+          <i class="ri-price-tag-3-line"></i> Products
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="add">
+          <i class="ri-add-circle-line"></i> <span id="tab-add-label">Add Product</span>
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="services">
+          <i class="ri-service-line"></i> Our Services
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="add-service">
+          <i class="ri-add-circle-line"></i> <span id="tab-add-svc-label">Add Service</span>
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="works">
+          <i class="ri-layout-masonry-line"></i> Our Works
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="add-work">
+          <i class="ri-add-circle-line"></i> <span id="tab-add-work-label">Add Work</span>
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="deal">
+          <i class="ri-flashlight-line"></i> Deal of Week / Month
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="settings">
+          <i class="ri-settings-3-line"></i> Settings
+        </button>
+      </div>
+      <button class="tabs-scroll-btn scroll-right" id="tabs-scroll-right" aria-label="Scroll tabs right">
+        <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
       </button>
     </div>
 
@@ -1470,16 +1529,43 @@
     document.getElementById('stat-sold').textContent      = prods.filter(function (p) { return p.status === 'sold_out'; }).length;
   }
 
-  /* ── Tabs ────────────────────────────────────── */
+  /* ── Tabs & Scroll Navigation ───────────────── */
+  var tabsContainer  = document.getElementById('admin-tabs');
+  var scrollLeftBtn  = document.getElementById('tabs-scroll-left');
+  var scrollRightBtn = document.getElementById('tabs-scroll-right');
+
+  function updateTabScrollButtons() {
+    if (!tabsContainer || !scrollLeftBtn || !scrollRightBtn) return;
+    var maxScroll = tabsContainer.scrollWidth - tabsContainer.clientWidth;
+    scrollLeftBtn.disabled = tabsContainer.scrollLeft <= 2;
+    scrollRightBtn.disabled = tabsContainer.scrollLeft >= maxScroll - 2;
+  }
+
+  if (tabsContainer && scrollLeftBtn && scrollRightBtn) {
+    scrollLeftBtn.addEventListener('click', function () {
+      tabsContainer.scrollBy({ left: -220, behavior: 'smooth' });
+    });
+    scrollRightBtn.addEventListener('click', function () {
+      tabsContainer.scrollBy({ left: 220, behavior: 'smooth' });
+    });
+    tabsContainer.addEventListener('scroll', updateTabScrollButtons);
+    window.addEventListener('resize', updateTabScrollButtons);
+    setTimeout(updateTabScrollButtons, 300);
+  }
+
   function switchTab(tabId) {
     document.querySelectorAll('.tab-btn').forEach(function (b) {
       var active = b.dataset.tab === tabId;
       b.classList.toggle('active', active);
       b.setAttribute('aria-selected', active ? 'true' : 'false');
+      if (active && tabsContainer) {
+        b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
     });
     document.querySelectorAll('.tab-panel').forEach(function (p) {
       p.classList.toggle('active', p.id === 'tab-' + tabId);
     });
+    setTimeout(updateTabScrollButtons, 300);
   }
 
   document.querySelectorAll('.tab-btn').forEach(function (btn) {
