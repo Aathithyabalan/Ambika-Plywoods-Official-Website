@@ -120,7 +120,7 @@ npx serve .
 **Ambika Playwoods & Hardwares**  
 - 🏢 **Address**: T.S. No. 1429/1A, Santhay Road, Mettupatty, Dindigul, Tamil Nadu - 624002  
 - 📞 **Phone**: +91 97871 50990  
-- 🌐 **Website**: [ambikaplaywoods.com](https://ambikaplaywoods.com/)  
+- 🌐 **Website**: [ambikaplywoods.com](https://ambikaplywoods.com/)  
 
 ---
 

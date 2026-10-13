@@ -7,19 +7,19 @@
 
   <!-- Home -->
   <url>
-    <loc>https://ambikaplaywoods.com/</loc>
+    <loc>https://ambikaplywoods.com/</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://ambikaplaywoods.com/og-image.jpg</image:loc>
+      <image:loc>https://ambikaplywoods.com/og-image.jpg</image:loc>
       <image:title>Ambika Playwoods Dindigul — Glass, Hardware &amp; Interior Solutions</image:title>
     </image:image>
   </url>
 
   <!-- Products (dynamically updated; weekly crawl) -->
   <url>
-    <loc>https://ambikaplaywoods.com/products.html</loc>
+    <loc>https://ambikaplywoods.com/products.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
@@ -27,7 +27,7 @@
 
   <!-- Services -->
   <url>
-    <loc>https://ambikaplaywoods.com/services.html</loc>
+    <loc>https://ambikaplywoods.com/services.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
@@ -35,7 +35,7 @@
 
   <!-- Our Works / Portfolio -->
   <url>
-    <loc>https://ambikaplaywoods.com/works.html</loc>
+    <loc>https://ambikaplywoods.com/works.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -43,7 +43,7 @@
 
   <!-- Reviews -->
   <url>
-    <loc>https://ambikaplaywoods.com/reviews.html</loc>
+    <loc>https://ambikaplywoods.com/reviews.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
@@ -51,7 +51,7 @@
 
   <!-- Contact -->
   <url>
-    <loc>https://ambikaplaywoods.com/contact.html</loc>
+    <loc>https://ambikaplywoods.com/contact.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
@@ -59,7 +59,7 @@
 
   <!-- Negizhi UPVC sub-brand -->
   <url>
-    <loc>https://ambikaplaywoods.com/negizhi-upvc.html</loc>
+    <loc>https://ambikaplywoods.com/negizhi-upvc.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -67,7 +67,7 @@
 
   <!-- Alangaram Interiors sub-brand -->
   <url>
-    <loc>https://ambikaplaywoods.com/alangaram-interiors.html</loc>
+    <loc>https://ambikaplywoods.com/alangaram-interiors.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
@@ -75,7 +75,7 @@
 
   <!-- Gallery -->
   <url>
-    <loc>https://ambikaplaywoods.com/gallery.html</loc>
+    <loc>https://ambikaplywoods.com/gallery.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
@@ -83,7 +83,7 @@
 
   <!-- About -->
   <url>
-    <loc>https://ambikaplaywoods.com/about.html</loc>
+    <loc>https://ambikaplywoods.com/about.html</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.65</priority>

@@ -13,4 +13,4 @@ User-agent: Bingbot
 Allow: /
 Disallow: /admin.html
 
-Sitemap: https://ambikaplaywoods.com/sitemap.xml
+Sitemap: https://ambikaplywoods.com/sitemap.xml
