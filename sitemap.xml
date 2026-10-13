@@ -8,7 +8,7 @@
   <!-- Home -->
   <url>
     <loc>https://ambikaplywoods.com/</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -20,7 +20,7 @@
   <!-- Products (dynamically updated; weekly crawl) -->
   <url>
     <loc>https://ambikaplywoods.com/products.html</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -28,7 +28,7 @@
   <!-- Services -->
   <url>
     <loc>https://ambikaplywoods.com/services.html</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -36,7 +36,7 @@
   <!-- Our Works / Portfolio -->
   <url>
     <loc>https://ambikaplywoods.com/works.html</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -44,7 +44,7 @@
   <!-- Reviews -->
   <url>
     <loc>https://ambikaplywoods.com/reviews.html</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -52,7 +52,7 @@
   <!-- Contact -->
   <url>
     <loc>https://ambikaplywoods.com/contact.html</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -60,7 +60,7 @@
   <!-- Negizhi UPVC sub-brand -->
   <url>
     <loc>https://ambikaplywoods.com/negizhi-upvc.html</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -68,7 +68,7 @@
   <!-- Alangaram Interiors sub-brand -->
   <url>
     <loc>https://ambikaplywoods.com/alangaram-interiors.html</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
@@ -76,7 +76,7 @@
   <!-- Gallery -->
   <url>
     <loc>https://ambikaplywoods.com/gallery.html</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
@@ -84,7 +84,7 @@
   <!-- About -->
   <url>
     <loc>https://ambikaplywoods.com/about.html</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.65</priority>
   </url>
