@@ -2360,13 +2360,13 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 .hero-grid { opacity: .45; }
 .hero-wrap {
   position: relative; z-index: 1;
-  display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 0 4.5rem; align-items: center;
+  display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 0 3.5rem; align-items: center;
   min-height: calc(100vh - 67px - 56px); min-height: calc(100svh - 67px - 56px);
   padding-top: 1.4rem; padding-bottom: 2.2rem;
 }
 
 /* Mosaic */
-.hero-mosaic { position: relative; width: 100%; max-width: 400px; justify-self: start; }
+.hero-mosaic { position: relative; width: 100%; max-width: 380px; justify-self: start; }
 .mosaic-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); gap: 4px;
   aspect-ratio: 4 / 5; width: 100%;
@@ -2391,9 +2391,9 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 /* Copy */
 .hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
 .hero-badge { border-radius: 4px; padding: .4rem .9rem; margin-bottom: var(--sp-lg); background: var(--acc-lt); border: 1px solid rgba(var(--acc-rgb), .25); color: var(--acc); }
-.hero-title { font-size: clamp(2.5rem, 4.2vw, 3.9rem); line-height: 1; letter-spacing: -.04em; font-weight: 900; margin: 0 0 var(--sp-md); }
-.hero-title .line { display: block; }
-.hero-title .m-br { display: inline; }
+.hero-title { font-size: clamp(2.5rem, 4.35vw, 4rem); line-height: 1.02; letter-spacing: -.04em; font-weight: 900; margin: 0 0 var(--sp-lg); }
+.hero-title .line { display: block; white-space: nowrap; }
+.hero-title .m-br { display: none; }
 .hero-title .hl { color: var(--acc); background: none; -webkit-text-fill-color: currentColor; }
 .hero-sub { max-width: 34rem; margin-bottom: var(--sp-lg); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
@@ -2446,6 +2446,7 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .hero-copy { align-items: center; text-align: center; order: 1; }
   .hero-mosaic { order: 2; justify-self: center; max-width: 340px; margin-left: 22px; }
   .hero-title { margin-left: 0; }
+  .hero-title .m-br { display: inline; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-ctas, .hero-figures { justify-content: center; }
   .nav-actions { margin-left: auto; }
