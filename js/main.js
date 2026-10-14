@@ -472,6 +472,25 @@
   }
 
   /* ================================================================
+     8b. FLOATING CONTACT WIDGETS — show only after the hero
+     ================================================================ */
+  const FloatWidgets = {
+    init() {
+      const box = document.querySelector('.float-widgets');
+      if (!box) return;
+      const hero = document.querySelector('.hero, .page-hero');
+      document.documentElement.classList.add('fw-js');
+      const update = () => {
+        const limit = hero ? hero.getBoundingClientRect().bottom : 400 - window.scrollY;
+        box.classList.toggle('is-visible', limit < 0);
+      };
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    },
+  };
+
+  /* ================================================================
      9. INIT
      ================================================================ */
   document.addEventListener('DOMContentLoaded', () => {
@@ -486,6 +505,7 @@
     TVPanel.init();
     PhotoLightbox.init();
     initSmoothScroll();
+    FloatWidgets.init();
 
     document.querySelectorAll('.theme-btn').forEach((b) =>
       b.addEventListener('click', () => Theme.toggle())

@@ -2317,6 +2317,16 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 .float-call { background: var(--acc); }
 .float-call:hover { background: var(--acc-h); }
 
+/* Hidden while the hero is in view; main.js adds .fw-js and toggles .is-visible */
+.fw-js .float-widgets {
+  opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(14px);
+  transition: opacity .3s ease, transform .3s ease, visibility 0s linear .3s;
+}
+.fw-js .float-widgets.is-visible {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+  transition: opacity .3s ease, transform .3s ease, visibility 0s;
+}
+
 @media (max-width: 600px) {
   .float-widgets { bottom: 18px; right: 14px; gap: 8px; }
   .float-btn { width: 44px; height: 44px; padding: 0; border-radius: var(--r); font-size: 1.125rem; justify-content: center; }
