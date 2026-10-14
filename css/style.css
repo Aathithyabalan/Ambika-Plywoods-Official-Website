@@ -2340,9 +2340,11 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-top: 1px solid var(--bdr);
     box-shadow: 0 -4px 24px rgba(0,0,0,.08);
-    opacity: 1; visibility: visible; pointer-events: auto; transform: none;
     z-index: var(--z-nav);
   }
+  /* hidden while the hero is in view, slides up after scrolling past it */
+  .fw-js .float-widgets { transform: translateY(100%); transition: opacity .3s ease, transform .35s ease, visibility 0s linear .35s; }
+  .fw-js .float-widgets.is-visible { transform: none; transition: opacity .3s ease, transform .35s ease, visibility 0s; }
   .float-btn {
     flex: 1 1 0; min-width: 0; width: auto; height: 46px; padding: 0 .75rem;
     justify-content: center; gap: .5rem; border-radius: 0; font-size: 1.2rem; box-shadow: none;
