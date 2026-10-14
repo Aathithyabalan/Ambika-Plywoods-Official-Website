@@ -2344,10 +2344,10 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
     z-index: var(--z-nav);
   }
   .float-btn {
-    flex: 1 1 0; min-width: 0; width: auto; height: 54px; padding: 0 .75rem;
+    flex: 1 1 0; min-width: 0; width: auto; height: 46px; padding: 0 .75rem;
     justify-content: center; gap: .5rem; border-radius: 0; font-size: 1.2rem; box-shadow: none;
   }
   .float-btn span { display: inline; font-size: .9rem; }
   .float-btn:hover { transform: none; box-shadow: none; }
-  body { padding-bottom: calc(54px + env(safe-area-inset-bottom, 0px)); }
+  body { padding-bottom: calc(46px + env(safe-area-inset-bottom, 0px)); }
 }
