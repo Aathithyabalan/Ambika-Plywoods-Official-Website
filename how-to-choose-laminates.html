@@ -252,10 +252,11 @@
     .bcard{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-sm);transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
     .bcard:hover{transform:translateY(-6px);box-shadow:var(--sh-lg);border-color:rgba(var(--acc-rgb),.45)}
     .bcard-img{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--bg-3)}
-    .bcard-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
-    .bcard:hover .bcard-img img{transform:scale(1.06)}
-    .bcard-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.28));pointer-events:none}
-    .bcard-tag{position:absolute;left:14px;top:14px;z-index:1;background:var(--acc);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+    .bcard-img::before{content:"";position:absolute;inset:-24px;background:var(--im) center/cover no-repeat;filter:blur(22px) saturate(1.15);opacity:.9}
+    .bcard-img img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;display:block;transition:transform .6s ease}
+    .bcard:hover .bcard-img img{transform:scale(1.04)}
+    
+    .bcard-tag{position:absolute;left:14px;top:14px;z-index:2;background:var(--acc);color:#fff;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
     .bcard-body{display:flex;flex-direction:column;flex:1;padding:var(--sp-xl) var(--sp-xl) var(--sp-lg)}
     .bcard h3{font-size:1.18rem;line-height:1.35;margin:0 0 var(--sp-sm);color:var(--txt)}
     .bcard h3 a{color:inherit;text-decoration:none}
@@ -268,7 +269,7 @@
     .bcard:hover .bcard-more i{transform:translateX(4px)}
     .bfeat{grid-column:1/-1;flex-direction:row}
     .bfeat .bcard-img{flex:1.15;aspect-ratio:auto;min-height:380px}
-    .bfeat .bcard-img img{position:absolute;inset:0}
+    .bfeat .bcard-img img{position:absolute;inset:0;z-index:1}
     .bfeat .bcard-body{flex:1;justify-content:center;padding:var(--sp-3xl)}
     .bfeat h3{font-size:1.75rem}
     .bfeat p{-webkit-line-clamp:5;font-size:1.02rem}
@@ -281,8 +282,10 @@
     .post-meta{display:flex;gap:var(--sp-lg);flex-wrap:wrap;justify-content:center;font-size:.86rem;color:rgba(255,255,255,.88);margin-top:var(--sp-lg)}
     .post-meta i{margin-right:5px}
     .post-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:var(--sp-3xl);align-items:start;max-width:1160px;margin:0 auto}
-    .post-cover{margin:0 0 var(--sp-2xl);border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);box-shadow:var(--sh-md);aspect-ratio:16/9;background:var(--bg-3)}
-    .post-cover img{width:100%;height:100%;object-fit:cover;display:block}
+    .post-cover,.post-fig .pf-img{position:relative;overflow:hidden;border-radius:var(--r);border:1px solid var(--bdr);box-shadow:var(--sh-md);background:var(--bg-3);isolation:isolate}
+    .post-cover{margin:0 0 var(--sp-2xl)}
+    .post-cover::before,.post-fig .pf-img::before{content:"";position:absolute;inset:-30px;background:var(--im) center/cover no-repeat;filter:blur(26px) saturate(1.15);opacity:.9;z-index:-1}
+    .post-cover img,.post-fig img{display:block;width:auto;height:auto;max-width:100%;max-height:560px;margin:0 auto}
     .post-body{font-size:1.04rem}
     .post-body .lead{font-size:1.2rem;line-height:1.75;color:var(--txt);margin:0 0 var(--sp-xl);padding-left:var(--sp-lg);border-left:3px solid var(--acc)}
     .post-body h2{font-size:1.55rem;line-height:1.3;margin:var(--sp-3xl) 0 var(--sp-md);color:var(--txt);scroll-margin-top:110px}
@@ -294,8 +297,7 @@
     .post-body li strong{color:var(--txt)}
     .post-body a{color:var(--acc);font-weight:700;text-decoration:underline;text-underline-offset:3px}
     .post-fig{margin:var(--sp-2xl) 0}
-    .post-fig .pf-img{border-radius:var(--r);overflow:hidden;border:1px solid var(--bdr);box-shadow:var(--sh-md);aspect-ratio:16/9;background:var(--bg-3)}
-    .post-fig img{width:100%;height:100%;object-fit:cover;display:block}
+    
     .post-fig figcaption{margin-top:var(--sp-sm);text-align:center;font-size:.85rem;color:var(--txt-2);font-style:italic}
     .faq{margin-top:var(--sp-4xl)}
     .faq h2{margin:0 0 var(--sp-lg)}
@@ -342,7 +344,7 @@
       <div class="container">
         <div class="post-layout">
           <article>
-            <figure class="post-cover"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Product+Images/Ambika+Plywoods+Product+-+Sirocco+Laminates.jpeg" alt="Sirocco decorative laminates available at Ambika Plywoods" width="1200" height="675" fetchpriority="high" decoding="async" /></figure>
+            <figure class="post-cover" style="--im:url(https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Product+Images/Ambika+Plywoods+Product+-+Sirocco+Laminates.jpeg)"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Product+Images/Ambika+Plywoods+Product+-+Sirocco+Laminates.jpeg" alt="Sirocco decorative laminates available at Ambika Plywoods" fetchpriority="high" decoding="async" /></figure>
             <div class="post-body">
               <p class="lead">Laminates give plywood furniture its colour, texture and protection. With hundreds of designs on the shelf, it is easy to choose on looks alone and regret it later. Use this guide to match laminate type, thickness and finish to the place you are using it.</p>
               <h2>What is a decorative laminate?</h2>
@@ -357,7 +359,7 @@
 </ul>
 
 
-<figure class="post-fig"><div class="pf-img"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-93.jpg" alt="Premium wood-texture laminate selection at the showroom" width="1200" height="675" loading="lazy" decoding="async" /></div><figcaption>Browsing wood-texture laminates in the showroom, always compare in your own lighting.</figcaption></figure>
+<figure class="post-fig"><div class="pf-img" style="--im:url(https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-93.jpg)"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-93.jpg" alt="Premium wood-texture laminate selection at the showroom" loading="lazy" decoding="async" /></div><figcaption>Browsing wood-texture laminates in the showroom, always compare in your own lighting.</figcaption></figure>
 <h2>Pick the finish for the room</h2>
 <ul>
 <li><strong>Matte:</strong> hides fingerprints and gives a calm, premium look. Popular for modern wardrobes and kitchens.</li>
@@ -404,9 +406,9 @@
         </div>
         <div class="more-wrap">
           <h2 class="t-h2">More guides you may like</h2>
-          <div class="bgrid"><article class="bcard"><a class="bcard-img" href="kitchen-and-wardrobe-hardware-guide.html" tabindex="-1" aria-hidden="true"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Product+Images/Ambika+Plywoods+Product+-+Hinges.jpeg" alt="Cabinet hinges stocked at Ambika Plywoods" width="800" height="500" loading="lazy" decoding="async" /><span class="bcard-tag">Hardware</span></a><div class="bcard-body"><h3><a href="kitchen-and-wardrobe-hardware-guide.html">Kitchen and Wardrobe Hardware Guide</a></h3><p>Good hardware decides how your kitchen and wardrobe feel for years. Compare hinges, drawer channels, locks and handles, and learn what is worth spending more on.</p><div class="bcard-foot"><span><i class="ri-time-line" aria-hidden="true"></i>5 min read</span><span class="bcard-more">Read guide <i class="ri-arrow-right-line" aria-hidden="true"></i></span></div></div></article>
-<article class="bcard"><a class="bcard-img" href="glass-and-aluminium-partitions-guide.html" tabindex="-1" aria-hidden="true"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-66.jpg" alt="Floor-to-ceiling smoked tinted glass partition" width="800" height="500" loading="lazy" decoding="async" /><span class="bcard-tag">Partitions</span></a><div class="bcard-body"><h3><a href="glass-and-aluminium-partitions-guide.html">Glass and Aluminium Partitions: Types and Buying Guide</a></h3><p>Planning an office cabin, home partition or shop divider? Compare glass, aluminium and frameless partitions, privacy options and what to check before you order.</p><div class="bcard-foot"><span><i class="ri-time-line" aria-hidden="true"></i>5 min read</span><span class="bcard-more">Read guide <i class="ri-arrow-right-line" aria-hidden="true"></i></span></div></div></article>
-<article class="bcard"><a class="bcard-img" href="best-plywood-for-furniture-dindigul.html" tabindex="-1" aria-hidden="true"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-11.jpg" alt="Full-height executive wardrobe system built with plywood" width="800" height="500" loading="lazy" decoding="async" /><span class="bcard-tag">Plywood</span></a><div class="bcard-body"><h3><a href="best-plywood-for-furniture-dindigul.html">Best Plywood for Furniture: BWP vs BWR vs MR Explained</a></h3><p>Confused between BWP, BWR, MR and commercial plywood? Learn which grade suits your kitchen, wardrobe, bed and doors in Tamil Nadu&#x27;s humid climate, and how to check quality before you buy.</p><div class="bcard-foot"><span><i class="ri-time-line" aria-hidden="true"></i>6 min read</span><span class="bcard-more">Read guide <i class="ri-arrow-right-line" aria-hidden="true"></i></span></div></div></article></div>
+          <div class="bgrid"><article class="bcard"><a class="bcard-img" href="kitchen-and-wardrobe-hardware-guide.html" tabindex="-1" aria-hidden="true" style="--im:url(https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Product+Images/Ambika+Plywoods+Product+-+Hinges.jpeg)"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Product+Images/Ambika+Plywoods+Product+-+Hinges.jpeg" alt="Cabinet hinges stocked at Ambika Plywoods" loading="lazy" decoding="async" /><span class="bcard-tag">Hardware</span></a><div class="bcard-body"><h3><a href="kitchen-and-wardrobe-hardware-guide.html">Kitchen and Wardrobe Hardware Guide</a></h3><p>Good hardware decides how your kitchen and wardrobe feel for years. Compare hinges, drawer channels, locks and handles, and learn what is worth spending more on.</p><div class="bcard-foot"><span><i class="ri-time-line" aria-hidden="true"></i>5 min read</span><span class="bcard-more">Read guide <i class="ri-arrow-right-line" aria-hidden="true"></i></span></div></div></article>
+<article class="bcard"><a class="bcard-img" href="glass-and-aluminium-partitions-guide.html" tabindex="-1" aria-hidden="true" style="--im:url(https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-66.jpg)"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-66.jpg" alt="Floor-to-ceiling smoked tinted glass partition" loading="lazy" decoding="async" /><span class="bcard-tag">Partitions</span></a><div class="bcard-body"><h3><a href="glass-and-aluminium-partitions-guide.html">Glass and Aluminium Partitions: Types and Buying Guide</a></h3><p>Planning an office cabin, home partition or shop divider? Compare glass, aluminium and frameless partitions, privacy options and what to check before you order.</p><div class="bcard-foot"><span><i class="ri-time-line" aria-hidden="true"></i>5 min read</span><span class="bcard-more">Read guide <i class="ri-arrow-right-line" aria-hidden="true"></i></span></div></div></article>
+<article class="bcard"><a class="bcard-img" href="best-plywood-for-furniture-dindigul.html" tabindex="-1" aria-hidden="true" style="--im:url(https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-11.jpg)"><img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-11.jpg" alt="Full-height executive wardrobe system built with plywood" loading="lazy" decoding="async" /><span class="bcard-tag">Plywood</span></a><div class="bcard-body"><h3><a href="best-plywood-for-furniture-dindigul.html">Best Plywood for Furniture: BWP vs BWR vs MR Explained</a></h3><p>Confused between BWP, BWR, MR and commercial plywood? Learn which grade suits your kitchen, wardrobe, bed and doors in Tamil Nadu&#x27;s humid climate, and how to check quality before you buy.</p><div class="bcard-foot"><span><i class="ri-time-line" aria-hidden="true"></i>6 min read</span><span class="bcard-more">Read guide <i class="ri-arrow-right-line" aria-hidden="true"></i></span></div></div></article></div>
         </div>
       </div>
     </section>
