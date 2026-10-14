@@ -2505,3 +2505,6 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .hero-marquee { height: 46px; }
   .hm-track span { font-size: .68rem; }
 }
+
+/* Prevent scroll-reveal start offsets from widening the page on phones */
+html, body { overflow-x: clip; }
