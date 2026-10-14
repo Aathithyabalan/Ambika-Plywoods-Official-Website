@@ -2422,6 +2422,17 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
 .hp-dl i { color: var(--acc); font-size: 1rem; }
 .hp-dealer b { padding: .22rem .6rem; border: 1px solid var(--bdr-2); border-radius: 4px; background: var(--card); font-size: .74rem; font-weight: 800; color: var(--txt); }
 
+/* Trust stats row (after the hero) */
+.trust-row { padding: 2.6rem 0 .4rem; background: var(--bg); }
+.hs4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-md); }
+.hs4 .hp { padding: 1.15rem 1.15rem 1.2rem; }
+.hs4 .hp strong { font-size: 1.7rem; }
+.hs4 .hp:nth-child(4) strong { font-size: 1.25rem; line-height: 1.2; padding-top: .28rem; }
+.hp-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .55rem; }
+.hp-chips b { white-space: nowrap; padding: .2rem .55rem; border: 1px solid var(--bdr-2); border-radius: 4px; font-size: .72rem; font-weight: 800; color: var(--txt); background: var(--bg-2); }
+[data-theme="dark"] .trust-row { background: #0A0A0B; }
+[data-theme="dark"] .hp-chips b { background: transparent; border-color: rgba(255,255,255,.18); color: #ECECEF; }
+
 /* Services strip */
 .hero-marquee { position: relative; z-index: 1; overflow: hidden; height: 56px; display: flex; align-items: center; border-top: 1px solid var(--bdr); background: var(--bg-2); }
 .hm-track { display: flex; width: max-content; animation: heroMarquee 40s linear infinite; }
@@ -2466,7 +2477,7 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .hero-sub { margin-left: auto; margin-right: auto; }
   .hero-ctas, .hero-proof { margin-left: auto; margin-right: auto; }
   .hero-proof { text-align: left; }
-  .hp-dealer { justify-content: center; }
+  .hs4 { grid-template-columns: repeat(2, 1fr); }
   .nav-actions { margin-left: auto; }
 }
 /* Phones: one fluid layout for 360 px (S23) through 412 px (S24 Ultra) */
@@ -2478,16 +2489,17 @@ textarea.form-inp { resize: vertical; min-height: 140px; }
   .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; width: 100%; }
   .hero-ctas .btn { width: 100%; justify-content: center; padding-left: .5rem; padding-right: .5rem; min-width: 0; font-size: clamp(.82rem, 3.7vw, .95rem); height: 48px; white-space: nowrap; }
   .hero-ctas .btn-primary { grid-column: 1 / -1; height: 52px; }
-  .hero-proof { margin-top: .6rem; }
-  .hp-grid { gap: .6rem; }
-  .hp { padding: .8rem .7rem .85rem; }
+  .trust-row { padding: 1.6rem 0 .2rem; }
+  .trust-row .container { padding: 0 clamp(16px, 4.6vw, 22px); }
+  .hs4 { gap: .6rem; }
+  .hs4 .hp { padding: .85rem .8rem .9rem; }
   .hp > i { width: 30px; height: 30px; font-size: 1rem; margin-bottom: .55rem; }
-  .hp strong { font-size: clamp(1.05rem, 5vw, 1.3rem); }
+  .hs4 .hp strong { font-size: clamp(1.15rem, 5.6vw, 1.45rem); }
+  .hs4 .hp:nth-child(4) strong { font-size: clamp(.95rem, 4.4vw, 1.1rem); padding-top: .2rem; }
   .hp strong em { font-size: .8rem; }
-  .hp span { font-size: clamp(.6rem, 2.7vw, .7rem); margin-top: .3rem; }
-  .hp-dealer { margin-top: .75rem; gap: .4rem; justify-content: center; }
-  .hp-dl { font-size: clamp(.6rem, 2.7vw, .68rem); width: 100%; justify-content: center; }
-  .hp-dealer b { font-size: clamp(.66rem, 3vw, .74rem); }
+  .hp span { font-size: clamp(.62rem, 2.8vw, .72rem); margin-top: .3rem; }
+  .hp-chips { flex-direction: column; align-items: flex-start; gap: .3rem; }
+  .hp-chips b { font-size: clamp(.6rem, 2.7vw, .68rem); padding: .15rem .4rem; }
   .hero-mosaic { max-width: min(300px, 76vw); margin-left: 18px; }
   .hero-down { width: 54px; height: 54px; left: -18px; bottom: -28px; font-size: 1.35rem; }
   .hero-marquee { height: 46px; }
