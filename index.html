@@ -1409,6 +1409,7 @@
       .fp-grid { grid-template-columns: repeat(6, 220px); gap: 14px; width: max-content; }
     }
   </style>
+  <link rel="preload" as="image" href="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-122.jpg" fetchpriority="high" />
 </head>
 <body>
 
@@ -1526,7 +1527,34 @@
     <section class="hero" id="hero" aria-labelledby="hero-title">
       <div class="hero-bg" aria-hidden="true"><div class="hero-grid"></div></div>
 
-      <div class="hero-split">
+      <div class="container hero-wrap">
+        <!-- Puzzle mosaic: the showroom photo split into tiles -->
+        <div class="hero-mosaic" role="img" aria-label="Ambika Plywoods showroom, Dindigul" style="--img:url(https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-122.jpg)">
+          <div class="mosaic-grid" aria-hidden="true">
+            <i class="mt" style="--d:1;background-position:0.00% 0.00%"></i>
+            <i class="mt" style="--d:2;background-position:33.33% 0.00%"></i>
+            <i class="mt" style="--d:3;background-position:66.67% 0.00%"></i>
+            <i class="mt mt-blank"></i>
+            <i class="mt mt-acc" style="--d:5"></i>
+            <i class="mt" style="--d:6;background-position:33.33% 25.00%"></i>
+            <i class="mt" style="--d:7;background-position:66.67% 25.00%"></i>
+            <i class="mt" style="--d:8;background-position:100.00% 25.00%"></i>
+            <i class="mt" style="--d:9;background-position:0.00% 50.00%"></i>
+            <i class="mt" style="--d:10;background-position:33.33% 50.00%"></i>
+            <i class="mt" style="--d:11;background-position:66.67% 50.00%"></i>
+            <i class="mt" style="--d:12;background-position:100.00% 50.00%"></i>
+            <i class="mt" style="--d:13;background-position:0.00% 75.00%"></i>
+            <i class="mt" style="--d:14;background-position:33.33% 75.00%"></i>
+            <i class="mt" style="--d:15;background-position:66.67% 75.00%"></i>
+            <i class="mt" style="--d:16;background-position:100.00% 75.00%"></i>
+            <i class="mt mt-blank"></i>
+            <i class="mt" style="--d:18;background-position:33.33% 100.00%"></i>
+            <i class="mt" style="--d:19;background-position:66.67% 100.00%"></i>
+            <i class="mt mt-acc" style="--d:20"></i>
+          </div>
+          <a href="#after-hero" class="hero-down" aria-label="Scroll to explore"><i class="ri-arrow-down-line" aria-hidden="true"></i></a>
+        </div>
+
         <!-- Copy -->
         <div class="hero-copy">
           <div class="hero-badge" role="note">
@@ -1563,11 +1591,6 @@
           </div>
           <p class="hero-note"><i class="ri-shield-check-line" aria-hidden="true"></i>Authorised dealer &middot; Saint-Gobain &middot; Asian Paints</p>
         </div>
-
-        <!-- Photo (full-bleed to the screen edge) -->
-        <figure class="hero-photo" aria-hidden="true">
-          <img src="https://my-public-bucket-12001.s3.ap-south-1.amazonaws.com/Ambika+Plywoods+Gallery/Ambika+Plywoods+Gallery+Image-122.jpg" alt="Ambika Plywoods showroom" loading="eager" decoding="async" fetchpriority="high" />
-        </figure>
       </div>
 
       <!-- Services strip -->
@@ -1575,7 +1598,7 @@
     </section>
 
     <!-- ── FEATURED PRODUCTS GLIMPSE ───────────────────────────── -->
-    <section class="fp-section" aria-labelledby="fp-section-title">
+    <section class="fp-section" id="after-hero" aria-labelledby="fp-section-title">
       <div class="container">
 
         <div class="fp-header">
